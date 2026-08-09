@@ -220,7 +220,16 @@ export async function replaceProductTags(client, productId, rawTagsPayload = [])
     }
   }
 
-  const uniqueTagIds = [...new Set(tagIds)];
+  let uniqueTagIds = [...new Set(tagIds)];
+
+  if (uniqueTagIds.length > 0) {
+    // Validate tag IDs against the tags table to ensure they exist (preventing foreign key constraint errors)
+    const validTagsResult = await client.query(
+      'SELECT id FROM tags WHERE id = ANY($1::int[])',
+      [uniqueTagIds]
+    );
+    uniqueTagIds = validTagsResult.rows.map((row) => row.id);
+  }
 
   if (uniqueTagIds.length > 0) {
     await client.query(
