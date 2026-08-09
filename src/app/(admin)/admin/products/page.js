@@ -170,6 +170,10 @@ function AdminProductsContent() {
   const editIdParam = searchParams.get('edit');
 
   useEffect(() => {
+    // Wipe all stale localStorage overrides so DB is always source of truth
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('houseofginija_custom_products');
+    }
     fetchProductsAndCollections();
 
     const handleProductUpdate = (updatedProduct) => {
@@ -641,6 +645,10 @@ function AdminProductsContent() {
       });
 
       if (res.ok) {
+        const savedData = await res.json().catch(() => ({}));
+        const savedId = savedData?.product?.id || payload.id;
+        // Remove the localStorage override so storefront always reads fresh DB data
+        if (savedId) removeStoredLocalCatalogOverride(String(savedId));
         setSuccess(`Product "${formFields.name}" saved successfully to catalog.`);
         fetchProductsAndCollections();
       } else {

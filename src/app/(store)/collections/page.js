@@ -495,6 +495,200 @@ function CollectionsContent() {
     };
     fetchCols();
   }, []);
+  // Scroll-Spy: Highlight active category on left panel as user scrolls the right panel feed
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handleScroll = () => {
+      if (searchQuery) {
+        setActiveCategorySidebar('');
+        return;
+      }
+
+      const sections = getSidebarCategories()
+        .map(c => c.id)
+        .filter(id => id !== 'all' && id !== 'jewellery');
+      
+      const scrollPosition = window.scrollY + 242; // offset of header + search bar + category bar + buffer
+      let activeSection = '';
+
+      for (const secId of sections) {
+        const el = document.getElementById(secId);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            activeSection = secId;
+            break;
+          }
+        }
+      }
+
+      if (activeSection) {
+        setActiveCategorySidebar(activeSection);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Run once on mount/load
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [loading, products, activeProduct, searchQuery, collections]);
+
+
+
+  // Sync nav bar highlight with active collection filter selection
+  useEffect(() => {
+    if (selectedCollection) {
+      setActiveCategorySidebar(selectedCollection);
+    } else {
+      setActiveCategorySidebar('');
+    }
+  }, [selectedCollection]);
+
+  const handleCategorySidebarClick = (catId) => {
+    setActiveCategorySidebar(catId);
+    setSelectedCollection(catId);
+    
+    setTimeout(() => {
+      const element = document.querySelector('.blinkit-feed');
+      if (element) {
+        const yOffset = -232;
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
+  // Static options matching our seed data
+  const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
+  
+  const activeFilterCount = [
+    selectedCollection,
+    selectedSize,
+    selectedColor
+  ].filter(Boolean).length;
+
+  const getSuggestions = () => {
+    if (!searchQuery) return [];
+    const q = searchQuery.toLowerCase().trim();
+    return allProducts
+      .filter((p) => p.name.toLowerCase().includes(q))
+      .slice(0, 5);
+  };
+  const colors = [
+    'Champagne Pink',
+    'Deep Plum',
+    'Blush Cream',
+    'Midnight Plum',
+    '#000000 #000000',
+    'Warm Ivory',
+    'Rose Mauve',
+    'Rose Pink',
+    'Mulberry',
+    'Rose Pink Foil',
+    'Dusty Mauve',
+  ];
+
+  // Helper to render filter controls (shared between desktop sidebar and mobile bottom sheet)
+  const renderFilters = (isMobile = false) => (
+    <>
+      {!isMobile && (
+        <div style={filterGroupStyle}>
+          <h4 style={filterTitleStyle}>Search</h4>
+          <input
+            type="text"
+            placeholder="Search creations..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={searchFieldStyle}
+          />
+        </div>
+      )}
+
+      <div style={filterGroupStyle}>
+        <h4 style={filterTitleStyle}>Collections</h4>
+        <select
+          value={selectedCollection}
+          onChange={(e) => setSelectedCollection(e.target.value)}
+          style={selectFieldStyle}
+        >
+          {collections
+            .filter((c) => c.parent_slug !== 'new-collection' && String(c.parent_id) !== '3' && c.slug !== 'muslin' && c.slug !== 'cotton' && c.slug !== 'cotton-linen')
+            .map((category) => (
+              <option key={category.id} value={category.slug}>
+                {category.name}
+              </option>
+            ))}
+          {jewelleryEnabled !== false && (
+            <>
+              <option disabled>-- Jewellery Types --</option>
+              <option value="rings">Rings</option>
+              <option value="necklaces">Necklaces</option>
+              <option value="bracelets">Bracelets</option>
+            </>
+          )}
+        </select>
+      </div>
+
+      <div style={filterGroupStyle}>
+        <h4 style={filterTitleStyle}>Size</h4>
+        <div style={gridSelectStyle}>
+          {sizes.map((s) => (
+            <button
+              key={s}
+              onClick={() => setSelectedSize(selectedSize === s ? '' : s)}
+              style={selectedSize === s ? activeGridItemStyle : gridItemStyle}
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div style={filterGroupStyle}>
+        <h4 style={filterTitleStyle}>Sort By</h4>
+        <select
+          value={selectedSort}
+          onChange={(e) => setSelectedSort(e.target.value)}
+          style={selectFieldStyle}
+        >
+          <option value="price_asc">Price: Low to High</option>
+          <option value="price_desc">Price: High to Low</option>
+          <option value="name_asc">Alphabetical</option>
+        </select>
+      </div>
+
+      <button 
+        onClick={() => {
+          handleClearFilters();
+          setIsMobileFilterOpen(false);
+        }} 
+        style={clearBtnStyle}
+      >
+        Reset All Filters
+      </button>
+    </>
+  );
+
+  // Fetch collections
+  useEffect(() => {
+    const fetchCols = async () => {
+      try {
+        const res = await fetch('/api/collections');
+        if (res.ok) {
+          const data = await res.json();
+          setCollections(data.collections || []);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchCols();
+  }, []);
 
   // Fetch products once on mount to cache in memory
   useEffect(() => {
@@ -504,7 +698,7 @@ function CollectionsContent() {
         const res = await fetch('/api/products', { cache: 'no-store', headers: { 'Cache-Control': 'no-cache' } });
         if (res.ok) {
           const data = await res.json();
-          let list = mergeCatalogWithLocalOverrides(data.products || []);
+          let list = data.products || [];
           if (jewelleryEnabled === false) {
             list = list.filter((product) => !isJewelleryProduct(product));
           }
@@ -529,18 +723,12 @@ function CollectionsContent() {
           const res = await fetch(`/api/products?search=${encodeURIComponent(searchQuery.trim())}`, { cache: 'no-store', headers: { 'Cache-Control': 'no-cache' } });
           if (res.ok) {
             const data = await res.json();
-            let list = mergeCatalogWithLocalOverrides(data.products || []);
+            let list = data.products || [];
             if (jewelleryEnabled === false) {
               list = list.filter((product) => !isJewelleryProduct(product));
             }
             list.sort((a, b) => compareCatalogProducts(a, b, 'name_asc'));
             setProducts(list);
-          }
-        } catch (err) {
-          console.error(err);
-        } finally {
-          setLoading(false);
-        }
       } else {
         let filtered = [...allProducts];
 
