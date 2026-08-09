@@ -165,19 +165,17 @@ function normalizeLocalProductTags(body, availableTags = getLocalTagsFallback())
 }
 
 function validateRequiredProductFields(body, update = false) {
-  if (
-    (update && !body.id) ||
-    !body.name ||
-    !body.slug ||
-    body.price === undefined ||
-    body.price === null ||
-    !Array.isArray(body.images) ||
-    !Array.isArray(body.variants)
-  ) {
+  const missing = [];
+  if (update && !body.id) missing.push('id');
+  if (!body.name) missing.push('name');
+  if (!body.slug) missing.push('slug');
+  if (body.price === undefined || body.price === null) missing.push('price');
+  if (!Array.isArray(body.images)) missing.push('images (must be array, got: ' + typeof body.images + ')');
+  if (!Array.isArray(body.variants)) missing.push('variants (must be array, got: ' + typeof body.variants + ')');
+
+  if (missing.length > 0) {
     const error = new Error(
-      update
-        ? 'Missing required product properties for update.'
-        : 'Missing required product properties.'
+      (update ? 'Missing required product properties for update: ' : 'Missing required product properties: ') + missing.join(', ')
     );
     error.status = 400;
     throw error;

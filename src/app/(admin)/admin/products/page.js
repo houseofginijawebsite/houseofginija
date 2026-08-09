@@ -638,6 +638,15 @@ function AdminProductsContent() {
 
     // Async Background Persistence Sync to API
     try {
+      // Safety guard: editing mode must have a valid product ID
+      if (editingId && !payload.id) {
+        payload.id = editingId;
+      }
+      if (editingId && !payload.id) {
+        setError('Cannot save: product ID is missing. Please close and reopen the edit form.');
+        return;
+      }
+
       const res = await fetch('/api/admin/products', {
         method: editingId ? 'PUT' : 'POST',
         headers: { 'Content-Type': 'application/json' },
