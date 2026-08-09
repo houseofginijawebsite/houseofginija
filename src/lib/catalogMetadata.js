@@ -191,18 +191,28 @@ export async function replaceProductTags(client, productId, rawTagsPayload = [])
         : name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
       try {
-        const tagResult = await client.query(
-          `
-            INSERT INTO tags (name, slug)
-            VALUES ($1, $2)
-            ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name
-            RETURNING id
-          `,
-          [name, slug]
+        // Query if the tag already exists by name or slug first to prevent unique key errors from aborting the transaction
+        const existingTag = await client.query(
+          'SELECT id FROM tags WHERE slug = $1 OR name = $2 LIMIT 1',
+          [slug, name]
         );
+        
+        if (existingTag.rows.length > 0) {
+          tagIds.push(existingTag.rows[0].id);
+        } else {
+          const tagResult = await client.query(
+            `
+              INSERT INTO tags (name, slug)
+              VALUES ($1, $2)
+              ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name
+              RETURNING id
+            `,
+            [name, slug]
+          );
 
-        if (tagResult.rows[0]?.id) {
-          tagIds.push(tagResult.rows[0].id);
+          if (tagResult.rows[0]?.id) {
+            tagIds.push(tagResult.rows[0].id);
+          }
         }
       } catch (err) {
         console.warn('Error upserting custom tag:', err);
