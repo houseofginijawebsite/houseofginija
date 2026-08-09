@@ -319,7 +319,7 @@ export async function PUT(request) {
 
   const product = parseProductPayload(body);
 
-  const isValidDbId = !isNaN(Number(body.id)) && Number(body.id) > 0 && Number(body.id) <= 2147483647;
+  const isValidDbId = body.id && !isNaN(Number(body.id)) && Number(body.id) > 0;
 
   if (shouldUseLocalCatalogFallbackFirst() || !isValidDbId) {
     const existing = getStore().find((p) => String(p.id) === String(body.id) || p.slug === body.slug);
