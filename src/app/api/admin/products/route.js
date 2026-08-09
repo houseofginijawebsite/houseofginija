@@ -431,3 +431,6 @@ export async function DELETE(request) {
     return NextResponse.json({ success: true, deletedId: id });
   }
 }
+
+// Trigger rebuild for Vercel integration
+
