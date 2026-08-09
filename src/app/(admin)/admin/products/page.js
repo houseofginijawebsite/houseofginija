@@ -569,6 +569,7 @@ function AdminProductsContent() {
     const salePriceNum = formFields.flash_sale_price ? parseFloat(formFields.flash_sale_price) : (origPriceNum > 0 ? Math.round(origPriceNum * 0.8) : null);
 
     const payload = {
+      id: editingId,
       ...formFields,
       collection_slugs: finalSlugs,
       images: finalImages,
