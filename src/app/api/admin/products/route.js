@@ -432,5 +432,5 @@ export async function DELETE(request) {
   }
 }
 
-// Trigger rebuild for Vercel integration
+// Trigger rebuild for Vercel integration - fresh credentials
 
