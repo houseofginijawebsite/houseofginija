@@ -145,22 +145,45 @@ export function normalizeTagIds(payload) {
   )];
 }
 
-export async function validateCollection(client, collectionId) {
-  if (collectionId == null) return;
+export async function validateCollection(client, collectionId, collectionSlugs = []) {
+  const strId = collectionId != null ? String(collectionId).trim() : '';
 
-  const isNumeric = /^\d+$/.test(String(collectionId));
-  const query = isNumeric
-    ? 'SELECT id FROM collections WHERE id = $1 AND is_active = TRUE'
-    : 'SELECT id FROM collections WHERE slug = $1 AND is_active = TRUE';
-  const param = isNumeric ? Number.parseInt(collectionId, 10) : String(collectionId);
-
-  const result = await client.query(query, [param]);
-
-  if (result.rowCount === 0) {
-    const error = new Error('Selected category is not available.');
-    error.status = 400;
-    throw error;
+  // 1. Try checking direct ID or slug match
+  if (strId) {
+    const result = await client.query(
+      'SELECT id FROM collections WHERE is_active = TRUE AND (id::text = $1 OR slug = $1) LIMIT 1',
+      [strId]
+    );
+    if (result.rowCount > 0) {
+      return result.rows[0].id;
+    }
   }
+
+  // 2. Try resolving via collectionSlugs
+  if (Array.isArray(collectionSlugs) && collectionSlugs.length > 0) {
+    const validSlugs = collectionSlugs.filter(Boolean);
+    if (validSlugs.length > 0) {
+      const result = await client.query(
+        `SELECT id FROM collections
+         WHERE is_active = TRUE AND slug = ANY($1::text[])
+         ORDER BY CASE
+           WHEN slug NOT IN ('flash-sale', 'new-collection') THEN 1
+           ELSE 2
+         END ASC
+         LIMIT 1`,
+        [validSlugs]
+      );
+      if (result.rowCount > 0) {
+        return result.rows[0].id;
+      }
+    }
+  }
+
+  // 3. Fallback to suits or first active collection
+  const defaultRes = await client.query(
+    "SELECT id FROM collections WHERE is_active = TRUE ORDER BY CASE WHEN slug = 'suits' THEN 0 ELSE 1 END, id ASC LIMIT 1"
+  );
+  return defaultRes.rows[0] ? defaultRes.rows[0].id : '1';
 }
 
 export async function validateTagIds(client, tagIds) {

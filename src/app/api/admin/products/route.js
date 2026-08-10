@@ -255,7 +255,7 @@ export async function POST(request) {
     const tagIds = normalizeTagIds(body);
 
     await client.query('BEGIN');
-    await validateCollection(client, product.collectionId);
+    const validCollectionId = await validateCollection(client, product.collectionId, product.collection_slugs);
     await validateTagIds(client, tagIds);
 
     const result = await client.query(
@@ -273,7 +273,7 @@ export async function POST(request) {
         product.slug,
         product.description,
         product.price,
-        product.collectionId,
+        validCollectionId,
         product.isOutOfStock,
         JSON.stringify(product.images),
         JSON.stringify(product.variants),
@@ -339,7 +339,7 @@ export async function PUT(request) {
     const tagIds = shouldReplaceTags ? normalizeTagIds(body) : null;
 
     await client.query('BEGIN');
-    await validateCollection(client, product.collectionId);
+    const validCollectionId = await validateCollection(client, product.collectionId, product.collection_slugs);
 
     const result = await client.query(
       `
@@ -365,7 +365,7 @@ export async function PUT(request) {
         product.slug,
         product.description,
         product.price,
-        product.collectionId,
+        validCollectionId,
         product.isOutOfStock,
         JSON.stringify(product.images),
         JSON.stringify(product.variants),
