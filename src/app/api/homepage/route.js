@@ -75,7 +75,20 @@ export async function GET() {
       SELECT ${PRODUCT_SELECT_FIELDS}
       FROM products p
       ${PRODUCT_COLLECTION_JOINS}
-      WHERE c.slug IN ('indo-western', 'gowns', 'heavy-gown', 'shararas')
+      WHERE p.is_out_of_stock = FALSE
+        AND (
+          c.slug IN ('indo-western', 'gowns', 'heavy-gown', 'shararas')
+          OR p.collection_slugs::text ILIKE '%indo-western%'
+          OR p.collection_slugs::text ILIKE '%gowns%'
+          OR p.collection_slugs::text ILIKE '%heavy-gown%'
+          OR p.collection_slugs::text ILIKE '%shararas%'
+          OR p.name ILIKE '%drape%'
+          OR p.name ILIKE '%saree%'
+          OR p.name ILIKE '%gown%'
+          OR p.name ILIKE '%anarkali%'
+          OR p.name ILIKE '%cape%'
+          OR p.collection_id = 8
+        )
       ORDER BY p.id ASC
     `;
 
@@ -140,41 +153,108 @@ export async function GET() {
       allProductsMapped = allProductsMapped.filter((product) => !isJewelleryProduct(product));
     }
 
-    const isSuitsCategory = (slug) => slug === 'suits' || slug === 'unstitched';
-    const isHeavyCategory = (slug) => ['indo-western', 'gowns', 'heavy-gown', 'shararas'].includes(slug);
+    const isSuitsCategory = (p) => {
+      const slugs = Array.isArray(p.collection_slugs) ? p.collection_slugs : [];
+      return slugs.includes('suits') || slugs.includes('unstitched') || p.collection_slug === 'suits' || p.collection_slug === 'unstitched';
+    };
+
+    const isHeavyCategory = (p) => {
+      const slugs = Array.isArray(p.collection_slugs) ? p.collection_slugs : [];
+      const name = (p.name || '').toLowerCase();
+      return (
+        slugs.some((s) => ['indo-western', 'gowns', 'heavy-gown', 'shararas'].includes(s)) ||
+        ['indo-western', 'gowns', 'heavy-gown', 'shararas'].includes(p.collection_slug) ||
+        name.includes('drape') ||
+        name.includes('saree') ||
+        name.includes('gown') ||
+        name.includes('anarkali') ||
+        name.includes('cape')
+      );
+    };
 
     const categoryCounts = {
-      discounted_suits: allProductsMapped.filter((p) => Boolean(p.flash_sale) && isSuitsCategory(p.collection_slug)).length,
-      discounted_heavy: allProductsMapped.filter((p) => Boolean(p.flash_sale) && isHeavyCategory(p.collection_slug)).length,
-      suits: allProductsMapped.filter((p) => isSuitsCategory(p.collection_slug)).length,
-      indo_western: allProductsMapped.filter((p) => p.collection_slug === 'indo-western').length,
-      gowns: allProductsMapped.filter((p) => p.collection_slug === 'gowns' || p.collection_slug === 'heavy-gown').length,
-      shararas: allProductsMapped.filter((p) => p.collection_slug === 'shararas').length,
+      discounted_suits: allProductsMapped.filter((p) => Boolean(p.flash_sale) && isSuitsCategory(p)).length,
+      discounted_heavy: allProductsMapped.filter((p) => Boolean(p.flash_sale) && isHeavyCategory(p)).length,
+      suits: allProductsMapped.filter((p) => isSuitsCategory(p)).length,
+      indo_western: allProductsMapped.filter((p) => {
+        const slugs = Array.isArray(p.collection_slugs) ? p.collection_slugs : [];
+        return slugs.includes('indo-western') || p.collection_slug === 'indo-western' || String(p.collection_id) === '8' || (p.name || '').toLowerCase().includes('cape');
+      }).length,
+      gowns: allProductsMapped.filter((p) => {
+        const slugs = Array.isArray(p.collection_slugs) ? p.collection_slugs : [];
+        const name = (p.name || '').toLowerCase();
+        return slugs.includes('gowns') || slugs.includes('heavy-gown') || p.collection_slug === 'gowns' || name.includes('gown') || name.includes('anarkali');
+      }).length,
+      shararas: allProductsMapped.filter((p) => {
+        const slugs = Array.isArray(p.collection_slugs) ? p.collection_slugs : [];
+        const name = (p.name || '').toLowerCase();
+        return slugs.includes('shararas') || slugs.includes('drape-sarees') || p.collection_slug === 'shararas' || name.includes('drape') || name.includes('saree');
+      }).length,
     };
 
     const fallbackHeavyDresses = getLocalHomepageFallback().heavyDresses || {};
     const getCategoryProducts = (slugs, fallbackItems = []) => {
       const acceptedSlugs = Array.isArray(slugs) ? slugs : [slugs];
-      const matched = heavyDressProducts.filter((product) =>
-        acceptedSlugs.includes(product.collection_slug) ||
-        (Array.isArray(product.collection_slugs) && product.collection_slugs.some((s) => acceptedSlugs.includes(s))) ||
-        (acceptedSlugs.includes('indo-western') && String(product.collection_id) === '8')
-      );
+      const matched = heavyDressProducts.filter((product) => {
+        const pSlugs = Array.isArray(product.collection_slugs) ? product.collection_slugs : [];
+        const name = (product.name || '').toLowerCase();
 
-      const storeItems = getStore().filter((product) => {
-        if (jewellery_enabled === false && isJewelleryProduct(product)) return false;
+        if (acceptedSlugs.includes('gowns') || acceptedSlugs.includes('heavy-gown')) {
+          if (pSlugs.includes('gowns') || pSlugs.includes('heavy-gown') || name.includes('gown') || name.includes('anarkali')) return true;
+        }
+        if (acceptedSlugs.includes('shararas')) {
+          if (pSlugs.includes('shararas') || pSlugs.includes('drape-sarees') || name.includes('drape') || name.includes('saree')) return true;
+        }
+        if (acceptedSlugs.includes('indo-western')) {
+          if (pSlugs.includes('indo-western') || String(product.collection_id) === '8' || name.includes('cape') || name.includes('co-ord')) return true;
+        }
+
         return (
           acceptedSlugs.includes(product.collection_slug) ||
-          (Array.isArray(product.collection_slugs) && product.collection_slugs.some((s) => acceptedSlugs.includes(s))) ||
-          (acceptedSlugs.includes('indo-western') && String(product.collection_id) === '8')
+          pSlugs.some((s) => acceptedSlugs.includes(s))
         );
       });
 
-      const fallbackFiltered = fallbackItems.filter((product) =>
-        acceptedSlugs.includes(product.collection_slug) ||
-        (Array.isArray(product.collection_slugs) && product.collection_slugs.some((s) => acceptedSlugs.includes(s))) ||
-        (acceptedSlugs.includes('indo-western') && String(product.collection_id) === '8')
-      );
+      const storeItems = getStore().filter((product) => {
+        if (jewellery_enabled === false && isJewelleryProduct(product)) return false;
+        const pSlugs = Array.isArray(product.collection_slugs) ? product.collection_slugs : [];
+        const name = (product.name || '').toLowerCase();
+
+        if (acceptedSlugs.includes('gowns') || acceptedSlugs.includes('heavy-gown')) {
+          if (pSlugs.includes('gowns') || pSlugs.includes('heavy-gown') || name.includes('gown') || name.includes('anarkali')) return true;
+        }
+        if (acceptedSlugs.includes('shararas')) {
+          if (pSlugs.includes('shararas') || pSlugs.includes('drape-sarees') || name.includes('drape') || name.includes('saree')) return true;
+        }
+        if (acceptedSlugs.includes('indo-western')) {
+          if (pSlugs.includes('indo-western') || String(product.collection_id) === '8' || name.includes('cape') || name.includes('co-ord')) return true;
+        }
+
+        return (
+          acceptedSlugs.includes(product.collection_slug) ||
+          pSlugs.some((s) => acceptedSlugs.includes(s))
+        );
+      });
+
+      const fallbackFiltered = fallbackItems.filter((product) => {
+        const pSlugs = Array.isArray(product.collection_slugs) ? product.collection_slugs : [];
+        const name = (product.name || '').toLowerCase();
+
+        if (acceptedSlugs.includes('gowns') || acceptedSlugs.includes('heavy-gown')) {
+          if (pSlugs.includes('gowns') || pSlugs.includes('heavy-gown') || name.includes('gown') || name.includes('anarkali')) return true;
+        }
+        if (acceptedSlugs.includes('shararas')) {
+          if (pSlugs.includes('shararas') || pSlugs.includes('drape-sarees') || name.includes('drape') || name.includes('saree')) return true;
+        }
+        if (acceptedSlugs.includes('indo-western')) {
+          if (pSlugs.includes('indo-western') || String(product.collection_id) === '8' || name.includes('cape') || name.includes('co-ord')) return true;
+        }
+
+        return (
+          acceptedSlugs.includes(product.collection_slug) ||
+          pSlugs.some((s) => acceptedSlugs.includes(s))
+        );
+      });
 
       const uniqueMap = new Map();
       [...matched, ...storeItems, ...fallbackFiltered].forEach((p) => {
@@ -219,7 +299,8 @@ export async function GET() {
       }
     });
   } catch (error) {
-    console.error('Fetch homepage data error:', error);
+    console.error('Database connection error in /api/homepage:', error);
+
     if (canUseLocalCatalogFallback()) {
       return NextResponse.json({
         ...getLocalHomepageFallback(),
@@ -230,6 +311,7 @@ export async function GET() {
         }
       });
     }
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

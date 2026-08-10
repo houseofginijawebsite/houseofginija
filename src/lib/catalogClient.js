@@ -58,20 +58,21 @@ export function productMatchesCategory(product, selectedCategory) {
   }
 
   // 3. Strict Category Tag Gatekeeping
-  // If product has explicit collection_slugs, strictly check against them
+  const nameLower = (product.name || '').toLowerCase();
+  
   if (colSlugs.length > 0) {
     if (cat === 'suits' || cat === 'unstitched' || cat === 'unstitched-suits') {
       if (isJewelleryProduct(product)) return false;
       return colSlugs.includes('suits') || colSlugs.includes('unstitched') || colSlugs.includes('unstitched-suits');
     }
     if (cat === 'indo-western') {
-      return colSlugs.includes('indo-western');
+      return colSlugs.includes('indo-western') || nameLower.includes('cape') || nameLower.includes('co-ord');
     }
     if (cat === 'gowns' || cat === 'heavy-gown') {
-      return colSlugs.includes('gowns') || colSlugs.includes('heavy-gown');
+      return colSlugs.includes('gowns') || colSlugs.includes('heavy-gown') || nameLower.includes('gown') || nameLower.includes('anarkali');
     }
-    if (cat === 'shararas') {
-      return colSlugs.includes('shararas');
+    if (cat === 'shararas' || cat === 'drape-sarees' || cat === 'drapes') {
+      return colSlugs.includes('shararas') || colSlugs.includes('drape-sarees') || nameLower.includes('drape') || nameLower.includes('saree');
     }
     if (cat === 'co-ords') {
       return colSlugs.includes('co-ords');
@@ -109,13 +110,13 @@ export function productMatchesCategory(product, selectedCategory) {
     return colSlug === 'suits' || colSlug === 'unstitched' || colId === '1';
   }
   if (cat === 'indo-western') {
-    return colSlug === 'indo-western' || colId === '8';
+    return colSlug === 'indo-western' || colId === '8' || nameLower.includes('cape') || nameLower.includes('co-ord');
   }
   if (cat === 'gowns' || cat === 'heavy-gown') {
-    return colSlug === 'gowns' || colSlug === 'heavy-gown' || colId === '10';
+    return colSlug === 'gowns' || colSlug === 'heavy-gown' || colId === '10' || nameLower.includes('gown') || nameLower.includes('anarkali');
   }
-  if (cat === 'shararas') {
-    return colSlug === 'shararas' || colId === '9';
+  if (cat === 'shararas' || cat === 'drape-sarees' || cat === 'drapes') {
+    return colSlug === 'shararas' || colId === '9' || nameLower.includes('drape') || nameLower.includes('saree');
   }
   if (cat === 'co-ords') {
     return colSlug === 'co-ords' || colId === '11';

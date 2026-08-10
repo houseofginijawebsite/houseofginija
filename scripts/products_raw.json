@@ -2585,6 +2585,7 @@
     "collection_id": "1",
     "is_out_of_stock": false,
     "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786365244/houseofginija_products/vixegx6ibo8yrcujhffn.jpg",
       "https://res.cloudinary.com/cyygtyfb/image/upload/v1786342818/houseofginija_products/cgsmhd2o9oha52h2g4m9.jpg",
       "https://res.cloudinary.com/cyygtyfb/image/upload/v1786342818/houseofginija_products/xcavaobecfj6omgpp1ry.jpg"
     ],
@@ -2888,6 +2889,621 @@
         "id": 1200216931591684000,
         "name": "Blue, Embroidered, Sequin, Silverwork, Festive, Elegant",
         "slug": "blue-embroidered-sequin-silverwork-festive-elegant"
+      }
+    ]
+  },
+  {
+    "id": "1200268705623277569",
+    "name": "Noor Mustard",
+    "slug": "noor-mustard",
+    "description": "Mustard yellow drape gown with rich multicolor embroidery and silver detailing.",
+    "price": "1",
+    "collection_id": "1",
+    "is_out_of_stock": false,
+    "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363316/houseofginija_products/jbmypihzh8gd0pgwuau2.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363316/houseofginija_products/gqv4wat2loxtlvhrwxbm.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363315/houseofginija_products/ehgcwfw2x0paxejpddrq.jpg"
+    ],
+    "variants": [
+      {
+        "size": "One Size",
+        "stock": 10
+      }
+    ],
+    "flash_sale": false,
+    "flash_sale_price": null,
+    "new_arrival": false,
+    "on_sale": false,
+    "collection_slugs": [
+      "suits",
+      "gowns"
+    ],
+    "collection_name": "Unstitched Suits",
+    "collection_slug": "suits",
+    "parent_collection_name": null,
+    "parent_collection_slug": null,
+    "tags": [
+      {
+        "id": 1200268707612819500,
+        "name": "Mustard, Embroidered, Handwork, Floral, Silverwork, Festive",
+        "slug": "mustard-embroidered-handwork-floral-silverwork-festive"
+      }
+    ]
+  },
+  {
+    "id": "1200269135926231041",
+    "name": "Noor Peela",
+    "slug": "noor-peela",
+    "description": "Mustard yellow lehenga set with a heavily embellished blouse and sheer embroidered dupatta.",
+    "price": "1",
+    "collection_id": "1",
+    "is_out_of_stock": false,
+    "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363439/houseofginija_products/mekh3dvv1razb2ran77g.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363438/houseofginija_products/uqemyebaeph9oddxfanv.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363439/houseofginija_products/xysbwh7bbnaubc3b4s5t.jpg"
+    ],
+    "variants": [
+      {
+        "size": "One Size",
+        "stock": 10
+      }
+    ],
+    "flash_sale": false,
+    "flash_sale_price": null,
+    "new_arrival": false,
+    "on_sale": false,
+    "collection_slugs": [
+      "suits",
+      "indo-western"
+    ],
+    "collection_name": "Unstitched Suits",
+    "collection_slug": "suits",
+    "parent_collection_name": null,
+    "parent_collection_slug": null,
+    "tags": [
+      {
+        "id": 1200269137783390200,
+        "name": "Mustard, Embroidered, Mirrorwork, Sequins, Festive, Lehenga",
+        "slug": "mustard-embroidered-mirrorwork-sequins-festive-lehenga"
+      }
+    ]
+  },
+  {
+    "id": "1200269452972359681",
+    "name": "Gulabi Bloom",
+    "slug": "gulabi-bloom",
+    "description": "Soft pink kurta set with delicate floral detailing and a printed dupatta.",
+    "price": "1",
+    "collection_id": "1",
+    "is_out_of_stock": false,
+    "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363523/houseofginija_products/ivvfs2glv7qvkzcpovpm.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363527/houseofginija_products/f6dprtyffeqwft4bnmvl.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363525/houseofginija_products/yx4j2kzu9lm3gfurxxck.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363524/houseofginija_products/ezjcysyoaqzg5vhwdpyc.jpg"
+    ],
+    "variants": [
+      {
+        "size": "One Size",
+        "stock": 10
+      }
+    ],
+    "flash_sale": false,
+    "flash_sale_price": null,
+    "new_arrival": false,
+    "on_sale": false,
+    "collection_slugs": [
+      "suits"
+    ],
+    "collection_name": "Unstitched Suits",
+    "collection_slug": "suits",
+    "parent_collection_name": null,
+    "parent_collection_slug": null,
+    "tags": [
+      {
+        "id": 1200269454972027000,
+        "name": "Pink, Floral, Printed, Embroidered, Pastel, Festive",
+        "slug": "pink-floral-printed-embroidered-pastel-festive"
+      }
+    ]
+  },
+  {
+    "id": "1200269837584269313",
+    "name": "Rangoli Bloom",
+    "slug": "rangoli-bloom",
+    "description": "Vibrant orange lehenga set with colorful floral embroidery and a delicate dupatta.",
+    "price": "1",
+    "collection_id": "1",
+    "is_out_of_stock": false,
+    "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363649/houseofginija_products/cwzp1kpwvquxrterf0zr.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363651/houseofginija_products/al03rfe9htw98p0xht4a.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363651/houseofginija_products/wbxxp0ioutoh3gcnjx0v.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363651/houseofginija_products/ke5b5n9cm9migrpmtvcu.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363651/houseofginija_products/zh7hjadsl1jqgofkdvtz.jpg"
+    ],
+    "variants": [
+      {
+        "size": "One Size",
+        "stock": 10
+      }
+    ],
+    "flash_sale": false,
+    "flash_sale_price": null,
+    "new_arrival": false,
+    "on_sale": false,
+    "collection_slugs": [
+      "suits",
+      "indo-western"
+    ],
+    "collection_name": "Unstitched Suits",
+    "collection_slug": "suits",
+    "parent_collection_name": null,
+    "parent_collection_slug": null,
+    "tags": [
+      {
+        "id": 1200269839598813200,
+        "name": "Orange, Floral, Embroidered, Handwork, Festive, Lehenga",
+        "slug": "orange-floral-embroidered-handwork-festive-lehenga"
+      }
+    ]
+  },
+  {
+    "id": "1200270273125154817",
+    "name": "Gulabi Bloom2",
+    "slug": "gulabi-bloom2",
+    "description": "Rust-toned embroidered kurta set adorned with vibrant floral detailing and a matching dupatta.",
+    "price": "1",
+    "collection_id": "1",
+    "is_out_of_stock": false,
+    "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363787/houseofginija_products/j7cet1jcenxf7fan5zht.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363785/houseofginija_products/jkdfss4avhydt4tccavs.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363788/houseofginija_products/ttt8ldmklkmabjymhbs0.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363786/houseofginija_products/qsq2k2jniciammuwzhn8.jpg"
+    ],
+    "variants": [
+      {
+        "size": "One Size",
+        "stock": 10
+      }
+    ],
+    "flash_sale": false,
+    "flash_sale_price": null,
+    "new_arrival": false,
+    "on_sale": false,
+    "collection_slugs": [
+      "suits"
+    ],
+    "collection_name": "Unstitched Suits",
+    "collection_slug": "suits",
+    "parent_collection_name": null,
+    "parent_collection_slug": null,
+    "tags": [
+      {
+        "id": 1200270274969763800,
+        "name": "rust, floral, embroidered, festive, ethnic, statement, elegant",
+        "slug": "rust-floral-embroidered-festive-ethnic-statement-elegant"
+      }
+    ]
+  },
+  {
+    "id": "1200270553357418497",
+    "name": "Rani Glow",
+    "slug": "rani-glow",
+    "description": "Vibrant fuchsia drape saree with a beaded corset blouse and floral embroidered jacket.",
+    "price": "1",
+    "collection_id": "1",
+    "is_out_of_stock": false,
+    "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363869/houseofginija_products/gupeunfdakhsd2bm2jli.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363869/houseofginija_products/pqaukghpyx9luyc5l49k.jpg"
+    ],
+    "variants": [
+      {
+        "size": "One Size",
+        "stock": 10
+      }
+    ],
+    "flash_sale": false,
+    "flash_sale_price": null,
+    "new_arrival": false,
+    "on_sale": false,
+    "collection_slugs": [
+      "suits",
+      "shararas"
+    ],
+    "collection_name": "Unstitched Suits",
+    "collection_slug": "suits",
+    "parent_collection_name": null,
+    "parent_collection_slug": null,
+    "tags": [
+      {
+        "id": 1200270555499987000,
+        "name": "fuchsia, beaded, embroidered, floral, festive, glamorous",
+        "slug": "fuchsia-beaded-embroidered-floral-festive-glamorous"
+      }
+    ]
+  },
+  {
+    "id": "1200270824874147841",
+    "name": "Gulabi Elegance",
+    "slug": "gulabi-elegance",
+    "description": "Rich pink kurta featuring intricate gold paisley embroidery with a delicate matching dupatta.",
+    "price": "1",
+    "collection_id": "1",
+    "is_out_of_stock": false,
+    "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363950/houseofginija_products/vutmvgmrtjlczn9tga56.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786363950/houseofginija_products/zrtvr6kmqb4ofxzz7wto.jpg"
+    ],
+    "variants": [
+      {
+        "size": "One Size",
+        "stock": 10
+      }
+    ],
+    "flash_sale": false,
+    "flash_sale_price": null,
+    "new_arrival": false,
+    "on_sale": false,
+    "collection_slugs": [
+      "suits"
+    ],
+    "collection_name": "Unstitched Suits",
+    "collection_slug": "suits",
+    "parent_collection_name": null,
+    "parent_collection_slug": null,
+    "tags": [
+      {
+        "id": 1200270826879910000,
+        "name": "pink, gold, embroidered, paisley, festive, ethnic, elegant",
+        "slug": "pink-gold-embroidered-paisley-festive-ethnic-elegant"
+      }
+    ]
+  },
+  {
+    "id": "1200271094274228225",
+    "name": "Basanti Bloom",
+    "slug": "basanti-bloom",
+    "description": "Pastel yellow ensemble with delicate floral embroidery and intricate silver detailing.",
+    "price": "1",
+    "collection_id": "1",
+    "is_out_of_stock": false,
+    "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364035/houseofginija_products/sekpowwxldiadfxpjff7.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364034/houseofginija_products/xynqjuflqmlbc1x2weke.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364035/houseofginija_products/zrkqo8rhghy67pziypaa.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364035/houseofginija_products/mzfqr7serumvtlhgmsus.jpg"
+    ],
+    "variants": [
+      {
+        "size": "One Size",
+        "stock": 10
+      }
+    ],
+    "flash_sale": false,
+    "flash_sale_price": null,
+    "new_arrival": false,
+    "on_sale": false,
+    "collection_slugs": [
+      "suits"
+    ],
+    "collection_name": "Unstitched Suits",
+    "collection_slug": "suits",
+    "parent_collection_name": null,
+    "parent_collection_slug": null,
+    "tags": [
+      {
+        "id": 1200271096284872700,
+        "name": "yellow, floral, embroidered, pastel, festive, elegant, ethnic",
+        "slug": "yellow-floral-embroidered-pastel-festive-elegant-ethnic"
+      }
+    ]
+  },
+  {
+    "id": "1200271336616296449",
+    "name": "Neel Shringar",
+    "slug": "neel-shringar",
+    "description": "Deep blue drape saree with lavish gold floral embroidery and a richly embellished blouse.",
+    "price": "1",
+    "collection_id": "1",
+    "is_out_of_stock": false,
+    "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364106/houseofginija_products/yffkwuso2lwkpkoigg6p.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364107/houseofginija_products/f7iooch7dzvd1dfzvwxi.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364109/houseofginija_products/cj7sbvczjgl7hoavid4y.jpg"
+    ],
+    "variants": [
+      {
+        "size": "One Size",
+        "stock": 10
+      }
+    ],
+    "flash_sale": false,
+    "flash_sale_price": null,
+    "new_arrival": false,
+    "on_sale": false,
+    "collection_slugs": [
+      "suits",
+      "shararas"
+    ],
+    "collection_name": "Unstitched Suits",
+    "collection_slug": "suits",
+    "parent_collection_name": null,
+    "parent_collection_slug": null,
+    "tags": [
+      {
+        "id": 1200271338462511000,
+        "name": "blue, gold, floral, embroidered, embellished, festive, bridal",
+        "slug": "blue-gold-floral-embroidered-embellished-festive-bridal"
+      }
+    ]
+  },
+  {
+    "id": "1200273211340029953",
+    "name": "Gulabi Grace",
+    "slug": "gulabi-grace",
+    "description": "Elegant pink embroidered crop-top and palazzo set with a delicate sheer cape.",
+    "price": "1",
+    "collection_id": "1",
+    "is_out_of_stock": false,
+    "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364569/houseofginija_products/ealkncpuq0ayleicfuwy.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364569/houseofginija_products/hnudu8ilperslhmenb5i.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364569/houseofginija_products/umtbzeqlskd1ozmq4ltu.jpg"
+    ],
+    "variants": [
+      {
+        "size": "One Size",
+        "stock": 10
+      }
+    ],
+    "flash_sale": false,
+    "flash_sale_price": null,
+    "new_arrival": false,
+    "on_sale": false,
+    "collection_slugs": [
+      "suits",
+      "indo-western"
+    ],
+    "collection_name": "Unstitched Suits",
+    "collection_slug": "suits",
+    "parent_collection_name": null,
+    "parent_collection_slug": null,
+    "tags": [
+      {
+        "id": 1200273213349396500,
+        "name": "pink, embroidered, crop-top, palazzo, cape, festive",
+        "slug": "pink-embroidered-crop-top-palazzo-cape-festive"
+      }
+    ]
+  },
+  {
+    "id": "1200273474727804929",
+    "name": "Hara Bloom",
+    "slug": "hara-bloom",
+    "description": "Mint-green printed kurta with delicate embroidery and a sheer dupatta.",
+    "price": "1",
+    "collection_id": "1",
+    "is_out_of_stock": false,
+    "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364767/houseofginija_products/c6tcjibrf6ru47volaqk.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364769/houseofginija_products/gfwdsllfbdze4kahk4vz.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364769/houseofginija_products/kbo3tzchu3sundekaa8o.jpg"
+    ],
+    "variants": [
+      {
+        "size": "One Size",
+        "stock": 10
+      }
+    ],
+    "flash_sale": false,
+    "flash_sale_price": null,
+    "new_arrival": false,
+    "on_sale": false,
+    "collection_slugs": [
+      "suits"
+    ],
+    "collection_name": "Unstitched Suits",
+    "collection_slug": "suits",
+    "parent_collection_name": null,
+    "parent_collection_slug": null,
+    "tags": [
+      {
+        "id": 1200273476576247800,
+        "name": "mint, printed, embroidered, kurta, dupatta, floral",
+        "slug": "mint-printed-embroidered-kurta-dupatta-floral"
+      }
+    ]
+  },
+  {
+    "id": "1200273891201253377",
+    "name": "Safed Bloom",
+    "slug": "safed-bloom",
+    "description": "Elegant white embroidered ensemble with floral detailing and intricate lace borders.",
+    "price": "1",
+    "collection_id": "1",
+    "is_out_of_stock": false,
+    "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364891/houseofginija_products/ixwfq8ijbycmkd1jvyil.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364890/houseofginija_products/jgp3jzytczfchodsixm7.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364891/houseofginija_products/wmglnrrtzuel4yee0frv.jpg"
+    ],
+    "variants": [
+      {
+        "size": "One Size",
+        "stock": 10
+      }
+    ],
+    "flash_sale": false,
+    "flash_sale_price": null,
+    "new_arrival": false,
+    "on_sale": false,
+    "collection_slugs": [
+      "suits"
+    ],
+    "collection_name": "Unstitched Suits",
+    "collection_slug": "suits",
+    "parent_collection_name": null,
+    "parent_collection_slug": null,
+    "tags": [
+      {
+        "id": 1200273893050843100,
+        "name": "white, floral, embroidered, lace, elegant, festive",
+        "slug": "white-floral-embroidered-lace-elegant-festive"
+      }
+    ]
+  },
+  {
+    "id": "1200274151542849537",
+    "name": "Phool Rang",
+    "slug": "phool-rang",
+    "description": "Soft floral kurta set with delicate embroidery and a sheer striped dupatta.",
+    "price": "1",
+    "collection_id": "1",
+    "is_out_of_stock": false,
+    "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364976/houseofginija_products/panst8ucevtffy49iy7t.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786364977/houseofginija_products/s72flxbt4p6mautvqlne.jpg"
+    ],
+    "variants": [
+      {
+        "size": "One Size",
+        "stock": 10
+      }
+    ],
+    "flash_sale": false,
+    "flash_sale_price": null,
+    "new_arrival": false,
+    "on_sale": false,
+    "collection_slugs": [
+      "suits"
+    ],
+    "collection_name": "Unstitched Suits",
+    "collection_slug": "suits",
+    "parent_collection_name": null,
+    "parent_collection_slug": null,
+    "tags": [
+      {
+        "id": 1200274153515745300,
+        "name": "floral, pastel, embroidered, kurta, dupatta, sheer",
+        "slug": "floral-pastel-embroidered-kurta-dupatta-sheer"
+      }
+    ]
+  },
+  {
+    "id": "1200274474570907649",
+    "name": "Sitara Glow",
+    "slug": "sitara-glow",
+    "description": "Ivory embellished crop top with flowing palazzo pants and a delicate sheer cape.\n",
+    "price": "1",
+    "collection_id": "1",
+    "is_out_of_stock": false,
+    "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786365096/houseofginija_products/pd8fdxj75bddb6u3j1mf.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786365097/houseofginija_products/wyvnu4qpxocbwbol99c2.jpg"
+    ],
+    "variants": [
+      {
+        "size": "One Size",
+        "stock": 10
+      }
+    ],
+    "flash_sale": false,
+    "flash_sale_price": null,
+    "new_arrival": false,
+    "on_sale": false,
+    "collection_slugs": [
+      "suits",
+      "indo-western"
+    ],
+    "collection_name": "Unstitched Suits",
+    "collection_slug": "suits",
+    "parent_collection_name": null,
+    "parent_collection_slug": null,
+    "tags": [
+      {
+        "id": 1200274476414238700,
+        "name": "ivory, embellished, crop-top, palazzo, cape, festive",
+        "slug": "ivory-embellished-crop-top-palazzo-cape-festive"
+      }
+    ]
+  },
+  {
+    "id": "1200276461255950337",
+    "name": "Phool Noor",
+    "slug": "phool-noor",
+    "description": "Elegant grey floral kurta with delicate embroidery and a matching embroidered dupatta.",
+    "price": "1",
+    "collection_id": "1",
+    "is_out_of_stock": false,
+    "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786365637/houseofginija_products/h0pzmvmvoeh7asskuew1.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786365637/houseofginija_products/w3xwdsqjdc7bkcjfjgil.jpg"
+    ],
+    "variants": [
+      {
+        "size": "One Size",
+        "stock": 10
+      }
+    ],
+    "flash_sale": false,
+    "flash_sale_price": null,
+    "new_arrival": false,
+    "on_sale": false,
+    "collection_slugs": [
+      "suits"
+    ],
+    "collection_name": "Unstitched Suits",
+    "collection_slug": "suits",
+    "parent_collection_name": null,
+    "parent_collection_slug": null,
+    "tags": [
+      {
+        "id": 1200276463108915200,
+        "name": "grey, floral, embroidered, kurta, dupatta, ethnic",
+        "slug": "grey-floral-embroidered-kurta-dupatta-ethnic"
+      }
+    ]
+  },
+  {
+    "id": "1200276776110456833",
+    "name": "Neela Bloom",
+    "slug": "neela-bloom",
+    "description": "Soft blue floral kurta set with sequin embroidery and intricate printed detailing.",
+    "price": "1",
+    "collection_id": "1",
+    "is_out_of_stock": false,
+    "images": [
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786365772/houseofginija_products/h4ucueugslemzqwesdqg.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786365769/houseofginija_products/swfenfke7upqsh7wphfn.jpg",
+      "https://res.cloudinary.com/cyygtyfb/image/upload/v1786365773/houseofginija_products/iuxxudl4n13jko2mvaqu.jpg"
+    ],
+    "variants": [
+      {
+        "size": "One Size",
+        "stock": 10
+      }
+    ],
+    "flash_sale": false,
+    "flash_sale_price": null,
+    "new_arrival": false,
+    "on_sale": false,
+    "collection_slugs": [
+      "suits"
+    ],
+    "collection_name": "Unstitched Suits",
+    "collection_slug": "suits",
+    "parent_collection_name": null,
+    "parent_collection_slug": null,
+    "tags": [
+      {
+        "id": 1200276777962537000,
+        "name": "blue, floral, printed, embroidered, sequins, ethnic",
+        "slug": "blue-floral-printed-embroidered-sequins-ethnic"
       }
     ]
   }
