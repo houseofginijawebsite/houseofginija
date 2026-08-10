@@ -476,33 +476,129 @@ button {
   text-transform: capitalize;
 }
 
-@media (max-width: 480px) {
-  .review-card {
-    width: 250px !important;
-    padding: 1rem !important;
+@media (max-width: 768px) {
+  .home-reviews-section {
+    padding: 1.8rem 0 2rem 0 !important;
   }
+
+  .reviews-ticker-container {
+    padding: 0.6rem 0 1rem 0 !important;
+  }
+
+  .reviews-ticker-wrapper {
+    gap: 0.85rem !important;
+  }
+
+  .review-card {
+    width: 260px !important;
+    min-height: 155px !important;
+    padding: 0.9rem 1rem !important;
+    border-radius: 8px !important;
+    border-left-width: 3px !important;
+    box-shadow: 0 2px 10px rgba(60, 48, 58, 0.04) !important;
+  }
+
+  .review-card-header {
+    margin-bottom: 0.35rem !important;
+  }
+
+  .review-stars {
+    font-size: 0.82rem !important;
+    letter-spacing: 0.5px !important;
+  }
+
+  .review-quote-icon {
+    font-size: 1.6rem !important;
+    line-height: 0.8 !important;
+  }
+
   .review-card-text {
-    font-size: 0.76rem !important;
-    line-height: 1.45 !important;
-    margin-bottom: 0.8rem !important;
+    font-size: 0.75rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 0.6rem !important;
     -webkit-line-clamp: 3 !important;
   }
-  .review-quote-icon {
-    font-size: 2rem !important;
+
+  .review-card-footer {
+    gap: 0.5rem !important;
+    margin-top: auto !important;
   }
+
   .review-avatar {
-    width: 34px !important;
-    height: 34px !important;
-    font-size: 0.8rem !important;
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 0.72rem !important;
   }
+
   .review-client-name {
     font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
   }
+
   .review-client-location {
+    font-size: 0.65rem !important;
+    line-height: 1.1 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-reviews-section {
+    padding: 1.4rem 0 1.6rem 0 !important;
+  }
+
+  .reviews-ticker-container {
+    padding: 0.4rem 0 0.8rem 0 !important;
+  }
+
+  .reviews-ticker-wrapper {
+    gap: 0.75rem !important;
+  }
+
+  .review-card {
+    width: 235px !important;
+    min-height: 145px !important;
+    padding: 0.8rem 0.9rem !important;
+    border-radius: 6px !important;
+    border-left-width: 3px !important;
+  }
+
+  .review-card-header {
+    margin-bottom: 0.3rem !important;
+  }
+
+  .review-stars {
+    font-size: 0.78rem !important;
+  }
+
+  .review-quote-icon {
+    font-size: 1.4rem !important;
+    line-height: 0.8 !important;
+  }
+
+  .review-card-text {
+    font-size: 0.72rem !important;
+    line-height: 1.35 !important;
+    margin-bottom: 0.5rem !important;
+    -webkit-line-clamp: 3 !important;
+  }
+
+  .review-card-footer {
+    gap: 0.45rem !important;
+  }
+
+  .review-avatar {
+    width: 26px !important;
+    height: 26px !important;
     font-size: 0.68rem !important;
   }
-  .review-stars {
-    font-size: 0.85rem !important;
+
+  .review-client-name {
+    font-size: 0.74rem !important;
+  }
+
+  .review-client-location {
+    font-size: 0.62rem !important;
   }
 }
 
