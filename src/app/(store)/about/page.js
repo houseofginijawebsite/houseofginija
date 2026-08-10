@@ -43,7 +43,7 @@ export default function AboutPage() {
       <section className="about-philosophy-section" style={philosophySectionStyle}>
         <div className="container" style={philosophyContainerStyle}>
           <span style={philosophyIconStyle}>❧</span>
-          <h3 className="about-philosophy-title" style={philosophyTitleStyle}>"Made to Last"</h3>
+          <h3 className="about-philosophy-title" style={philosophyTitleStyle}>&ldquo;Made to Last&rdquo;</h3>
           <p style={philosophyDescStyle}>
             We believe a garment should hold memories. We select only the highest grade of natural, ethically sourced silks, linen, and wool. A House Of Ginija creation is not merely designed for a season; it is made to endure, to be cherished, and to be passed down.
           </p>

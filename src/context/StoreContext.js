@@ -113,7 +113,11 @@ export function StoreProvider({ children }) {
               if (userCartKey) {
                 const storedCart = localStorage.getItem(userCartKey);
                 if (storedCart) {
-                  setCart(JSON.parse(storedCart));
+                  try {
+                    setCart(JSON.parse(storedCart));
+                  } catch (e) {
+                    setCart([]);
+                  }
                 } else {
                   // Migrate guest cart if it has items
                   const guestCart = localStorage.getItem('ginija_cart_guest') || localStorage.getItem('ginija_cart');
@@ -121,7 +125,9 @@ export function StoreProvider({ children }) {
                     try {
                       setCart(JSON.parse(guestCart));
                       localStorage.setItem(userCartKey, guestCart);
-                    } catch (e) {}
+                    } catch (e) {
+                      setCart([]);
+                    }
                   } else {
                     setCart([]);
                   }
@@ -133,14 +139,20 @@ export function StoreProvider({ children }) {
               if (userWishlistKey) {
                 const storedWishlist = localStorage.getItem(userWishlistKey);
                 if (storedWishlist) {
-                  setWishlist(JSON.parse(storedWishlist));
+                  try {
+                    setWishlist(JSON.parse(storedWishlist));
+                  } catch (e) {
+                    setWishlist([]);
+                  }
                 } else {
                   const guestWishlist = localStorage.getItem('ginija_wishlist_guest') || localStorage.getItem('ginija_wishlist');
                   if (guestWishlist) {
                     try {
                       setWishlist(JSON.parse(guestWishlist));
                       localStorage.setItem(userWishlistKey, guestWishlist);
-                    } catch (e) {}
+                    } catch (e) {
+                      setWishlist([]);
+                    }
                   } else {
                     setWishlist([]);
                   }

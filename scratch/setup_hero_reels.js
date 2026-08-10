@@ -3,7 +3,7 @@ const fs = require('fs');
 const projectDir = 'c:/Users/varun/OneDrive/Documents/houseofginija';
 const { Pool } = require(path.join(projectDir, 'node_modules/pg'));
 
-const targetUrl = 'postgresql://trexbt:i1SYXOp5r6tHuBCT0h41Pg@houseofginija-30328.j77.aws-ap-south-1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full';
+const targetUrl = process.env.DATABASE_URL;
 
 const srcDir = path.join(projectDir, 'images', 'hero videos');
 const targetDir = path.join(projectDir, 'public', 'videos', 'hero_reels');

@@ -128,7 +128,6 @@ export default function ShopByCategories({ initialCategoryCounts }) {
               <Link href={category.href} className="shop-categories__card" key={category.slug}>
                 <span className="shop-categories__image">
                   {category.image.startsWith('data:') ? (
-                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={category.image}
                       alt={`${category.name} collection`}

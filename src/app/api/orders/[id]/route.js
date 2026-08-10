@@ -31,8 +31,15 @@ export async function GET(request, { params }) {
     const order = orderResult.rows[0];
 
     // Gating check: ensure user owns this order OR user is an admin
-    if (order.user_id !== decoded.id && decoded.role !== 'admin') {
+    if (String(order.user_id) !== String(decoded.id) && decoded.role !== 'admin') {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    }
+
+    if (typeof order.items === 'string') {
+      try { order.items = JSON.parse(order.items); } catch {}
+    }
+    if (typeof order.shipping_address === 'string') {
+      try { order.shipping_address = JSON.parse(order.shipping_address); } catch {}
     }
 
     return NextResponse.json({ order });

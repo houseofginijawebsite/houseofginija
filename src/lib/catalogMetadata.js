@@ -148,12 +148,15 @@ export function normalizeTagIds(payload) {
 export async function validateCollection(client, collectionId) {
   if (collectionId == null) return;
 
-  const result = await client.query(
-    'SELECT id FROM collections WHERE id = $1 AND is_active = TRUE',
-    [collectionId]
-  );
+  const isNumeric = /^\d+$/.test(String(collectionId));
+  const query = isNumeric
+    ? 'SELECT id FROM collections WHERE id = $1 AND is_active = TRUE'
+    : 'SELECT id FROM collections WHERE slug = $1 AND is_active = TRUE';
+  const param = isNumeric ? Number.parseInt(collectionId, 10) : String(collectionId);
 
-  if (result.rowCount !== 1) {
+  const result = await client.query(query, [param]);
+
+  if (result.rowCount === 0) {
     const error = new Error('Selected category is not available.');
     error.status = 400;
     throw error;

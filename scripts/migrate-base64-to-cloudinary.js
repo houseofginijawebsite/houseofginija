@@ -3,9 +3,9 @@ const path = require('path');
 const https = require('https');
 require('dotenv').config({ path: path.join(__dirname, '../.env.local') });
 
-const CLOUD_NAME = 'cyygtyfb';
-const API_KEY = '819872795722939';
-const API_SECRET = 'V7i2wO0GggLAY3_GKn-Yv_WN07I';
+const CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME || process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+const API_KEY = process.env.CLOUDINARY_API_KEY;
+const API_SECRET = process.env.CLOUDINARY_API_SECRET;
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,

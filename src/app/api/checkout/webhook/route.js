@@ -77,7 +77,10 @@ export async function POST(request) {
         return NextResponse.json({ received: true, message: 'Order marked Paid by parallel process' });
       }
 
-      const items = txCheck.rows[0].items || [];
+      let items = txCheck.rows[0].items || [];
+      if (typeof items === 'string') {
+        try { items = JSON.parse(items); } catch { items = []; }
+      }
       const couponCode = txCheck.rows[0].coupon_code;
 
       // A. Verify and Increment Coupon usage
@@ -107,7 +110,10 @@ export async function POST(request) {
 
         if (productResult.rows.length > 0) {
           const product = productResult.rows[0];
-          const variants = product.variants || [];
+          let variants = product.variants || [];
+          if (typeof variants === 'string') {
+            try { variants = JSON.parse(variants); } catch { variants = []; }
+          }
           const variantIndex = variants.findIndex(
             (v) => v.size === item.size && v.color === item.color
           );
@@ -143,7 +149,9 @@ export async function POST(request) {
 
     return NextResponse.json({ received: true });
   } catch (error) {
-    await client.query('ROLLBACK');
+    try {
+      await client.query('ROLLBACK');
+    } catch {}
     console.error('Webhook processing error:', error);
     // Return 500 so Razorpay retries the webhook delivery later if DB fails temporarily
     return NextResponse.json({ error: 'Webhook processing failed' }, { status: 500 });

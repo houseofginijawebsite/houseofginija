@@ -98,31 +98,27 @@ function parseProductPayload(body) {
     'necklace': '2',
     'bracelets': '2',
     'earrings': '2',
-    'indo-western': '1197838482593087489',
-    'gowns': '1197838482697388033',
-    'heavy-gown': '1197838482697388033',
-    'shararas': '1197838482794545153',
-    'co-ords': '1198002016480985089',
+    'indo-western': '8',
+    'gowns': '10',
+    'heavy-gown': '10',
+    'shararas': '9',
+    'co-ords': '11',
   };
 
   let collectionId = null;
-  for (const slug of finalCollectionSlugs) {
-    if (SLUG_TO_COLLECTION_ID[slug]) {
-      collectionId = SLUG_TO_COLLECTION_ID[slug];
-      break;
-    }
-  }
-
-  if (!collectionId && body.collection_id) {
+  if (body.collection_id) {
     collectionId = String(body.collection_id);
+  } else {
+    for (const slug of finalCollectionSlugs) {
+      if (SLUG_TO_COLLECTION_ID[slug]) {
+        collectionId = SLUG_TO_COLLECTION_ID[slug];
+        break;
+      }
+    }
   }
 
   if (!collectionId) {
     collectionId = '1';
-  }
-
-  if (!collectionId) {
-    collectionId = 1;
   }
 
   let flashSalePrice = null;

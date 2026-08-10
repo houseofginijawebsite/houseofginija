@@ -143,8 +143,10 @@ async function main() {
 
     // 3. Seed Users
     console.log('Seeding users...');
-    const adminPasswordHash = await bcrypt.hash('admin123', 10);
-    const customerPasswordHash = await bcrypt.hash('customer123', 10);
+    const adminPassword = process.env.ADMIN_PASSWORD || 'HouseOfGinija@Admin2026';
+    const customerPassword = process.env.CUSTOMER_PASSWORD || 'HouseOfGinija@User2026';
+    const adminPasswordHash = await bcrypt.hash(adminPassword, 10);
+    const customerPasswordHash = await bcrypt.hash(customerPassword, 10);
 
     const adminUser = await client.query(`
       INSERT INTO users (name, email, password_hash, role) 

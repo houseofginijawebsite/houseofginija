@@ -4,6 +4,7 @@ import localSettings from '@/data/local-settings.json';
 import { getStore, findBySlug } from '@/lib/globalProductStore';
 import { getSetting } from '@/lib/settingsStore';
 import { isJewelleryProduct } from '@/lib/catalogClient';
+import { buildCategoryTree } from '@/lib/catalogMetadata';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const hasDatabaseUrl = Boolean(process.env.DATABASE_URL);
@@ -16,27 +17,6 @@ const fallbackTags = [
   { id: '4', name: 'Bestseller', slug: 'bestseller' },
   { id: '5', name: 'Limited Edition', slug: 'limited-edition' },
 ];
-
-function buildCategoryTree(collections) {
-  const active = collections.filter((collection) => collection.is_active !== false);
-  const byParent = new Map();
-
-  active.forEach((collection) => {
-    const key = collection.parent_id == null ? 'root' : String(collection.parent_id);
-    if (!byParent.has(key)) byParent.set(key, []);
-    byParent.get(key).push(collection);
-  });
-
-  const sortCategories = (items) => [...items].sort((a, b) => {
-    const sortDelta = Number(a.sort_order || 0) - Number(b.sort_order || 0);
-    return sortDelta || String(a.name).localeCompare(String(b.name));
-  });
-
-  return sortCategories(byParent.get('root') || []).map((parent) => ({
-    ...parent,
-    children: sortCategories(byParent.get(String(parent.id)) || []),
-  }));
-}
 
 export function canUseLocalCatalogFallback() {
   return true;

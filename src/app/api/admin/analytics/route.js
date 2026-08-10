@@ -74,19 +74,25 @@ export async function GET() {
     if (ordersRes.status === 'fulfilled' && ordersRes.value.rows) {
       const productSales = {};
       ordersRes.value.rows.forEach(order => {
-        const items = order.items || [];
-        items.forEach(item => {
-          if (!productSales[item.id]) {
-            productSales[item.id] = {
-              id: item.id,
-              name: item.name,
-              sales_count: 0,
-              revenue: 0,
-            };
-          }
-          productSales[item.id].sales_count += item.quantity;
-          productSales[item.id].revenue += item.price * item.quantity;
-        });
+        let items = order.items || [];
+        if (typeof items === 'string') {
+          try { items = JSON.parse(items); } catch { items = []; }
+        }
+        if (Array.isArray(items)) {
+          items.forEach(item => {
+            if (!item || !item.id) return;
+            if (!productSales[item.id]) {
+              productSales[item.id] = {
+                id: item.id,
+                name: item.name,
+                sales_count: 0,
+                revenue: 0,
+              };
+            }
+            productSales[item.id].sales_count += item.quantity || 1;
+            productSales[item.id].revenue += (item.price || 0) * (item.quantity || 1);
+          });
+        }
       });
       resultData.bestSellers = Object.values(productSales)
         .sort((a, b) => b.sales_count - a.sales_count)
@@ -95,18 +101,23 @@ export async function GET() {
     if (productsRes.status === 'fulfilled' && productsRes.value.rows) {
       const lowStockAlerts = [];
       productsRes.value.rows.forEach(product => {
-        const variants = product.variants || [];
-        variants.forEach(v => {
-          if (v.stock <= 3 && !product.is_out_of_stock) {
-            lowStockAlerts.push({
-              id: product.id,
-              name: product.name,
-              size: v.size,
-              color: v.color,
-              stock: v.stock,
-            });
-          }
-        });
+        let variants = product.variants || [];
+        if (typeof variants === 'string') {
+          try { variants = JSON.parse(variants); } catch { variants = []; }
+        }
+        if (Array.isArray(variants)) {
+          variants.forEach(v => {
+            if (v.stock <= 3 && !product.is_out_of_stock) {
+              lowStockAlerts.push({
+                id: product.id,
+                name: product.name,
+                size: v.size,
+                color: v.color,
+                stock: v.stock,
+              });
+            }
+          });
+        }
       });
       resultData.lowStockAlerts = lowStockAlerts;
     }

@@ -63,7 +63,10 @@ export async function POST(request) {
       return NextResponse.json({ success: true, message: 'Order already marked Paid' });
     }
 
-    const items = txCheck.rows[0].items || [];
+    let items = txCheck.rows[0].items || [];
+    if (typeof items === 'string') {
+      try { items = JSON.parse(items); } catch { items = []; }
+    }
     const couponCode = txCheck.rows[0].coupon_code;
 
     // A. Validate and Increment Coupon usage
@@ -101,7 +104,10 @@ export async function POST(request) {
       }
 
       const product = productResult.rows[0];
-      const variants = product.variants || [];
+      let variants = product.variants || [];
+      if (typeof variants === 'string') {
+        try { variants = JSON.parse(variants); } catch { variants = []; }
+      }
       const variantIndex = variants.findIndex(
         (v) => v.size === item.size && v.color === item.color
       );
@@ -140,7 +146,9 @@ export async function POST(request) {
     return NextResponse.json({ success: true });
 
   } catch (error) {
-    await client.query('ROLLBACK');
+    try {
+      await client.query('ROLLBACK');
+    } catch {}
     console.error('Verify payment transaction rolled back:', error);
     return NextResponse.json({ error: error.message || 'Payment processing failed' }, { status: 500 });
   } finally {

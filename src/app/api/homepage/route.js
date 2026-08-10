@@ -11,7 +11,7 @@ import {
   getLocalHomepageFallback,
 } from '@/lib/localCatalogFallback';
 import { getStore } from '@/lib/globalProductStore';
-import { isJewelleryProduct } from '@/lib/catalogClient';
+import { isJewelleryProduct, isJewelleryCollection } from '@/lib/catalogClient';
 
 import { fetchCloudSettingsHttps } from '@/lib/settingsStore';
 
@@ -131,7 +131,9 @@ export async function GET() {
     let heavyDressProducts = heavyDressesResult.rows.map((row) => mapProductData(row, { isAdmin: false }));
     let allProductsMapped = allProductsResult.rows.map((row) => mapProductData(row, { isAdmin: false }));
 
+    let visibleCollections = collectionsResult.rows;
     if (jewellery_enabled === false) {
+      visibleCollections = visibleCollections.filter((c) => !isJewelleryCollection(c));
       flashProducts = flashProducts.filter((product) => !isJewelleryProduct(product));
       newArrivalProducts = newArrivalProducts.filter((product) => !isJewelleryProduct(product));
       heavyDressProducts = heavyDressProducts.filter((product) => !isJewelleryProduct(product));
@@ -200,7 +202,7 @@ export async function GET() {
     };
 
     return NextResponse.json({
-      collections: collectionsResult.rows,
+      collections: visibleCollections,
       flashProducts,
       flash_sale_enabled,
       newArrivalProducts,

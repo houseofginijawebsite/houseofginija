@@ -1,11 +1,15 @@
 import { NextResponse } from 'next/server';
 import { v2 as cloudinary } from 'cloudinary';
 
+const cloudName = process.env.CLOUDINARY_CLOUD_NAME || process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'cyygtyfb';
+const apiKey = process.env.CLOUDINARY_API_KEY;
+const apiSecret = process.env.CLOUDINARY_API_SECRET;
+
 // Configure Cloudinary SDK
 cloudinary.config({
-  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name: cloudName,
+  api_key: apiKey,
+  api_secret: apiSecret,
 });
 
 export async function POST(request) {
@@ -22,7 +26,7 @@ export async function POST(request) {
     const buffer = Buffer.from(arrayBuffer);
 
     // Check Cloudinary configs
-    if (!process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
+    if (!cloudName || !apiKey || !apiSecret) {
       console.warn('WARNING: Cloudinary credentials missing in env. Falling back to Base64 data URI upload.');
       
       const mimeType = file.type || 'image/png';
@@ -37,7 +41,11 @@ export async function POST(request) {
     // Upload buffer stream to Cloudinary
     const uploadResult = await new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
-        { folder: 'houseofginija_products' },
+        { 
+          folder: 'houseofginija_products',
+          resource_type: 'image',
+          timeout: 60000,
+        },
         (error, result) => {
           if (error) {
             reject(error);

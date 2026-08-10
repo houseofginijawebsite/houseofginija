@@ -171,6 +171,10 @@ export async function GET(request) {
     const dbSlugs = new Set(dbProducts.map((p) => p.slug));
 
     let matchingFallback = fallbackProducts.filter((p) => !dbSlugs.has(p.slug));
+    if (ids) {
+      const selectedIds = new Set(ids.split(',').map((id) => String(id).trim()));
+      matchingFallback = matchingFallback.filter((p) => selectedIds.has(String(p.id)));
+    }
     if (collection) {
       matchingFallback = matchingFallback.filter((p) => {
         const slugs = Array.isArray(p.collection_slugs) ? p.collection_slugs : [];

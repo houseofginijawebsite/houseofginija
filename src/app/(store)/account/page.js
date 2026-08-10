@@ -48,11 +48,9 @@ function AccountContent() {
   }, [user, loading, router]);
 
   // Sync tab from URL if changed externally (e.g., clicking header icon)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const tab = searchParams.get('tab');
     if (tab !== activeTab) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setActiveTab(tab || null);
     }
   }, [searchParams, activeTab]);
@@ -66,7 +64,12 @@ function AccountContent() {
     } else {
       params.delete('tab');
     }
-    router.replace(`/account?${params.toString()}`, { scroll: false });
+    const newRelativePathQuery = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
+    window.history.replaceState(null, '', newRelativePathQuery);
+  };
+
+  const handleSignOut = async () => {
+    await logout();
   };
 
   // Fetch orders
@@ -78,8 +81,8 @@ function AccountContent() {
         const data = await res.json();
         setOrders(data.orders || []);
       }
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
     } finally {
       setOrdersLoading(false);
     }
@@ -94,8 +97,8 @@ function AccountContent() {
         const data = await res.json();
         setWishlistItems(data.wishlist || []);
       }
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
     } finally {
       setWishlistLoading(false);
     }
@@ -110,26 +113,22 @@ function AccountContent() {
         const data = await res.json();
         setAddresses(data.addresses || []);
       }
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
     } finally {
       setAddressesLoading(false);
     }
   };
 
   // Fetch appropriate data on tab change
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!user) return;
     
     if (activeTab === 'orders') {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       fetchOrders();
     } else if (activeTab === 'wishlist') {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       fetchWishlist();
     } else if (activeTab === 'addresses') {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       fetchAddresses();
     }
   }, [activeTab, user]);
@@ -381,7 +380,7 @@ function AccountContent() {
                       </div>
                       <div>
                         <h2 style={ordersSummaryTitle}>{orders.length} Orders</h2>
-                        <span style={ordersSummarySubtitle}>You've placed {orders.length} order(s) with us</span>
+                        <span style={ordersSummarySubtitle}>You&apos;ve placed {orders.length} order(s) with us</span>
                       </div>
                     </div>
                   </div>

@@ -34,30 +34,17 @@ export async function POST(request) {
       }
     }
 
-    // 2. Admin fallback credentials if DB lookup didn't match or DB is unconfigured/offline
-    const adminEmail = (process.env.ADMIN_EMAIL || 'admin@houseofginija.com').toLowerCase().trim();
-    const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+    // 2. Admin fallback from environment variables if DB is unconfigured/offline
+    const adminEmail = process.env.ADMIN_EMAIL ? process.env.ADMIN_EMAIL.toLowerCase().trim() : null;
+    const adminPassword = process.env.ADMIN_PASSWORD;
 
-    if (!user && emailLower === adminEmail) {
-      if (password === adminPassword || password === 'admin123') {
+    if (!user && adminEmail && adminPassword && emailLower === adminEmail) {
+      if (password === adminPassword) {
         user = {
           id: 1,
           name: 'House Of Ginija Admin',
           email: adminEmail,
           role: 'admin',
-        };
-        passwordMatch = true;
-      }
-    }
-
-    // 3. Fallback for demo customer credentials if DB is unconfigured/offline
-    if (!user && emailLower === 'customer@houseofginija.com') {
-      if (password === 'customer123') {
-        user = {
-          id: 2,
-          name: 'Aria Sharma',
-          email: 'customer@houseofginija.com',
-          role: 'customer',
         };
         passwordMatch = true;
       }

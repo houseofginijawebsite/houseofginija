@@ -23,19 +23,42 @@ export async function GET() {
       [decoded.id]
     );
 
-    const orders = result.rows;
+    const orders = result.rows.map((order) => {
+      let items = order.items;
+      if (typeof items === 'string') {
+        try { items = JSON.parse(items); } catch { items = []; }
+      }
+      let shippingAddress = order.shipping_address;
+      if (typeof shippingAddress === 'string') {
+        try { shippingAddress = JSON.parse(shippingAddress); } catch {}
+      }
+      return {
+        ...order,
+        items: Array.isArray(items) ? items : [],
+        shipping_address: shippingAddress,
+      };
+    });
 
     // Fetch product images for order items to display thumbnails
-    const allProductIds = [...new Set(orders.flatMap(o => (o.items || []).map(i => i.id)))];
+    const allProductIds = [
+      ...new Set(
+        orders
+          .flatMap((o) => (Array.isArray(o.items) ? o.items : []).map((i) => Number.parseInt(i.id, 10)))
+          .filter(Number.isInteger)
+      ),
+    ];
     
     if (allProductIds.length > 0) {
       const prodRes = await pool.query(
-        'SELECT id, images FROM products WHERE id = ANY($1)',
+        'SELECT id, images FROM products WHERE id = ANY($1::int[])',
         [allProductIds]
       );
       
       const productImagesMap = prodRes.rows.reduce((acc, p) => {
-        const images = typeof p.images === 'string' ? JSON.parse(p.images) : p.images;
+        let images = p.images;
+        if (typeof images === 'string') {
+          try { images = JSON.parse(images); } catch { images = []; }
+        }
         acc[p.id] = Array.isArray(images) && images.length > 0 ? images[0] : null;
         return acc;
       }, {});

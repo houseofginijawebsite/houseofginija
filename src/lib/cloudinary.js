@@ -1,4 +1,4 @@
-﻿/**
+/**
  * src/lib/cloudinary.js
  * Helper to resolve asset URLs - returns Cloudinary URL if available,
  * otherwise falls back to the original local path.
@@ -47,8 +47,9 @@ export function getAssetUrl(localPath) {
   // Try to load map (server-side only)
   if (typeof window === "undefined" && cloudinaryMap === null) {
     try {
-      const fs = require("fs");
-      const path = require("path");
+      const req = eval('require');
+      const fs = req("fs");
+      const path = req("path");
       const mapPath = path.join(process.cwd(), "src/data/cloudinary-map.json");
       if (fs.existsSync(mapPath)) {
         cloudinaryMap = JSON.parse(fs.readFileSync(mapPath, "utf8"));

@@ -25,6 +25,18 @@ export default function CheckoutPage() {
   const [paymentError, setPaymentError] = useState('');
   const [appliedCoupon, setAppliedCoupon] = useState(null);
 
+  const fillFormWithAddress = (address) => {
+    if (!address) return;
+    setAddressForm({
+      line1: address.line1 || '',
+      line2: address.line2 || '',
+      city: address.city || '',
+      state: address.state || '',
+      postal_code: address.postal_code || '',
+      phone: address.phone || '',
+    });
+  };
+
   // Load saved addresses and applied coupon
   useEffect(() => {
     if (!sessionLoading && !user) {
@@ -61,17 +73,6 @@ export default function CheckoutPage() {
       }
     }
   }, [user, sessionLoading]);
-
-  const fillFormWithAddress = (address) => {
-    setAddressForm({
-      line1: address.line1 || '',
-      line2: address.line2 || '',
-      city: address.city || '',
-      state: address.state || '',
-      postal_code: address.postal_code || '',
-      phone: address.phone || '',
-    });
-  };
 
   const handleSavedAddressChange = (e) => {
     const id = e.target.value;

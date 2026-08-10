@@ -354,16 +354,18 @@ function AdminProductsContent() {
     setUploadingImage(true);
     setImageError('');
 
-    const uploadPromises = files.map(async (originalFile) => {
-      let file = originalFile;
+    const failedFiles = [];
+    
+    const uploadSingleFile = async (originalFile, retryCount = 0) => {
+      let fileToUpload = originalFile;
       try {
-        file = await compressImage(file);
+        fileToUpload = await compressImage(originalFile);
       } catch (err) {
-        console.error('Compression error:', err);
+        console.warn('Compression skipped for:', originalFile.name, err);
       }
 
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append('file', fileToUpload);
 
       try {
         const res = await fetch('/api/admin/upload', {
@@ -374,38 +376,36 @@ function AdminProductsContent() {
         const rawText = await res.text();
         const data = rawText ? JSON.parse(rawText) : {};
         if (res.ok && data.url) {
+          // Incrementally add to images list for immediate visual feedback
+          setImages((prev) => [...prev, data.url]);
           return data.url;
         } else {
-          throw new Error(data.error || 'Failed to upload image.');
+          throw new Error(data.error || `Server responded with status ${res.status}`);
         }
       } catch (err) {
-        console.error('Image upload promise err:', err);
-        throw err;
+        if (retryCount < 1) {
+          // Automatic retry after 1 second backoff
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          return uploadSingleFile(originalFile, retryCount + 1);
+        }
+        console.error(`Failed uploading ${originalFile.name}:`, err);
+        failedFiles.push(originalFile.name);
+        return null;
       }
-    });
+    };
 
     try {
-      const results = await Promise.allSettled(uploadPromises);
-      const successfulUrls = [];
-      let hasFailures = false;
-
-      results.forEach((result) => {
-        if (result.status === 'fulfilled' && result.value) {
-          successfulUrls.push(result.value);
-        } else {
-          hasFailures = true;
-        }
-      });
-
-      if (successfulUrls.length > 0) {
-        setImages((prev) => [...prev, ...successfulUrls]);
+      // Process files one by one to ensure reliable stream upload
+      for (const file of files) {
+        await uploadSingleFile(file);
       }
-      if (hasFailures) {
-        setImageError('Some images failed to upload. Succeeded files were added.');
+
+      if (failedFiles.length > 0) {
+        setImageError(`Failed to upload ${failedFiles.length} image(s): ${failedFiles.join(', ')}. Please try uploading them again.`);
       }
     } catch (err) {
-      console.error(err);
-      setImageError('Network upload failure.');
+      console.error('Batch upload error:', err);
+      setImageError('Network upload error. Please check your connection and try again.');
     } finally {
       setUploadingImage(false);
       e.target.value = '';
