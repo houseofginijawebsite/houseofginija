@@ -529,11 +529,15 @@ function AdminProductsContent() {
       flash_sale_price: flashVal,
       flash_sale_percent: computedPct,
     });
-    let initialSlugs = Array.isArray(product.collection_slugs) ? [...product.collection_slugs] : [];
-    if (product.collection_slug && !initialSlugs.includes(product.collection_slug)) initialSlugs.push(product.collection_slug);
-    if (product.parent_collection_slug && !initialSlugs.includes(product.parent_collection_slug)) initialSlugs.push(product.parent_collection_slug);
+    let initialSlugs = Array.isArray(product.collection_slugs) && product.collection_slugs.length > 0 
+      ? [...product.collection_slugs] 
+      : [];
+    if (initialSlugs.length === 0) {
+      if (product.collection_slug) initialSlugs.push(product.collection_slug);
+      if (product.parent_collection_slug) initialSlugs.push(product.parent_collection_slug);
+    }
     if (product.new_arrival && !initialSlugs.includes('new-collection')) initialSlugs.push('new-collection');
-    if ((product.on_sale || product.flash_sale) && !initialSlugs.includes('flash-sale')) initialSlugs.push('flash-sale');
+    if (product.flash_sale && !initialSlugs.includes('flash-sale')) initialSlugs.push('flash-sale');
 
     setSelectedCategorySlugs([...new Set(initialSlugs.length > 0 ? initialSlugs : ['suits'])]);
     const existingCustomTags = (product.tags || []).map((t) => (typeof t === 'string' ? t : t?.name || ''));

@@ -48,8 +48,6 @@ export function mapProductData(product, options = {}) {
   const isFlashSale = Boolean(
     product.flash_sale ||
     product.flashSale ||
-    product.on_sale ||
-    product.onSale ||
     (Array.isArray(collection_slugs) && collection_slugs.includes('flash-sale'))
   );
   const isNewArrival = Boolean(
@@ -80,9 +78,13 @@ export function mapProductData(product, options = {}) {
   } else {
     if (isNewArrival && !collection_slugs.includes('new-collection')) {
       collection_slugs.push('new-collection');
+    } else if (!isNewArrival) {
+      collection_slugs = collection_slugs.filter((s) => s !== 'new-collection');
     }
     if (isFlashSale && !collection_slugs.includes('flash-sale')) {
       collection_slugs = ['flash-sale', ...collection_slugs.filter((s) => s !== 'flash-sale')];
+    } else if (!isFlashSale) {
+      collection_slugs = collection_slugs.filter((s) => s !== 'flash-sale');
     }
   }
 

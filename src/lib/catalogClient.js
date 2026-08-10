@@ -47,54 +47,84 @@ export function productMatchesCategory(product, selectedCategory) {
   const colSlugs = Array.isArray(product.collection_slugs) ? product.collection_slugs.map((s) => String(s).toLowerCase()) : [];
   const colId = String(product.collection_id || '');
 
+  // 1. Fresh Collection / New Arrival Gatekeeping
   if (cat === 'new-collection') {
     return Boolean(product.new_arrival || colSlugs.includes('new-collection'));
   }
+
+  // 2. Flash Sale Gatekeeping
   if (cat === 'flash-sale') {
-    return Boolean(product.on_sale || product.flash_sale || colSlugs.includes('flash-sale'));
+    return Boolean(product.flash_sale || colSlugs.includes('flash-sale'));
   }
 
+  // 3. Strict Category Tag Gatekeeping
+  // If product has explicit collection_slugs, strictly check against them
+  if (colSlugs.length > 0) {
+    if (cat === 'suits' || cat === 'unstitched' || cat === 'unstitched-suits') {
+      if (isJewelleryProduct(product)) return false;
+      return colSlugs.includes('suits') || colSlugs.includes('unstitched') || colSlugs.includes('unstitched-suits');
+    }
+    if (cat === 'indo-western') {
+      return colSlugs.includes('indo-western');
+    }
+    if (cat === 'gowns' || cat === 'heavy-gown') {
+      return colSlugs.includes('gowns') || colSlugs.includes('heavy-gown');
+    }
+    if (cat === 'shararas') {
+      return colSlugs.includes('shararas');
+    }
+    if (cat === 'co-ords') {
+      return colSlugs.includes('co-ords');
+    }
+    if (cat === 'rings' || cat === 'ring') {
+      return colSlugs.includes('rings') || colSlugs.includes('ring');
+    }
+    if (cat === 'necklaces' || cat === 'necklace') {
+      return colSlugs.includes('necklaces') || colSlugs.includes('necklace');
+    }
+    if (cat === 'bracelets' || cat === 'bracelet') {
+      return colSlugs.includes('bracelets') || colSlugs.includes('bracelet');
+    }
+    if (cat === 'earrings' || cat === 'earring') {
+      return colSlugs.includes('earrings') || colSlugs.includes('earring');
+    }
+    return colSlugs.includes(cat);
+  }
+
+  // Fallback for legacy items without explicit collection_slugs array
   if (cat === 'rings' || cat === 'ring') {
-    return colSlug === 'rings' || colSlugs.includes('rings') || colId === '5';
+    return colSlug === 'rings' || colId === '5';
   }
   if (cat === 'necklaces' || cat === 'necklace') {
-    return colSlug === 'necklaces' || colSlugs.includes('necklaces') || colId === '2';
+    return colSlug === 'necklaces' || colId === '2';
   }
   if (cat === 'bracelets' || cat === 'bracelet') {
-    return colSlug === 'bracelets' || colSlugs.includes('bracelets') || colId === '6';
+    return colSlug === 'bracelets' || colId === '6';
   }
   if (cat === 'earrings' || cat === 'earring') {
-    return colSlug === 'earrings' || colSlugs.includes('earrings') || colId === '4';
+    return colSlug === 'earrings' || colId === '4';
   }
   if (cat === 'suits' || cat === 'unstitched' || cat === 'unstitched-suits') {
     if (isJewelleryProduct(product)) return false;
-
-    return (
-      colSlug === 'suits' ||
-      colSlug === 'unstitched' ||
-      colSlugs.includes('suits') ||
-      colSlugs.includes('unstitched') ||
-      colId === '1'
-    );
+    return colSlug === 'suits' || colSlug === 'unstitched' || colId === '1';
   }
   if (cat === 'indo-western') {
-    return colSlug === 'indo-western' || colSlugs.includes('indo-western') || colId === '8';
+    return colSlug === 'indo-western' || colId === '8';
   }
   if (cat === 'gowns' || cat === 'heavy-gown') {
-    return colSlug === 'gowns' || colSlug === 'heavy-gown' || colSlugs.includes('gowns') || colSlugs.includes('heavy-gown') || colId === '10';
+    return colSlug === 'gowns' || colSlug === 'heavy-gown' || colId === '10';
   }
   if (cat === 'shararas') {
-    return colSlug === 'shararas' || colSlugs.includes('shararas') || colId === '9';
+    return colSlug === 'shararas' || colId === '9';
   }
   if (cat === 'co-ords') {
-    return colSlug === 'co-ords' || colSlugs.includes('co-ords') || colId === '11';
+    return colSlug === 'co-ords' || colId === '11';
   }
 
   return (
     colSlug === cat ||
     parentColSlug === cat ||
     colName === cat ||
-    colSlugs.includes(cat) ||
     colId === cat
   );
 }
