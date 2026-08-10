@@ -154,6 +154,11 @@ export function getCategoryTitle(collections, selectedCategory) {
   if (selectedCategory === 'earrings' || selectedCategory === 'earring') return 'Earrings';
   if (selectedCategory === 'new-collection') return 'Fresh Collection';
   if (selectedCategory === 'flash-sale') return 'Flash Sale';
+  if (selectedCategory === 'shararas' || selectedCategory === 'sharara') return 'Drape Sarees';
+  if (selectedCategory === 'gowns' || selectedCategory === 'heavy-gown') return 'Heavy Gowns';
+  if (selectedCategory === 'indo-western') return 'Indo-Western';
+  if (selectedCategory === 'co-ords') return 'Co-ords';
+  if (selectedCategory === 'suits' || selectedCategory === 'unstitched' || selectedCategory === 'unstitched-suits') return 'Unstitched Suits';
 
   const match = (collections || []).find((c) => c.slug === selectedCategory);
   return match ? match.name : selectedCategory.replace(/-/g, ' ');
