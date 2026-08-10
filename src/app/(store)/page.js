@@ -506,7 +506,7 @@ export default function Home() {
                     <SkeletonCard key={i} type="home-new-arrival" />
                   ))
                 ) : (
-                  (heavyDresses.indoWestern || []).map((product, index) => {
+                  (heavyDresses.indoWestern || []).slice(0, 4).map((product, index) => {
                     const regPrice = parseFloat(product.price) || 0;
                     const salePrice = product.flash_sale && product.flash_sale_price ? parseFloat(product.flash_sale_price) : (product.on_sale && product.sale_price ? parseFloat(product.sale_price) : regPrice);
                     const isOnSale = regPrice > salePrice;
@@ -600,7 +600,7 @@ export default function Home() {
                     <SkeletonCard key={i} type="home-new-arrival" />
                   ))
                 ) : (
-                  (heavyDresses.heavyGown || []).map((product, index) => {
+                  (heavyDresses.heavyGown || []).slice(0, 4).map((product, index) => {
                     const regPrice = parseFloat(product.price) || 0;
                     const salePrice = product.flash_sale && product.flash_sale_price ? parseFloat(product.flash_sale_price) : (product.on_sale && product.sale_price ? parseFloat(product.sale_price) : regPrice);
                     const isOnSale = regPrice > salePrice;
@@ -694,7 +694,7 @@ export default function Home() {
                     <SkeletonCard key={i} type="home-new-arrival" />
                   ))
                 ) : (
-                  (heavyDresses.shararas || []).map((product, index) => {
+                  (heavyDresses.shararas || []).slice(0, 4).map((product, index) => {
                     const regPrice = parseFloat(product.price) || 0;
                     const salePrice = product.flash_sale && product.flash_sale_price ? parseFloat(product.flash_sale_price) : (product.on_sale && product.sale_price ? parseFloat(product.sale_price) : regPrice);
                     const isOnSale = regPrice > salePrice;
