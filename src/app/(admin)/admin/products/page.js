@@ -131,24 +131,23 @@ function AdminProductsContent() {
         if (data.products && Array.isArray(data.products) && data.products.length > 0) {
           setProducts(mergeCatalogWithLocalOverrides(data.products));
         } else {
-          setProducts(mergeCatalogWithLocalOverrides([]));
+          setProducts(mergeCatalogWithLocalOverrides(productsFallback.products || []));
         }
         if (data.collections && Array.isArray(data.collections) && data.collections.length > 0) {
           setCollections(data.collections);
+        } else {
+          setCollections(homepageFallback.collections || []);
         }
         if (data.tags && Array.isArray(data.tags)) {
           setTags(data.tags);
         }
-        setDbError(null);
+        setDbError(data.dbError || null);
         setLoading(false);
       } else {
         const errData = await res.json().catch(() => ({}));
         const errMsg = errData.error || `Server error (${res.status})`;
-        if (attempt < 4) {
-          console.warn(`Admin products API attempt ${attempt} failed: ${errMsg}. Retrying in 2s...`);
-          setTimeout(() => fetchProductsAndCollections(attempt + 1), 2000);
-          return; // keep loading=true while retrying
-        }
+        setProducts(mergeCatalogWithLocalOverrides(productsFallback.products || []));
+        setCollections(homepageFallback.collections || []);
         setDbError(errMsg);
         setLoading(false);
       }

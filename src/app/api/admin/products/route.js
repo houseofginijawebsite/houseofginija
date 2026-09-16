@@ -217,8 +217,16 @@ export async function GET() {
       tags: tagsResult.rows,
     });
   } catch (error) {
-    console.error('Admin GET products error:', error);
-    return NextResponse.json({ error: error.message || String(error) }, { status: 500 });
+    console.warn('Admin GET products DB error, returning local fallback catalog:', error.message);
+    const rawList = getStoreProducts().map((p) => mapProductData(p, { isAdmin: true })).filter(Boolean);
+    return NextResponse.json({
+      products: sortByNewest(rawList),
+      collections: getLocalCollectionsFallback(),
+      categoryTree: getLocalCategoryTreeFallback(),
+      tags: getLocalTagsFallback(),
+      dbError: error.message || String(error),
+      isFallback: true,
+    });
   }
 }
 
