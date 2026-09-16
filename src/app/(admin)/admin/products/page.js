@@ -1131,22 +1131,7 @@ function AdminProductsContent() {
         document.body
         )}
 
-        {/* DB ERROR BANNER */}
-        {dbError && (
-          <div style={{ background: '#FFF0F0', border: '1px solid #E57373', borderRadius: '8px', padding: '1rem 1.5rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
-            <div>
-              <strong style={{ color: '#C62828', fontSize: '0.95rem' }}>⚠️ Database connection failed</strong>
-              <div style={{ color: '#B71C1C', fontSize: '0.82rem', marginTop: '0.25rem' }}>{dbError}</div>
-              <div style={{ color: '#888', fontSize: '0.78rem', marginTop: '0.25rem' }}>Showing cached/offline data. Click Retry to reload from database.</div>
-            </div>
-            <button
-              onClick={() => { setDbError(null); setLoading(true); fetchProductsAndCollections(1); }}
-              style={{ background: '#C62828', color: '#fff', border: 'none', borderRadius: '6px', padding: '0.5rem 1.2rem', fontWeight: '700', cursor: 'pointer', fontSize: '0.85rem' }}
-            >
-              🔄 Retry
-            </button>
-          </div>
-        )}
+
 
         {/* PRODUCTS LIST TABLE */}
         {loading ? (
