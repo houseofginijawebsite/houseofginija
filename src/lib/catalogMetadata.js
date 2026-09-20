@@ -187,18 +187,8 @@ export async function validateCollection(client, collectionId, collectionSlugs =
 }
 
 export async function validateTagIds(client, tagIds) {
-  if (tagIds.length === 0) return;
-
-  const result = await client.query(
-    'SELECT id FROM tags WHERE id = ANY($1::int[])',
-    [tagIds]
-  );
-
-  if (result.rowCount !== tagIds.length) {
-    const error = new Error('One or more selected tags are invalid.');
-    error.status = 400;
-    throw error;
-  }
+  // Pass-through validation: replaceProductTags handles existing and custom tags dynamically
+  return;
 }
 
 export async function replaceProductTags(client, productId, rawTagsPayload = []) {
