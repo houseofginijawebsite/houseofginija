@@ -7,8 +7,8 @@
       "name": "Ice Blue Cape",
       "slug": "bespoke-suit-1",
       "description": "A finely tailored bespoke suit, crafted from exceptional textiles with structured shoulders and a modern silhouette.",
-      "price": "27000",
-      "collection_id": "8",
+      "price": "19000",
+      "collection_id": 2,
       "is_out_of_stock": false,
       "images": [
         "/local-products/063-bespoke-suit-1-1.jpg",
@@ -16,208 +16,275 @@
       ],
       "variants": [
         {
+          "size": "XS",
           "color": "Default",
-          "size": "S",
           "stock": 1
         },
         {
+          "size": "S",
           "color": "Default",
-          "size": "M",
-          "stock": 0
+          "stock": 1
         },
         {
+          "size": "M",
           "color": "Default",
+          "stock": 1
+        },
+        {
           "size": "L",
-          "stock": 0
+          "color": "Default",
+          "stock": 1
+        },
+        {
+          "size": "XL",
+          "color": "Default",
+          "stock": 1
+        },
+        {
+          "size": "XXL",
+          "color": "Default",
+          "stock": 1
         }
       ],
       "flash_sale": false,
       "flash_sale_price": null,
-      "new_arrival": false,
+      "new_arrival": true,
       "on_sale": false,
       "collection_slugs": [
-        "indo-western"
+        "indo-western",
+        "new-collection"
       ],
       "collection_name": null,
       "collection_slug": null,
       "parent_collection_name": null,
       "parent_collection_slug": null,
-      "tags": []
+      "tags": [
+        {
+          "id": 10,
+          "name": "Cape: Organza | Skirt: Chinon | Work: All-Over Hand Embroidery | Style: Draped Skirt & Cape Top",
+          "slug": "cape-organza-skirt-chinon-work-all-over-hand-embroidery-style-draped-skirt-cape-top"
+        }
+      ]
     },
     {
       "id": "2",
       "name": "Monochrome Drape",
       "slug": "bespoke-suit-2",
       "description": "A striking monochrome drape outfit with a structured jacket overlay.",
-      "price": "29000",
-      "collection_id": "8",
+      "price": "7500",
+      "collection_id": 2,
       "is_out_of_stock": false,
       "images": [
         "/local-products/073-bespoke-suit-2-1.jpg"
       ],
       "variants": [
         {
-          "color": "Default",
           "size": "S",
+          "color": "Default",
           "stock": 1
         },
         {
-          "color": "Default",
           "size": "M",
-          "stock": 0
+          "color": "Default",
+          "stock": 1
         },
         {
-          "color": "Default",
           "size": "L",
-          "stock": 0
+          "color": "Default",
+          "stock": 1
+        },
+        {
+          "size": "XL",
+          "color": "Default",
+          "stock": 1
         }
       ],
-      "flash_sale": false,
-      "flash_sale_price": null,
+      "flash_sale": true,
+      "flash_sale_price": "3750",
       "new_arrival": false,
-      "on_sale": false,
+      "on_sale": true,
       "collection_slugs": [
-        "shararas"
+        "flash-sale",
+        "indo-western"
       ],
       "collection_name": null,
       "collection_slug": null,
       "parent_collection_name": null,
       "parent_collection_slug": null,
-      "tags": []
+      "tags": [
+        {
+          "id": 11,
+          "name": "Fabric: Chinon | Style: Cross Drape Gown | Work: Neckline Floral Embroidery | Hand Embroidery Cape",
+          "slug": "fabric-chinon-style-cross-drape-gown-work-neckline-floral-embroidery-hand-embroidery-cape"
+        }
+      ]
     },
     {
       "id": "3",
       "name": "Sunshine Gown",
       "slug": "bespoke-suit-3",
       "description": "A finely tailored bespoke suit, crafted from exceptional textiles with structured shoulders and a modern silhouette.",
-      "price": "31000",
-      "collection_id": "1",
+      "price": "9000",
+      "collection_id": 3,
       "is_out_of_stock": false,
       "images": [
         "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282575/products/3_img0_1786282573299.jpg"
       ],
       "variants": [
         {
-          "color": "Classic Black",
           "size": "S",
+          "color": "Default",
           "stock": 1
         },
         {
-          "color": "Classic Black",
           "size": "M",
-          "stock": 0
+          "color": "Default",
+          "stock": 1
         },
         {
-          "color": "Classic Black",
           "size": "L",
-          "stock": 0
+          "color": "Default",
+          "stock": 1
+        },
+        {
+          "size": "XL",
+          "color": "Default",
+          "stock": 1
         }
       ],
-      "flash_sale": false,
-      "flash_sale_price": null,
+      "flash_sale": true,
+      "flash_sale_price": "4500",
       "new_arrival": false,
-      "on_sale": false,
+      "on_sale": true,
       "collection_slugs": [
-        "suits",
+        "flash-sale",
         "gowns"
       ],
       "collection_name": "Unstitched Suits",
       "collection_slug": "suits",
       "parent_collection_name": null,
       "parent_collection_slug": null,
-      "tags": []
+      "tags": [
+        {
+          "id": 12,
+          "name": "Fabric: Chinon | Style: Crop Top & Flared Skirt with Short Jacket | Work: Multi-Color Embroidery & Fringe Detail | Color: Yellow",
+          "slug": "fabric-chinon-style-crop-top-flared-skirt-with-short-jacket-work-multi-color-embroidery-fringe-detail-color-yellow"
+        }
+      ]
     },
     {
       "id": "4",
       "name": "Ivory Layered Gown",
       "slug": "bespoke-suit-4",
       "description": "A finely tailored bespoke suit, crafted from exceptional textiles with structured shoulders and a modern silhouette.",
-      "price": "33000",
-      "collection_id": "1",
+      "price": "8000",
+      "collection_id": 3,
       "is_out_of_stock": false,
       "images": [
         "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282577/products/4_img0_1786282576381.jpg"
       ],
       "variants": [
         {
-          "color": "Classic Black",
           "size": "S",
+          "color": "Classic Black",
           "stock": 1
         },
         {
-          "color": "Classic Black",
           "size": "M",
-          "stock": 0
+          "color": "Classic Black",
+          "stock": 1
         },
         {
-          "color": "Classic Black",
           "size": "L",
-          "stock": 0
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "XL",
+          "color": "Classic Black",
+          "stock": 1
         }
       ],
-      "flash_sale": false,
-      "flash_sale_price": null,
+      "flash_sale": true,
+      "flash_sale_price": "4000",
       "new_arrival": false,
-      "on_sale": false,
+      "on_sale": true,
       "collection_slugs": [
-        "suits",
+        "flash-sale",
         "gowns"
       ],
       "collection_name": "Unstitched Suits",
       "collection_slug": "suits",
       "parent_collection_name": null,
       "parent_collection_slug": null,
-      "tags": []
+      "tags": [
+        {
+          "id": 13,
+          "name": "Fabric: Georgette Gown | Top Work: Heavy Hand Embroidery | Neckline: High Neck | Sleeves: Embellished Cap Sleeves",
+          "slug": "fabric-georgette-gown-top-work-heavy-hand-embroidery-neckline-high-neck-sleeves-embellished-cap-sleeves"
+        }
+      ]
     },
     {
       "id": "5",
-      "name": "lavender anarkali",
+      "name": "Lavender Anarkali",
       "slug": "bespoke-suit-5",
       "description": "A finely tailored bespoke suit, crafted from exceptional textiles with structured shoulders and a modern silhouette.",
-      "price": "35000",
-      "collection_id": "1",
+      "price": "1500",
+      "collection_id": 3,
       "is_out_of_stock": false,
       "images": [
         "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282577/products/5_img0_1786282577382.jpg"
       ],
       "variants": [
         {
+          "size": "M",
           "color": "Classic Black",
-          "size": "S",
           "stock": 1
         },
         {
+          "size": "L",
           "color": "Classic Black",
-          "size": "M",
-          "stock": 0
+          "stock": 1
         },
         {
+          "size": "XL",
           "color": "Classic Black",
-          "size": "L",
-          "stock": 0
+          "stock": 1
+        },
+        {
+          "size": "XXL",
+          "color": "Classic Black",
+          "stock": 1
         }
       ],
-      "flash_sale": false,
-      "flash_sale_price": null,
+      "flash_sale": true,
+      "flash_sale_price": "750",
       "new_arrival": false,
-      "on_sale": false,
+      "on_sale": true,
       "collection_slugs": [
-        "suits",
+        "flash-sale",
         "gowns"
       ],
       "collection_name": "Unstitched Suits",
       "collection_slug": "suits",
       "parent_collection_name": null,
       "parent_collection_slug": null,
-      "tags": []
+      "tags": [
+        {
+          "id": 14,
+          "name": "Anarkali Fabric: Chinon Anarkali | Dupatta Fabric: Organza Dupatta | Work: All-Over Thread Hand Embroidery",
+          "slug": "anarkali-fabric-chinon-anarkali-dupatta-fabric-organza-dupatta-work-all-over-thread-hand-embroidery"
+        }
+      ]
     },
     {
       "id": "6",
       "name": "Anarkali",
       "slug": "bespoke-suit-6",
       "description": "A finely tailored bespoke suit, crafted from exceptional textiles with structured shoulders and a modern silhouette.",
-      "price": "37000",
-      "collection_id": "1",
+      "price": "14000",
+      "collection_id": 2,
       "is_out_of_stock": false,
       "images": [
         "/local-products/045-bespoke-suit-13-1.jpg",
@@ -226,119 +293,191 @@
       ],
       "variants": [
         {
+          "size": "XS",
           "color": "Classic Black",
-          "size": "S",
           "stock": 1
         },
         {
+          "size": "S",
           "color": "Classic Black",
-          "size": "M",
-          "stock": 0
+          "stock": 1
         },
         {
+          "size": "M",
           "color": "Classic Black",
+          "stock": 1
+        },
+        {
           "size": "L",
-          "stock": 0
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "XXL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "3XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "4XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "5XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "6XL",
+          "color": "Classic Black",
+          "stock": 1
         }
       ],
-      "flash_sale": true,
-      "flash_sale_price": "29600",
-      "new_arrival": false,
-      "on_sale": true,
+      "flash_sale": false,
+      "flash_sale_price": null,
+      "new_arrival": true,
+      "on_sale": false,
       "collection_slugs": [
-        "flash-sale",
-        "suits",
-        "gowns"
+        "new-collection",
+        "indo-western"
       ],
       "collection_name": "Unstitched Suits",
       "collection_slug": "suits",
       "parent_collection_name": null,
       "parent_collection_slug": null,
-      "tags": []
+      "tags": [
+        {
+          "id": 15,
+          "name": "Skirt Fabric: Chinon Skirt | Cape Fabric: Organza Cape | Set Details: 3 Piece Set (Skirt, Top & Cape) | Work: Hand Embroidery",
+          "slug": "skirt-fabric-chinon-skirt-cape-fabric-organza-cape-set-details-3-piece-set-skirt-top-cape-work-hand-embroidery"
+        }
+      ]
     },
     {
       "id": "7",
       "name": "Floral Drape",
       "slug": "bespoke-suit-7",
       "description": "A finely tailored bespoke suit, crafted from exceptional textiles with structured shoulders and a modern silhouette.",
-      "price": "39000",
-      "collection_id": "1",
+      "price": "7000",
+      "collection_id": 2,
       "is_out_of_stock": false,
       "images": [
         "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282579/products/7_img0_1786282578737.jpg"
       ],
       "variants": [
         {
-          "color": "Classic Black",
           "size": "S",
+          "color": "Classic Black",
           "stock": 1
         },
         {
-          "color": "Classic Black",
           "size": "M",
-          "stock": 0
+          "color": "Classic Black",
+          "stock": 1
         },
         {
-          "color": "Classic Black",
           "size": "L",
-          "stock": 0
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "XXL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "3XL",
+          "color": "Classic Black",
+          "stock": 1
         }
       ],
-      "flash_sale": false,
-      "flash_sale_price": null,
+      "flash_sale": true,
+      "flash_sale_price": "3500",
       "new_arrival": false,
-      "on_sale": false,
+      "on_sale": true,
       "collection_slugs": [
-        "suits",
-        "shararas"
+        "flash-sale",
+        "indo-western"
       ],
       "collection_name": "Unstitched Suits",
       "collection_slug": "suits",
       "parent_collection_name": null,
       "parent_collection_slug": null,
-      "tags": []
+      "tags": [
+        {
+          "id": 16,
+          "name": "Fabric: Georgette Skirt and Top | Skirt Style: Georgette Drape Skirt | Work: Printed with Embroidered Border Details",
+          "slug": "fabric-georgette-skirt-and-top-skirt-style-georgette-drape-skirt-work-printed-with-embroidered-border-details"
+        }
+      ]
     },
     {
       "id": "8",
       "name": "Ruby Drape",
       "slug": "bespoke-suit-8",
       "description": "A finely tailored bespoke suit, crafted from exceptional textiles with structured shoulders and a modern silhouette.",
-      "price": "26000",
-      "collection_id": "1",
+      "price": "8000",
+      "collection_id": 2,
       "is_out_of_stock": false,
       "images": [
         "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282580/products/8_img0_1786282579720.jpg"
       ],
       "variants": [
         {
+          "size": "M",
           "color": "Classic Black",
-          "size": "S",
           "stock": 1
         },
         {
+          "size": "L",
           "color": "Classic Black",
-          "size": "M",
-          "stock": 0
+          "stock": 1
         },
         {
+          "size": "XL",
           "color": "Classic Black",
-          "size": "L",
-          "stock": 0
+          "stock": 1
+        },
+        {
+          "size": "XXL",
+          "color": "Classic Black",
+          "stock": 1
         }
       ],
-      "flash_sale": false,
-      "flash_sale_price": null,
+      "flash_sale": true,
+      "flash_sale_price": "4000",
       "new_arrival": false,
-      "on_sale": false,
+      "on_sale": true,
       "collection_slugs": [
-        "suits",
-        "shararas"
+        "flash-sale",
+        "indo-western"
       ],
       "collection_name": "Unstitched Suits",
       "collection_slug": "suits",
       "parent_collection_name": null,
       "parent_collection_slug": null,
-      "tags": []
+      "tags": [
+        {
+          "id": 17,
+          "name": "Gown Fabric: Georgette Gown | Cape Fabric: Georgette Bandhani Cape | Work: Hand Embroidery on Top & Bandhani Print Cape",
+          "slug": "gown-fabric-georgette-gown-cape-fabric-georgette-bandhani-cape-work-hand-embroidery-on-top-bandhani-print-cape"
+        }
+      ]
     },
     {
       "id": "9",
@@ -388,125 +527,188 @@
       "name": "Aqua Drape",
       "slug": "bespoke-suit-10",
       "description": "A finely tailored bespoke suit, crafted from exceptional textiles with structured shoulders and a modern silhouette.",
-      "price": "30000",
-      "collection_id": "1",
+      "price": "12000",
+      "collection_id": 4,
       "is_out_of_stock": false,
       "images": [
         "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282581/products/10_img0_1786282580743.jpg"
       ],
       "variants": [
         {
+          "size": "M",
           "color": "Classic Black",
-          "size": "S",
           "stock": 1
         },
         {
+          "size": "L",
           "color": "Classic Black",
-          "size": "M",
-          "stock": 0
+          "stock": 1
         },
         {
+          "size": "XL",
           "color": "Classic Black",
-          "size": "L",
-          "stock": 0
+          "stock": 1
+        },
+        {
+          "size": "XXL",
+          "color": "Classic Black",
+          "stock": 1
         }
       ],
       "flash_sale": false,
       "flash_sale_price": null,
-      "new_arrival": false,
+      "new_arrival": true,
       "on_sale": false,
       "collection_slugs": [
-        "suits",
+        "new-collection",
         "shararas"
       ],
       "collection_name": "Unstitched Suits",
       "collection_slug": "suits",
       "parent_collection_name": null,
       "parent_collection_slug": null,
-      "tags": []
+      "tags": [
+        {
+          "id": 18,
+          "name": "Skirt Fabric: Chinon Drape Skirt | Blouse Fabric: Chinon Blouse | Work: Hand Embroidery on Blouse & Borders",
+          "slug": "skirt-fabric-chinon-drape-skirt-blouse-fabric-chinon-blouse-work-hand-embroidery-on-blouse-borders"
+        }
+      ]
     },
     {
       "id": "11",
       "name": "Blush Drape",
       "slug": "bespoke-suit-11",
       "description": "Elegant blush pink drape set featuring intricate embroidery and a flowing shrug.",
-      "price": "32000",
-      "collection_id": "1",
+      "price": "15000",
+      "collection_id": 7,
       "is_out_of_stock": false,
       "images": [
         "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282582/products/11_img0_1786282581745.jpg"
       ],
       "variants": [
         {
+          "size": "XS",
           "color": "Classic Black",
-          "size": "S",
           "stock": 1
         },
         {
+          "size": "S",
           "color": "Classic Black",
-          "size": "M",
-          "stock": 0
+          "stock": 1
         },
         {
+          "size": "M",
           "color": "Classic Black",
+          "stock": 1
+        },
+        {
           "size": "L",
-          "stock": 0
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "XXL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "3XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "4XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "5XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "6XL",
+          "color": "Classic Black",
+          "stock": 1
         }
       ],
       "flash_sale": false,
       "flash_sale_price": null,
-      "new_arrival": false,
+      "new_arrival": true,
       "on_sale": false,
       "collection_slugs": [
-        "suits",
-        "shararas"
+        "new-collection"
       ],
       "collection_name": "Unstitched Suits",
       "collection_slug": "suits",
       "parent_collection_name": null,
       "parent_collection_slug": null,
-      "tags": []
+      "tags": [
+        {
+          "id": 19,
+          "name": "Fabric: Crepe (Top, Skirt & Cape) | Style: 3-Piece Set (Crop Top, Draped Skirt & Long Cape) | Work: Hand Embroidery",
+          "slug": "fabric-crepe-top-skirt-cape-style-3-piece-set-crop-top-draped-skirt-long-cape-work-hand-embroidery"
+        }
+      ]
     },
     {
       "id": "12",
       "name": "Lavender Drape",
       "slug": "bespoke-suit-12",
       "description": "An elegant lavender draped silhouette with fine hand-worked detailing.",
-      "price": "34000",
-      "collection_id": "8",
+      "price": "10000",
+      "collection_id": 2,
       "is_out_of_stock": false,
       "images": [
         "/local-products/069-bespoke-suit-12-1.jpg"
       ],
       "variants": [
         {
-          "color": "Default",
           "size": "S",
+          "color": "Default",
           "stock": 1
         },
         {
-          "color": "Default",
           "size": "M",
-          "stock": 0
+          "color": "Default",
+          "stock": 1
         },
         {
-          "color": "Default",
           "size": "L",
-          "stock": 0
+          "color": "Default",
+          "stock": 1
+        },
+        {
+          "size": "XL",
+          "color": "Default",
+          "stock": 1
         }
       ],
       "flash_sale": false,
       "flash_sale_price": null,
-      "new_arrival": false,
+      "new_arrival": true,
       "on_sale": false,
       "collection_slugs": [
-        "shararas"
+        "new-collection",
+        "indo-western"
       ],
       "collection_name": null,
       "collection_slug": null,
       "parent_collection_name": null,
       "parent_collection_slug": null,
-      "tags": []
+      "tags": [
+        {
+          "id": 20,
+          "name": "Fabric: Net & Imported Crepe | Style: 3-Piece Set (Bustier Top, Drape Skirt & Short Cape) | Work: Hand Embroidery & Tassel Detail",
+          "slug": "fabric-net-imported-crepe-style-3-piece-set-bustier-top-drape-skirt-short-cape-work-hand-embroidery-tassel-detail"
+        }
+      ]
     },
     {
       "id": "13",
@@ -692,7 +894,7 @@
       "slug": "bespoke-suit-17",
       "description": "Rich storytelling prints and classic ethnic patterns make this suit truly one of a kind.",
       "price": "3000",
-      "collection_id": "1",
+      "collection_id": 1,
       "is_out_of_stock": false,
       "images": [
         "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282595/products/17_img0_1786282594551.jpg",
@@ -702,8 +904,8 @@
       ],
       "variants": [
         {
-          "color": "Default",
           "size": "Unstitched Fabric",
+          "color": "Default",
           "stock": 1
         }
       ],
@@ -720,9 +922,9 @@
       "parent_collection_slug": null,
       "tags": [
         {
-          "id": 1198921157422481400,
-          "name": "Silk kurta and dupatta",
-          "slug": "silk-kurta-and-dupatta"
+          "id": 21,
+          "name": "Kurta Fabric: Kota Doria (Pichwai Print) | Dupatta Fabric: Kota Doria (Pichwai Folk Art) | Bottom Fabric: Shantoon",
+          "slug": "kurta-fabric-kota-doria-pichwai-print-dupatta-fabric-kota-doria-pichwai-folk-art-bottom-fabric-shantoon"
         }
       ]
     },
