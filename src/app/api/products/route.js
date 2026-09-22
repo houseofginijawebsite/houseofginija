@@ -17,6 +17,10 @@ import { fetchCloudSettingsHttps, getSetting } from '@/lib/settingsStore';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+const NO_CACHE_HEADERS = {
+  'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+};
+
 export async function GET(request) {
   await fetchCloudSettingsHttps();
   let jewelleryEnabled = getSetting('jewellery_enabled', true);
@@ -63,7 +67,10 @@ export async function GET(request) {
       return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' });
     });
 
-    return NextResponse.json({ ...response, products, jewellery_enabled: jewelleryEnabled });
+    return NextResponse.json(
+      { ...response, products, jewellery_enabled: jewelleryEnabled },
+      { headers: NO_CACHE_HEADERS }
+    );
   }
 
   try {
@@ -102,7 +109,7 @@ export async function GET(request) {
         OR ($${paramIndex} = 'shararas' AND (c.slug = 'heavy-dresses' OR parent_c.slug = 'heavy-dresses'))
         OR ($${paramIndex} = 'new-collection' AND p.new_arrival = TRUE)
         OR ($${paramIndex} = 'flash-sale' AND (p.on_sale = TRUE OR p.flash_sale = TRUE))
-        OR (p.collection_slugs IS NOT NULL AND $${paramIndex} = ANY(p.collection_slugs))
+        OR (p.collection_slugs IS NOT NULL AND p.collection_slugs @> to_jsonb($${paramIndex}::text))
       )`;
       queryParams.push(collection);
       paramIndex += 1;
@@ -166,7 +173,7 @@ export async function GET(request) {
       jewelleryEnabled = jewelleryRow.value !== 'false';
     }
 
-    const dbProducts = result.rows.map(mapProductData);
+    const dbProducts = result.rows.map((row) => mapProductData(row, { isAdmin: false }));
     const fallbackProducts = getLocalProductsFallback();
     const dbSlugs = new Set(dbProducts.map((p) => p.slug));
 
@@ -203,11 +210,14 @@ export async function GET(request) {
       finalProducts = finalProducts.filter((product) => !isJewelleryProduct(product));
     }
 
-    return NextResponse.json({
-      products: finalProducts,
-      flash_sale_enabled,
-      jewellery_enabled: jewelleryEnabled,
-    });
+    return NextResponse.json(
+      {
+        products: finalProducts,
+        flash_sale_enabled,
+        jewellery_enabled: jewelleryEnabled,
+      },
+      { headers: NO_CACHE_HEADERS }
+    );
   } catch (error) {
     console.error('Fetch products error:', error);
     if (canUseLocalCatalogFallback()) {
@@ -215,8 +225,11 @@ export async function GET(request) {
       const products = jewelleryEnabled === false
         ? response.products.filter((product) => !isJewelleryProduct(product))
         : response.products;
-      return NextResponse.json({ ...response, products, jewellery_enabled: jewelleryEnabled });
+      return NextResponse.json(
+        { ...response, products, jewellery_enabled: jewelleryEnabled },
+        { headers: NO_CACHE_HEADERS }
+      );
     }
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500, headers: NO_CACHE_HEADERS });
   }
 }

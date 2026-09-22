@@ -16,6 +16,10 @@ import { fetchCloudSettingsHttps, getSetting } from '@/lib/settingsStore';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+const NO_CACHE_HEADERS = {
+  'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+};
+
 export async function GET(request, { params }) {
   const { slug } = await params;
   await fetchCloudSettingsHttps();
@@ -24,9 +28,9 @@ export async function GET(request, { params }) {
   if (shouldUseLocalCatalogFallbackFirst()) {
     const product = getLocalProductBySlugFallback(slug);
     if (product && (jewelleryEnabled !== false || !isJewelleryProduct(product))) {
-      return NextResponse.json({ product: mapProductData(product) });
+      return NextResponse.json({ product: mapProductData(product) }, { headers: NO_CACHE_HEADERS });
     }
-    return NextResponse.json({ error: 'Product not found' }, { status: 404 });
+    return NextResponse.json({ error: 'Product not found' }, { status: 404, headers: NO_CACHE_HEADERS });
   }
 
   try {
@@ -50,27 +54,27 @@ export async function GET(request, { params }) {
       if (canUseLocalCatalogFallback()) {
         const product = getLocalProductBySlugFallback(slug);
         if (product && (jewelleryEnabled !== false || !isJewelleryProduct(product))) {
-          return NextResponse.json({ product: mapProductData(product) });
+          return NextResponse.json({ product: mapProductData(product) }, { headers: NO_CACHE_HEADERS });
         }
       }
-      return NextResponse.json({ error: 'Product not found' }, { status: 404 });
+      return NextResponse.json({ error: 'Product not found' }, { status: 404, headers: NO_CACHE_HEADERS });
     }
 
     const product = mapProductData(result.rows[0]);
     if (jewelleryEnabled === false && isJewelleryProduct(product)) {
-      return NextResponse.json({ error: 'Product not found' }, { status: 404 });
+      return NextResponse.json({ error: 'Product not found' }, { status: 404, headers: NO_CACHE_HEADERS });
     }
 
-    return NextResponse.json({ product });
+    return NextResponse.json({ product }, { headers: NO_CACHE_HEADERS });
   } catch (error) {
     console.error('Fetch product by slug error:', error);
     if (canUseLocalCatalogFallback()) {
       const product = getLocalProductBySlugFallback(slug);
       if (product && (jewelleryEnabled !== false || !isJewelleryProduct(product))) {
-        return NextResponse.json({ product: mapProductData(product) });
+        return NextResponse.json({ product: mapProductData(product) }, { headers: NO_CACHE_HEADERS });
       }
-      return NextResponse.json({ error: 'Product not found' }, { status: 404 });
+      return NextResponse.json({ error: 'Product not found' }, { status: 404, headers: NO_CACHE_HEADERS });
     }
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500, headers: NO_CACHE_HEADERS });
   }
 }

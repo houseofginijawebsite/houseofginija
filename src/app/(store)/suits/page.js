@@ -511,6 +511,24 @@ function CollectionsContent() {
       }
     };
     fetchAllProducts();
+
+    let channel;
+    if (typeof window !== 'undefined') {
+      try {
+        channel = new BroadcastChannel('houseofginija-catalog-sync');
+        channel.onmessage = () => {
+          fetchAllProducts();
+        };
+      } catch {}
+    }
+
+    const handleCatalogUpdated = () => fetchAllProducts();
+    window.addEventListener('catalog-updated', handleCatalogUpdated);
+
+    return () => {
+      if (channel) channel.close();
+      window.removeEventListener('catalog-updated', handleCatalogUpdated);
+    };
   }, []);
 
   // Filter in memory or fetch from API when selections change

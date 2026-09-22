@@ -34,8 +34,8 @@ export default function ProductPage({ params }) {
 
         const overrides = getStoredLocalCatalogOverrides();
         const localMatch = overrides.find((p) => p.slug === slug || String(p.id) === String(targetProd?.id));
-        if (localMatch) {
-          targetProd = { ...targetProd, ...localMatch };
+        if (!targetProd && localMatch) {
+          targetProd = localMatch;
         }
 
         if (!targetProd) {

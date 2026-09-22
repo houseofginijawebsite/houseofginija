@@ -200,11 +200,11 @@ export function saveStoredLocalCatalogOverride(product) {
   } catch {}
 }
 
-export function removeStoredLocalCatalogOverride(id) {
+export function removeStoredLocalCatalogOverride(idOrSlug) {
   if (typeof window === 'undefined') return;
   try {
     const existing = getStoredLocalCatalogOverrides();
-    const updated = existing.filter((p) => String(p.id) !== String(id));
+    const updated = existing.filter((p) => String(p.id) !== String(idOrSlug) && p.slug !== String(idOrSlug));
     localStorage.setItem('houseofginija_custom_products', JSON.stringify(updated));
   } catch {}
 }
@@ -219,14 +219,26 @@ export function mergeCatalogWithLocalOverrides(fetchedList = []) {
   const overrides = getStoredLocalCatalogOverrides();
   if (!Array.isArray(overrides) || overrides.length === 0) return merged;
 
+  // The server/database is the source of truth for products that exist.
+  // Only keep local overrides for unsaved offline drafts that do not exist on the server.
+  let hasCleanup = false;
   overrides.forEach((override) => {
     const idx = merged.findIndex((p) => String(p.id) === String(override.id) || p.slug === override.slug);
-    if (idx !== -1) {
-      merged[idx] = { ...merged[idx], ...override };
-    } else {
+    if (idx === -1) {
       merged.unshift(override);
+    } else {
+      hasCleanup = true;
     }
   });
+
+  if (hasCleanup) {
+    const remaining = overrides.filter((override) =>
+      !merged.some((p) => String(p.id) === String(override.id) || p.slug === override.slug)
+    );
+    try {
+      localStorage.setItem('houseofginija_custom_products', JSON.stringify(remaining));
+    } catch {}
+  }
 
   return merged;
 }

@@ -25,6 +25,10 @@ import {
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+const NO_CACHE_HEADERS = {
+  'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+};
+
 function getStoreProducts() {
   return getStore();
 }
@@ -189,12 +193,15 @@ export async function GET() {
 
   if (shouldUseLocalCatalogFallbackFirst()) {
     const rawList = getStoreProducts().map((p) => mapProductData(p, { isAdmin: true })).filter(Boolean);
-    return NextResponse.json({
-      products: sortByNewest(rawList),
-      collections: getLocalCollectionsFallback(),
-      categoryTree: getLocalCategoryTreeFallback(),
-      tags: getLocalTagsFallback(),
-    });
+    return NextResponse.json(
+      {
+        products: sortByNewest(rawList),
+        collections: getLocalCollectionsFallback(),
+        categoryTree: getLocalCategoryTreeFallback(),
+        tags: getLocalTagsFallback(),
+      },
+      { headers: NO_CACHE_HEADERS }
+    );
   }
 
   try {
@@ -210,23 +217,29 @@ export async function GET() {
     ]);
 
     const rawList = productsResult.rows.map((row) => mapProductData(row, { isAdmin: true })).filter(Boolean);
-    return NextResponse.json({
-      products: sortByNewest(rawList),
-      collections: collectionsResult.rows,
-      categoryTree: buildCategoryTree(collectionsResult.rows),
-      tags: tagsResult.rows,
-    });
+    return NextResponse.json(
+      {
+        products: sortByNewest(rawList),
+        collections: collectionsResult.rows,
+        categoryTree: buildCategoryTree(collectionsResult.rows),
+        tags: tagsResult.rows,
+      },
+      { headers: NO_CACHE_HEADERS }
+    );
   } catch (error) {
     console.warn('Admin GET products DB error, returning local fallback catalog:', error.message);
     const rawList = getStoreProducts().map((p) => mapProductData(p, { isAdmin: true })).filter(Boolean);
-    return NextResponse.json({
-      products: sortByNewest(rawList),
-      collections: getLocalCollectionsFallback(),
-      categoryTree: getLocalCategoryTreeFallback(),
-      tags: getLocalTagsFallback(),
-      dbError: error.message || String(error),
-      isFallback: true,
-    });
+    return NextResponse.json(
+      {
+        products: sortByNewest(rawList),
+        collections: getLocalCollectionsFallback(),
+        categoryTree: getLocalCategoryTreeFallback(),
+        tags: getLocalTagsFallback(),
+        dbError: error.message || String(error),
+        isFallback: true,
+      },
+      { headers: NO_CACHE_HEADERS }
+    );
   }
 }
 

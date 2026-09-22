@@ -12,6 +12,10 @@ import { fetchCloudSettingsHttps, getSetting } from '@/lib/settingsStore';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+const NO_CACHE_HEADERS = {
+  'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+};
+
 export async function GET() {
   await fetchCloudSettingsHttps();
   let jewelleryEnabled = getSetting('jewellery_enabled', true);
@@ -22,10 +26,13 @@ export async function GET() {
 
   if (shouldUseLocalCatalogFallbackFirst()) {
     const collections = hideDisabledCollections(getLocalCollectionsFallback());
-    return NextResponse.json({
-      collections,
-      categoryTree: buildCategoryTree(collections),
-    });
+    return NextResponse.json(
+      {
+        collections,
+        categoryTree: buildCategoryTree(collections),
+      },
+      { headers: NO_CACHE_HEADERS }
+    );
   }
 
   try {
@@ -63,19 +70,25 @@ export async function GET() {
 
     const visibleCollections = hideDisabledCollections(mergedCollections);
 
-    return NextResponse.json({
-      collections: visibleCollections,
-      categoryTree: buildCategoryTree(visibleCollections),
-    });
+    return NextResponse.json(
+      {
+        collections: visibleCollections,
+        categoryTree: buildCategoryTree(visibleCollections),
+      },
+      { headers: NO_CACHE_HEADERS }
+    );
   } catch (error) {
     console.error('Fetch collections error:', error);
     if (canUseLocalCatalogFallback()) {
       const collections = hideDisabledCollections(getLocalCollectionsFallback());
-      return NextResponse.json({
-        collections,
-        categoryTree: buildCategoryTree(collections),
-      });
+      return NextResponse.json(
+        {
+          collections,
+          categoryTree: buildCategoryTree(collections),
+        },
+        { headers: NO_CACHE_HEADERS }
+      );
     }
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500, headers: NO_CACHE_HEADERS });
   }
 }
