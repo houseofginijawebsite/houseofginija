@@ -125,17 +125,17 @@
         {
           "color": "Classic Black",
           "size": "S",
-          "stock": 10
+          "stock": 1
         },
         {
           "color": "Classic Black",
           "size": "M",
-          "stock": 10
+          "stock": 1
         },
         {
           "color": "Classic Black",
           "size": "L",
-          "stock": 10
+          "stock": 1
         }
       ],
       "flash_sale": true,
@@ -167,7 +167,7 @@
         {
           "color": "Gold",
           "size": "One Size",
-          "stock": 10
+          "stock": 1
         }
       ],
       "flash_sale": true,
@@ -198,17 +198,17 @@
         {
           "color": "Classic Black",
           "size": "S",
-          "stock": 10
+          "stock": 1
         },
         {
           "color": "Classic Black",
           "size": "M",
-          "stock": 10
+          "stock": 1
         },
         {
           "color": "Classic Black",
           "size": "L",
-          "stock": 10
+          "stock": 1
         }
       ],
       "flash_sale": true,
@@ -242,27 +242,27 @@
         {
           "color": "Default",
           "size": "S",
-          "stock": 0
+          "stock": 1
         },
         {
           "color": "Default",
           "size": "M",
-          "stock": 0
+          "stock": 1
         },
         {
           "color": "Default",
           "size": "L",
-          "stock": 0
+          "stock": 1
         },
         {
           "color": "Default",
           "size": "XL",
-          "stock": 0
+          "stock": 1
         },
         {
           "color": "Default",
           "size": "XXL",
-          "stock": 0
+          "stock": 1
         }
       ],
       "flash_sale": true,
@@ -296,27 +296,27 @@
         {
           "color": "Default",
           "size": "S",
-          "stock": 0
+          "stock": 1
         },
         {
           "color": "Default",
           "size": "M",
-          "stock": 0
+          "stock": 1
         },
         {
           "color": "Default",
           "size": "L",
-          "stock": 0
+          "stock": 1
         },
         {
           "color": "Default",
           "size": "XL",
-          "stock": 0
+          "stock": 1
         },
         {
           "color": "Default",
           "size": "XXL",
-          "stock": 0
+          "stock": 1
         }
       ],
       "flash_sale": true,
@@ -350,17 +350,17 @@
         {
           "color": "Classic Black",
           "size": "S",
-          "stock": 10
+          "stock": 1
         },
         {
           "color": "Classic Black",
           "size": "M",
-          "stock": 10
+          "stock": 1
         },
         {
           "color": "Classic Black",
           "size": "L",
-          "stock": 10
+          "stock": 1
         }
       ],
       "flash_sale": true,
@@ -391,17 +391,17 @@
         {
           "color": "Classic Black",
           "size": "S",
-          "stock": 10
+          "stock": 1
         },
         {
           "color": "Classic Black",
           "size": "M",
-          "stock": 10
+          "stock": 1
         },
         {
           "color": "Classic Black",
           "size": "L",
-          "stock": 10
+          "stock": 1
         }
       ],
       "flash_sale": true,
@@ -432,17 +432,17 @@
         {
           "color": "Default",
           "size": "S",
-          "stock": 30
+          "stock": 1
         },
         {
           "color": "Default",
           "size": "M",
-          "stock": 30
+          "stock": 1
         },
         {
           "color": "Default",
           "size": "L",
-          "stock": 30
+          "stock": 1
         }
       ],
       "flash_sale": true,
@@ -476,7 +476,7 @@
         {
           "color": "Gold",
           "size": "One Size",
-          "stock": 10
+          "stock": 1
         }
       ],
       "flash_sale": false,
@@ -504,7 +504,7 @@
         {
           "color": "Gold",
           "size": "One Size",
-          "stock": 10
+          "stock": 1
         }
       ],
       "flash_sale": false,
@@ -532,7 +532,7 @@
         {
           "color": "Gold",
           "size": "One Size",
-          "stock": 10
+          "stock": 1
         }
       ],
       "flash_sale": false,
@@ -561,7 +561,7 @@
         {
           "color": "Gold",
           "size": "One Size",
-          "stock": 10
+          "stock": 1
         }
       ],
       "flash_sale": false,
@@ -675,17 +675,17 @@
           {
             "color": "Default",
             "size": "S",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Default",
             "size": "M",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Default",
             "size": "L",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -717,7 +717,7 @@
         "variants": [
           {
             "size": "One Size",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": true,
@@ -757,7 +757,7 @@
         "variants": [
           {
             "size": "One Size",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -798,7 +798,7 @@
         "variants": [
           {
             "size": "One Size",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -837,7 +837,7 @@
         "variants": [
           {
             "size": "One Size",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -875,7 +875,7 @@
         "variants": [
           {
             "size": "One Size",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -915,17 +915,17 @@
           {
             "color": "Classic Black",
             "size": "S",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "M",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "L",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -957,17 +957,17 @@
           {
             "color": "Classic Black",
             "size": "S",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "M",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "L",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -999,17 +999,17 @@
           {
             "color": "Classic Black",
             "size": "S",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "M",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "L",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -1043,17 +1043,17 @@
           {
             "color": "Classic Black",
             "size": "S",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "M",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "L",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": true,
@@ -1089,7 +1089,7 @@
         "variants": [
           {
             "size": "One Size",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -1129,7 +1129,7 @@
         "variants": [
           {
             "size": "One Size",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": true,
@@ -1170,7 +1170,7 @@
         "variants": [
           {
             "size": "One Size",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -1211,17 +1211,17 @@
           {
             "color": "Default",
             "size": "S",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Default",
             "size": "M",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Default",
             "size": "L",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -1252,17 +1252,17 @@
           {
             "color": "Classic Black",
             "size": "S",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "M",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "L",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -1294,17 +1294,17 @@
           {
             "color": "Classic Black",
             "size": "S",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "M",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "L",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -1336,17 +1336,17 @@
           {
             "color": "Classic Black",
             "size": "S",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "M",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "L",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": true,
@@ -1379,17 +1379,17 @@
           {
             "color": "Classic Black",
             "size": "S",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "M",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "L",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -1421,17 +1421,17 @@
           {
             "color": "Classic Black",
             "size": "S",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "M",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Classic Black",
             "size": "L",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -1463,17 +1463,17 @@
           {
             "color": "Default",
             "size": "S",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Default",
             "size": "M",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Default",
             "size": "L",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -1506,17 +1506,17 @@
           {
             "color": "Default",
             "size": "S",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Default",
             "size": "M",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Default",
             "size": "L",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": true,
@@ -1550,17 +1550,17 @@
           {
             "color": "Default",
             "size": "S",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Default",
             "size": "M",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Default",
             "size": "L",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -1591,17 +1591,17 @@
           {
             "color": "Default",
             "size": "S",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Default",
             "size": "M",
-            "stock": 10
+            "stock": 1
           },
           {
             "color": "Default",
             "size": "L",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -1685,7 +1685,7 @@
         "variants": [
           {
             "size": "One Size",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -1724,7 +1724,7 @@
         "variants": [
           {
             "size": "One Size",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -1764,7 +1764,7 @@
         "variants": [
           {
             "size": "One Size",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": true,
@@ -1806,7 +1806,7 @@
         "variants": [
           {
             "size": "One Size",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": true,
@@ -1846,7 +1846,7 @@
         "variants": [
           {
             "size": "One Size",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -1885,7 +1885,7 @@
         "variants": [
           {
             "size": "One Size",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
@@ -1924,7 +1924,7 @@
         "variants": [
           {
             "size": "One Size",
-            "stock": 10
+            "stock": 1
           }
         ],
         "flash_sale": false,
