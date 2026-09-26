@@ -23,6 +23,7 @@ function AdminProductsContent() {
   const [collections, setCollections] = useState(homepageFallback.collections || []);
   const [tags, setTags] = useState([]);
   const [filterCategory, setFilterCategory] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -1143,8 +1144,45 @@ function AdminProductsContent() {
         ) : (() => {
 
           const filteredProducts = products.filter((p) => {
-            if (!filterCategory) return true;
-            return productMatchesCategory(p, filterCategory);
+            if (filterCategory && !productMatchesCategory(p, filterCategory)) {
+              return false;
+            }
+            if (searchQuery.trim()) {
+              const q = searchQuery.trim().toLowerCase();
+              const nameMatch = p.name && p.name.toLowerCase().includes(q);
+              const slugMatch = p.slug && p.slug.toLowerCase().includes(q);
+              const idMatch = p.id !== undefined && p.id !== null && String(p.id).toLowerCase().includes(q);
+              const priceMatch = (p.price !== undefined && String(p.price).includes(q)) || 
+                                 (p.flash_sale_price !== undefined && String(p.flash_sale_price).includes(q));
+              const descMatch = p.description && p.description.toLowerCase().includes(q);
+              
+              const tagMatch = Array.isArray(p.tags) && p.tags.some((tag) => {
+                if (typeof tag === 'string') return tag.toLowerCase().includes(q);
+                if (tag && typeof tag === 'object') {
+                  return (tag.name && tag.name.toLowerCase().includes(q)) ||
+                         (tag.slug && tag.slug.toLowerCase().includes(q));
+                }
+                return false;
+              });
+
+              const catMatch = (() => {
+                if (Array.isArray(p.collection_slugs)) {
+                  for (const s of p.collection_slugs) {
+                    if (s && s.toLowerCase().includes(q)) return true;
+                    const cat = ADMIN_CATEGORY_OPTIONS.find((c) => c.id === s);
+                    if (cat && cat.name.toLowerCase().includes(q)) return true;
+                  }
+                }
+                if (p.collection_slug && p.collection_slug.toLowerCase().includes(q)) return true;
+                if (p.parent_collection_slug && p.parent_collection_slug.toLowerCase().includes(q)) return true;
+                return false;
+              })();
+
+              if (!nameMatch && !slugMatch && !idMatch && !priceMatch && !descMatch && !tagMatch && !catMatch) {
+                return false;
+              }
+            }
+            return true;
           }).sort((a, b) => {
             const idA = String(a.id || '');
             const idB = String(b.id || '');
@@ -1154,46 +1192,109 @@ function AdminProductsContent() {
 
           return (
             <div>
-              {/* Category Filter Bar */}
+              {/* Filter & Search Bar */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.2rem', gap: '1rem', flexWrap: 'wrap', backgroundColor: '#FFF7F8', padding: '0.9rem 1.2rem', borderRadius: '8px', border: '1px solid #F4E1E5' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', flexWrap: 'wrap' }}>
-                  <label style={{ fontSize: '0.85rem', fontWeight: '700', color: '#3C303A' }}>
-                    Filter by Category:
-                  </label>
-                  <select
-                    value={filterCategory}
-                    onChange={(e) => setFilterCategory(e.target.value)}
-                    style={{
-                      padding: '0.5rem 1rem',
-                      borderRadius: '6px',
-                      border: '1px solid #D98E9B',
-                      backgroundColor: '#FFFFFF',
-                      fontSize: '0.85rem',
-                      color: '#3C303A',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      outline: 'none',
-                      boxShadow: '0 2px 6px rgba(217, 142, 155, 0.12)',
-                    }}
-                  >
-                    <option value="">All Categories ({products.length})</option>
-                    <option value="new-collection">Fresh Collection</option>
-                    <option value="indo-western">Indo-Western</option>
-                    <option value="shararas">Drape Sarees</option>
-                    <option value="gowns">Heavy Gowns</option>
-                    <option value="co-ords">Co-ords</option>
-                    <option value="suits">Unstitched Suits</option>
-                    <option value="jewellery">Jewellery</option>
-                    <option value="earrings">Earrings</option>
-                    <option value="necklaces">Necklace</option>
-                    <option value="rings">Rings</option>
-                    <option value="bracelets">Bracelet</option>
-                    <option value="flash-sale">Flash Sale</option>
-                  </select>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', flexWrap: 'wrap', flex: '1 1 auto' }}>
+                  {/* Search Input Bar */}
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    backgroundColor: '#FFFFFF',
+                    border: '1px solid #D98E9B',
+                    borderRadius: '6px',
+                    padding: '0.45rem 0.75rem',
+                    minWidth: '260px',
+                    maxWidth: '440px',
+                    flex: '1 1 300px',
+                    boxShadow: '0 2px 6px rgba(217, 142, 155, 0.12)',
+                  }}>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D98E9B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '0.5rem', flexShrink: 0 }}>
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input
+                      type="text"
+                      placeholder="Search products by name, tag, category, price..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      style={{
+                        border: 'none',
+                        outline: 'none',
+                        width: '100%',
+                        fontSize: '0.85rem',
+                        color: '#3C303A',
+                        backgroundColor: 'transparent',
+                        fontWeight: '500',
+                      }}
+                    />
+                    {searchQuery && (
+                      <button
+                        type="button"
+                        onClick={() => setSearchQuery('')}
+                        title="Clear search"
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          color: '#8B7789',
+                          cursor: 'pointer',
+                          fontSize: '1rem',
+                          padding: '0 0.2rem',
+                          lineHeight: 1,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        ✕
+                      </button>
+                    )}
+                  </div>
 
-                  {filterCategory && (
+                  {/* Category Filter Dropdown */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <label style={{ fontSize: '0.85rem', fontWeight: '700', color: '#3C303A', whiteSpace: 'nowrap' }}>
+                      Category:
+                    </label>
+                    <select
+                      value={filterCategory}
+                      onChange={(e) => setFilterCategory(e.target.value)}
+                      style={{
+                        padding: '0.5rem 1rem',
+                        borderRadius: '6px',
+                        border: '1px solid #D98E9B',
+                        backgroundColor: '#FFFFFF',
+                        fontSize: '0.85rem',
+                        color: '#3C303A',
+                        fontWeight: '600',
+                        cursor: 'pointer',
+                        outline: 'none',
+                        boxShadow: '0 2px 6px rgba(217, 142, 155, 0.12)',
+                      }}
+                    >
+                      <option value="">All Categories ({products.length})</option>
+                      <option value="new-collection">Fresh Collection</option>
+                      <option value="indo-western">Indo-Western</option>
+                      <option value="shararas">Drape Sarees</option>
+                      <option value="gowns">Heavy Gowns</option>
+                      <option value="co-ords">Co-ords</option>
+                      <option value="suits">Unstitched Suits</option>
+                      <option value="jewellery">Jewellery</option>
+                      <option value="earrings">Earrings</option>
+                      <option value="necklaces">Necklace</option>
+                      <option value="rings">Rings</option>
+                      <option value="bracelets">Bracelet</option>
+                      <option value="flash-sale">Flash Sale</option>
+                    </select>
+                  </div>
+
+                  {/* Clear Filters Button */}
+                  {(searchQuery || filterCategory) && (
                     <button
-                      onClick={() => setFilterCategory('')}
+                      type="button"
+                      onClick={() => {
+                        setSearchQuery('');
+                        setFilterCategory('');
+                      }}
                       style={{
                         padding: '0.45rem 0.9rem',
                         fontSize: '0.78rem',
@@ -1203,9 +1304,10 @@ function AdminProductsContent() {
                         borderRadius: '6px',
                         cursor: 'pointer',
                         fontWeight: '700',
+                        whiteSpace: 'nowrap',
                       }}
                     >
-                      Clear Filter (Show All)
+                      Clear Filters
                     </button>
                   )}
                 </div>
@@ -1231,8 +1333,39 @@ function AdminProductsContent() {
                   <tbody>
                     {filteredProducts.length === 0 ? (
                       <tr>
-                        <td colSpan="7" style={{ padding: '2rem', textAlign: 'center', color: '#8B7789', fontWeight: '600' }}>
-                          No products found matching the selected category filter.
+                        <td colSpan="7" style={{ padding: '3rem 2rem', textAlign: 'center', color: '#8B7789' }}>
+                          <div style={{ fontSize: '1.5rem', marginBottom: '0.4rem' }}>🔍</div>
+                          <div style={{ fontWeight: '700', fontSize: '0.95rem', color: '#2D2429', marginBottom: '0.25rem' }}>
+                            No products match your search or filter
+                          </div>
+                          <div style={{ fontSize: '0.82rem', color: '#8B7789', marginBottom: (searchQuery || filterCategory) ? '0.9rem' : '0' }}>
+                            {searchQuery && filterCategory
+                              ? `No products matching "${searchQuery}" in the selected category.`
+                              : searchQuery
+                              ? `No products matching "${searchQuery}". Try searching by another keyword, tag, or category.`
+                              : 'No products found matching the selected category filter.'}
+                          </div>
+                          {(searchQuery || filterCategory) && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setSearchQuery('');
+                                setFilterCategory('');
+                              }}
+                              style={{
+                                padding: '0.45rem 0.9rem',
+                                fontSize: '0.78rem',
+                                color: '#FFFFFF',
+                                backgroundColor: '#D98E9B',
+                                border: 'none',
+                                borderRadius: '6px',
+                                cursor: 'pointer',
+                                fontWeight: '700',
+                              }}
+                            >
+                              Clear Filters
+                            </button>
+                          )}
                         </td>
                       </tr>
                     ) : (
