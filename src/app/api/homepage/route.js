@@ -11,7 +11,7 @@ import {
   getLocalHomepageFallback,
 } from '@/lib/localCatalogFallback';
 import { getStore } from '@/lib/globalProductStore';
-import { isJewelleryProduct, isJewelleryCollection } from '@/lib/catalogClient';
+import { isJewelleryProduct, isJewelleryCollection, productMatchesCategory } from '@/lib/catalogClient';
 
 import { fetchCloudSettingsHttps } from '@/lib/settingsStore';
 
@@ -80,20 +80,7 @@ export async function GET() {
       SELECT ${PRODUCT_SELECT_FIELDS}
       FROM products p
       ${PRODUCT_COLLECTION_JOINS}
-      WHERE p.is_out_of_stock = FALSE
-        AND (
-          c.slug IN ('indo-western', 'gowns', 'heavy-gown', 'shararas')
-          OR p.collection_slugs::text ILIKE '%indo-western%'
-          OR p.collection_slugs::text ILIKE '%gowns%'
-          OR p.collection_slugs::text ILIKE '%heavy-gown%'
-          OR p.collection_slugs::text ILIKE '%shararas%'
-          OR p.name ILIKE '%drape%'
-          OR p.name ILIKE '%saree%'
-          OR p.name ILIKE '%gown%'
-          OR p.name ILIKE '%anarkali%'
-          OR p.name ILIKE '%cape%'
-          OR p.collection_id = 8
-        )
+      WHERE 1=1
       ORDER BY p.id ASC
     `;
 
@@ -206,66 +193,14 @@ export async function GET() {
     const fallbackHeavyDresses = getLocalHomepageFallback().heavyDresses || {};
     const getCategoryProducts = (slugs, fallbackItems = []) => {
       const acceptedSlugs = Array.isArray(slugs) ? slugs : [slugs];
-      const matched = heavyDressProducts.filter((product) => {
-        const pSlugs = Array.isArray(product.collection_slugs) ? product.collection_slugs : [];
-        const name = (product.name || '').toLowerCase();
+      const matchesAnySlug = (product) => acceptedSlugs.some((s) => productMatchesCategory(product, s));
 
-        if (acceptedSlugs.includes('gowns') || acceptedSlugs.includes('heavy-gown')) {
-          if (pSlugs.includes('gowns') || pSlugs.includes('heavy-gown') || name.includes('gown') || name.includes('anarkali')) return true;
-        }
-        if (acceptedSlugs.includes('shararas')) {
-          if (pSlugs.includes('shararas') || pSlugs.includes('drape-sarees') || name.includes('drape') || name.includes('saree')) return true;
-        }
-        if (acceptedSlugs.includes('indo-western')) {
-          if (pSlugs.includes('indo-western') || String(product.collection_id) === '8' || name.includes('cape') || name.includes('co-ord')) return true;
-        }
-
-        return (
-          acceptedSlugs.includes(product.collection_slug) ||
-          pSlugs.some((s) => acceptedSlugs.includes(s))
-        );
-      });
-
+      const matched = heavyDressProducts.filter(matchesAnySlug);
       const storeItems = getStore().filter((product) => {
         if (jewellery_enabled === false && isJewelleryProduct(product)) return false;
-        const pSlugs = Array.isArray(product.collection_slugs) ? product.collection_slugs : [];
-        const name = (product.name || '').toLowerCase();
-
-        if (acceptedSlugs.includes('gowns') || acceptedSlugs.includes('heavy-gown')) {
-          if (pSlugs.includes('gowns') || pSlugs.includes('heavy-gown') || name.includes('gown') || name.includes('anarkali')) return true;
-        }
-        if (acceptedSlugs.includes('shararas')) {
-          if (pSlugs.includes('shararas') || pSlugs.includes('drape-sarees') || name.includes('drape') || name.includes('saree')) return true;
-        }
-        if (acceptedSlugs.includes('indo-western')) {
-          if (pSlugs.includes('indo-western') || String(product.collection_id) === '8' || name.includes('cape') || name.includes('co-ord')) return true;
-        }
-
-        return (
-          acceptedSlugs.includes(product.collection_slug) ||
-          pSlugs.some((s) => acceptedSlugs.includes(s))
-        );
+        return matchesAnySlug(product);
       });
-
-      const fallbackFiltered = fallbackItems.filter((product) => {
-        const pSlugs = Array.isArray(product.collection_slugs) ? product.collection_slugs : [];
-        const name = (product.name || '').toLowerCase();
-
-        if (acceptedSlugs.includes('gowns') || acceptedSlugs.includes('heavy-gown')) {
-          if (pSlugs.includes('gowns') || pSlugs.includes('heavy-gown') || name.includes('gown') || name.includes('anarkali')) return true;
-        }
-        if (acceptedSlugs.includes('shararas')) {
-          if (pSlugs.includes('shararas') || pSlugs.includes('drape-sarees') || name.includes('drape') || name.includes('saree')) return true;
-        }
-        if (acceptedSlugs.includes('indo-western')) {
-          if (pSlugs.includes('indo-western') || String(product.collection_id) === '8' || name.includes('cape') || name.includes('co-ord')) return true;
-        }
-
-        return (
-          acceptedSlugs.includes(product.collection_slug) ||
-          pSlugs.some((s) => acceptedSlugs.includes(s))
-        );
-      });
+      const fallbackFiltered = fallbackItems.filter(matchesAnySlug);
 
       const uniqueMap = new Map();
       [...matched, ...storeItems, ...fallbackFiltered].forEach((p) => {

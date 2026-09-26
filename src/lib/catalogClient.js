@@ -1,5 +1,5 @@
 export const JEWELLERY_CATEGORY_SLUGS = ['jewellery', 'rings', 'necklaces', 'bracelets', 'earrings'];
-export const JEWELLERY_COLLECTION_IDS = ['2', '4', '5', '6'];
+export const JEWELLERY_COLLECTION_IDS = ['9'];
 
 export function isJewelleryProduct(product = {}) {
   const collectionId = String(product.collection_id || '');
@@ -94,32 +94,32 @@ export function productMatchesCategory(product, selectedCategory) {
 
   // Fallback for legacy items without explicit collection_slugs array
   if (cat === 'rings' || cat === 'ring') {
-    return colSlug === 'rings' || colId === '5';
+    return colSlug === 'rings' || colId === '9';
   }
   if (cat === 'necklaces' || cat === 'necklace') {
-    return colSlug === 'necklaces' || colId === '2';
+    return colSlug === 'necklaces' || colId === '9';
   }
   if (cat === 'bracelets' || cat === 'bracelet') {
-    return colSlug === 'bracelets' || colId === '6';
+    return colSlug === 'bracelets' || colId === '9';
   }
   if (cat === 'earrings' || cat === 'earring') {
-    return colSlug === 'earrings' || colId === '4';
+    return colSlug === 'earrings' || colId === '9';
   }
   if (cat === 'suits' || cat === 'unstitched' || cat === 'unstitched-suits') {
     if (isJewelleryProduct(product)) return false;
     return colSlug === 'suits' || colSlug === 'unstitched' || colId === '1';
   }
   if (cat === 'indo-western') {
-    return colSlug === 'indo-western' || colId === '8' || nameLower.includes('cape') || nameLower.includes('co-ord');
+    return colSlug === 'indo-western' || colId === '2' || colId === '8' || nameLower.includes('cape') || nameLower.includes('co-ord');
   }
   if (cat === 'gowns' || cat === 'heavy-gown') {
-    return colSlug === 'gowns' || colSlug === 'heavy-gown' || colId === '10' || nameLower.includes('gown') || nameLower.includes('anarkali');
+    return colSlug === 'gowns' || colSlug === 'heavy-gown' || colId === '3' || nameLower.includes('gown') || nameLower.includes('anarkali');
   }
   if (cat === 'shararas' || cat === 'drape-sarees' || cat === 'drapes') {
-    return colSlug === 'shararas' || colId === '9' || nameLower.includes('drape') || nameLower.includes('saree');
+    return colSlug === 'shararas' || colSlug === 'drape-sarees' || colId === '4' || nameLower.includes('drape') || nameLower.includes('saree');
   }
   if (cat === 'co-ords') {
-    return colSlug === 'co-ords' || colId === '11';
+    return colSlug === 'co-ords' || colId === '5';
   }
 
   return (

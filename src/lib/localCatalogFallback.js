@@ -3,7 +3,7 @@ import productsFallback from '@/data/local-products-fallback.json';
 import localSettings from '@/data/local-settings.json';
 import { getStore, findBySlug } from '@/lib/globalProductStore';
 import { getSetting } from '@/lib/settingsStore';
-import { isJewelleryProduct } from '@/lib/catalogClient';
+import { isJewelleryProduct, productMatchesCategory } from '@/lib/catalogClient';
 import { buildCategoryTree } from '@/lib/catalogMetadata';
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -47,9 +47,9 @@ export function getLocalHomepageFallback() {
   const flashProducts = visibleStore.filter((p) => Boolean(p.flash_sale || p.on_sale || (Array.isArray(p.collection_slugs) && p.collection_slugs.includes('flash-sale'))));
   const newArrivalProducts = visibleStore.filter((p) => Boolean(p.new_arrival || (Array.isArray(p.collection_slugs) && p.collection_slugs.includes('new-collection'))));
 
-  const isIndoWestern = (p) => p.collection_slug === 'indo-western' || (Array.isArray(p.collection_slugs) && p.collection_slugs.includes('indo-western')) || String(p.collection_id) === '8';
-  const isGown = (p) => p.collection_slug === 'gowns' || p.collection_slug === 'heavy-gown' || (Array.isArray(p.collection_slugs) && p.collection_slugs.some((s) => s === 'gowns' || s === 'heavy-gown')) || String(p.collection_id) === '10';
-  const isSharara = (p) => p.collection_slug === 'shararas' || (Array.isArray(p.collection_slugs) && p.collection_slugs.includes('shararas')) || String(p.collection_id) === '9';
+  const isIndoWestern = (p) => productMatchesCategory(p, 'indo-western');
+  const isGown = (p) => productMatchesCategory(p, 'gowns');
+  const isSharara = (p) => productMatchesCategory(p, 'shararas');
 
   const heavyDresses = {
     indoWestern: visibleStore.filter(isIndoWestern),
