@@ -2848,9 +2848,10 @@ body.mobile-nav-locked .whatsapp-floating-btn {
   display: none;
 }
 
-/* Flash Sale Styles */
+/* Flash Sale & New Collection Badge Styles */
 @media (max-width: 767px) {
-  .new-arrival-card .flash-sale-badge {
+  .new-arrival-card .flash-sale-badge,
+  .new-arrival-card .new-arrival-badge {
     top: 8px !important;
     left: 8px !important;
     font-size: 0.55rem !important;

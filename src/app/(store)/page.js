@@ -251,9 +251,9 @@ export default function Home() {
   const isPlusDisabled = currentQtyInCart > 0 ? (currentQtyInCart >= maxStock) : (activeProductQty >= maxStock);
 
   const switcherProducts = activeProduct
-    ? (activeProduct.flash_sale
-        ? flashProducts
-        : (activeProduct.new_arrival ? newArrivalProducts : []))
+    ? (activeProduct.new_arrival || (Array.isArray(activeProduct.collection_slugs) && activeProduct.collection_slugs.includes('new-collection'))
+        ? newArrivalProducts
+        : (activeProduct.flash_sale ? flashProducts : []))
     : [];
 
   const cartSubtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -263,22 +263,22 @@ export default function Home() {
       {/* 1. HERO REELS SECTION */}
       <HeroReelsSection heroReels={LOCAL_HERO_REELS} />
 
-      {/* 2. FLASH SALE SECTION */}
+      {/* 2. NEW COLLECTIONS SECTION */}
       <section 
         style={{ 
           ...flashSaleSectionStyle, 
-          display: (loading || (flashSaleEnabled && flashProducts.length > 0)) ? 'block' : 'none' 
+          display: (loading || newArrivalProducts.length > 0) ? 'block' : 'none' 
         }} 
-        className="home-section home-flash-sale-section"
+        className="home-section home-new-collections-section"
       >
-        {(loading || (flashSaleEnabled && flashProducts.length > 0)) && (
+        {(loading || newArrivalProducts.length > 0) && (
           <div className={loading ? 'container' : 'container animate-fade-in'}>
-            <div style={{ textAlign: 'center', marginBottom: '2.5rem' }} className="flash-sale-header-container">
+            <div style={{ textAlign: 'center', marginBottom: '2.5rem' }} className="new-collections-header-container">
               <h2 style={{ ...sectionTitleStyle, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem' }}>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="#D98E9B" stroke="none" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-                  <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#D98E9B" stroke="none" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                  <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z" />
                 </svg>
-                Flash Sale
+                New Collections
               </h2>
               <div style={sectionDividerLineStyle}></div>
               <p style={{
@@ -287,7 +287,7 @@ export default function Home() {
                 fontWeight: '500',
                 marginTop: '0.8rem',
               }}>
-                Limited time. Exclusive pieces.
+                Handcrafted silhouettes. Modern elegance.
               </p>
             </div>
 
@@ -297,14 +297,15 @@ export default function Home() {
                   <SkeletonCard key={i} type="home-new-arrival" />
                 ))
               ) : (
-                flashProducts.slice(0, 6).map((product, index) => {
+                newArrivalProducts.slice(0, 6).map((product, index) => {
                   const regPrice = parseFloat(product.price) || 0;
-                  const flashPrice = parseFloat(product.flash_sale_price) || Math.round(regPrice * 0.8);
-                  const discountPct = regPrice > 0 ? Math.max(1, Math.round(((regPrice - flashPrice) / regPrice) * 100)) : 20;
+                  const hasDiscount = Boolean((product.flash_sale || product.on_sale) && product.flash_sale_price);
+                  const salePrice = hasDiscount ? (parseFloat(product.flash_sale_price) || Math.round(regPrice * 0.8)) : null;
+                  const discountPct = (hasDiscount && regPrice > 0 && salePrice) ? Math.max(1, Math.round(((regPrice - salePrice) / regPrice) * 100)) : null;
                   const isWishlisted = wishlist.includes(product.id);
 
                   return (
-                    <div key={product.id} className="new-arrival-card">
+                    <div key={product.id || index} className="new-arrival-card">
                       {/* Product Image Container */}
                       <div className="new-arrival-img-container">
                         <div onClick={(e) => handleProductClick(e, product)} style={{ cursor: 'pointer', width: '100%', height: '100%' }}>
@@ -316,15 +317,22 @@ export default function Home() {
                           />
                         </div>
                         
-                        {/* Discount Badge on Top Left */}
-                        <div style={flashSaleBadgeStyle} className="flash-sale-badge">
-                          -{discountPct}%
-                        </div>
+                        {/* Discount Badge or NEW Badge on Top Left */}
+                        {discountPct ? (
+                          <div style={flashSaleBadgeStyle} className="flash-sale-badge">
+                            -{discountPct}%
+                          </div>
+                        ) : (
+                          <div style={newArrivalBadgeStyle} className="new-arrival-badge">
+                            NEW
+                          </div>
+                        )}
 
                         {/* Wishlist Heart on Top Right */}
                         <button 
                           onClick={() => toggleWishlist(product.id)}
                           className="new-arrival-wishlist-btn"
+                          aria-label={`Add ${product.name} to wishlist`}
                         >
                           <svg 
                             width="18" 
@@ -347,8 +355,14 @@ export default function Home() {
                           <h3 className="new-arrival-product-name">{product.name}</h3>
                         </div>
                         <div className="new-arrival-price" style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', flexWrap: 'wrap' }}>
-                          <span style={{ color: '#B97285' }}>₹{flashPrice.toLocaleString('en-IN')}</span>
-                          <span style={{ fontSize: '0.78rem', color: 'rgba(0, 0, 0, 0.4)', textDecoration: 'line-through', fontWeight: 'normal' }}>₹{regPrice.toLocaleString('en-IN')}</span>
+                          {hasDiscount && salePrice ? (
+                            <>
+                              <span style={{ color: '#B97285' }}>₹{salePrice.toLocaleString('en-IN')}</span>
+                              <span style={{ fontSize: '0.78rem', color: 'rgba(0, 0, 0, 0.4)', textDecoration: 'line-through', fontWeight: 'normal' }}>₹{regPrice.toLocaleString('en-IN')}</span>
+                            </>
+                          ) : (
+                            <span style={{ color: '#2D2429', fontWeight: '600' }}>₹{regPrice.toLocaleString('en-IN')}</span>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -358,8 +372,8 @@ export default function Home() {
             </div>
 
             <div style={{ textAlign: 'center', marginTop: '1rem', marginBottom: '1rem' }}>
-              <Link href="/flash-sale" style={flashSaleShopAllStyle}>
-                SHOP ALL FLASH SALE &rarr;
+              <Link href="/collections?collection=new-collection" style={flashSaleShopAllStyle}>
+                SHOP ALL NEW COLLECTIONS &rarr;
               </Link>
             </div>
           </div>
@@ -1552,6 +1566,20 @@ const flashSaleBadgeStyle = {
   borderRadius: '6px',
   fontSize: '0.75rem',
   fontWeight: '700',
+  zIndex: 10,
+};
+
+const newArrivalBadgeStyle = {
+  position: 'absolute',
+  top: '8px',
+  left: '8px',
+  backgroundColor: '#D98E9B',
+  color: '#FFFFFF',
+  padding: '0.25rem 0.6rem',
+  borderRadius: '6px',
+  fontSize: '0.72rem',
+  fontWeight: '700',
+  letterSpacing: '0.04em',
   zIndex: 10,
 };
 

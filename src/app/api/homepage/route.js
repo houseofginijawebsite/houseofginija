@@ -64,8 +64,13 @@ export async function GET() {
       SELECT ${PRODUCT_SELECT_FIELDS}
       FROM products p
       ${PRODUCT_COLLECTION_JOINS}
-      WHERE p.new_arrival = TRUE
+      WHERE (
+        p.new_arrival = TRUE
+        OR p.collection_slugs::text ILIKE '%new-collection%'
+        OR c.slug = 'new-collection'
+      )
       ORDER BY
+        CASE WHEN p.id::text IN ('1','6','10','11','12') THEN p.id::int ELSE 999999 END ASC,
         SUBSTRING(p.name FROM '^[^0-9]+') ASC,
         COALESCE(NULLIF(SUBSTRING(p.name FROM '[0-9]+'), ''), '0')::integer ASC,
         p.name ASC
@@ -140,7 +145,13 @@ export async function GET() {
       ...localFlashProducts.filter((p) => !dbFlashSlugs.has(p.slug) && (p.flash_sale || p.on_sale))
     ];
 
-    let newArrivalProducts = newArrivalsResult.rows.map((row) => mapProductData(row, { isAdmin: false }));
+    const dbNewArrivalProducts = newArrivalsResult.rows.map((row) => mapProductData(row, { isAdmin: false }));
+    const localNewArrivalProducts = getLocalHomepageFallback().newArrivalProducts || [];
+    const dbNewArrivalSlugs = new Set(dbNewArrivalProducts.map((p) => p.slug));
+    let newArrivalProducts = [
+      ...dbNewArrivalProducts,
+      ...localNewArrivalProducts.filter((p) => !dbNewArrivalSlugs.has(p.slug) && (p.new_arrival || (Array.isArray(p.collection_slugs) && p.collection_slugs.includes('new-collection'))))
+    ];
     let heavyDressProducts = heavyDressesResult.rows.map((row) => mapProductData(row, { isAdmin: false }));
     let allProductsMapped = allProductsResult.rows.map((row) => mapProductData(row, { isAdmin: false }));
 

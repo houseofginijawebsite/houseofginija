@@ -379,104 +379,359 @@
   "flash_sale_enabled": true,
   "newArrivalProducts": [
     {
-      "id": "57",
-      "name": "Bespoke Ring 4",
-      "slug": "bespoke-rings-4",
-      "description": "Hand-crafted rings from the exclusive House of Ginija collections.",
-      "price": "21000.00",
-      "collection_id": "2",
+      "id": "1",
+      "name": "Ice Blue Cape",
+      "slug": "bespoke-suit-1",
+      "description": "A finely tailored bespoke suit, crafted from exceptional textiles with structured shoulders and a modern silhouette.",
+      "price": "19000",
+      "collection_id": 2,
       "is_out_of_stock": false,
       "images": [
-        "/local-products/027-bespoke-rings-4-1.jpg"
+        "/local-products/063-bespoke-suit-1-1.jpg",
+        "/local-products/064-bespoke-suit-1-2.jpg"
       ],
       "variants": [
         {
-          "color": "Gold",
-          "size": "One Size",
+          "size": "XS",
+          "color": "Default",
+          "stock": 1
+        },
+        {
+          "size": "S",
+          "color": "Default",
+          "stock": 1
+        },
+        {
+          "size": "M",
+          "color": "Default",
+          "stock": 1
+        },
+        {
+          "size": "L",
+          "color": "Default",
+          "stock": 1
+        },
+        {
+          "size": "XL",
+          "color": "Default",
+          "stock": 1
+        },
+        {
+          "size": "XXL",
+          "color": "Default",
           "stock": 1
         }
       ],
       "flash_sale": false,
       "flash_sale_price": null,
       "new_arrival": true,
-      "collection_name": "Jewellery",
-      "collection_slug": "jewellery",
+      "on_sale": false,
+      "collection_slugs": [
+        "indo-western",
+        "new-collection"
+      ],
+      "collection_name": null,
+      "collection_slug": null,
       "parent_collection_name": null,
       "parent_collection_slug": null,
-      "on_sale": false,
-      "tags": []
+      "tags": [
+        {
+          "id": 10,
+          "name": "Cape: Organza | Skirt: Chinon | Work: All-Over Hand Embroidery | Style: Draped Skirt & Cape Top",
+          "slug": "cape-organza-skirt-chinon-work-all-over-hand-embroidery-style-draped-skirt-cape-top"
+        }
+      ]
     },
     {
-      "id": "58",
-      "name": "Bespoke Ring 5",
-      "slug": "bespoke-rings-5",
-      "description": "Hand-crafted rings from the exclusive House of Ginija collections.",
-      "price": "20000.00",
-      "collection_id": "2",
+      "id": "6",
+      "name": "Anarkali",
+      "slug": "bespoke-suit-6",
+      "description": "A finely tailored bespoke suit, crafted from exceptional textiles with structured shoulders and a modern silhouette.",
+      "price": "14000",
+      "collection_id": 2,
       "is_out_of_stock": false,
       "images": [
-        "/local-products/028-bespoke-rings-5-1.jpg"
+        "/local-products/045-bespoke-suit-13-1.jpg",
+        "/local-products/046-bespoke-suit-15-1.jpg",
+        "/local-products/049-bespoke-suit-17-1.jpg"
       ],
       "variants": [
         {
-          "color": "Gold",
-          "size": "One Size",
+          "size": "XS",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "S",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "M",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "L",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "XXL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "3XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "4XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "5XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "6XL",
+          "color": "Classic Black",
           "stock": 1
         }
       ],
       "flash_sale": false,
       "flash_sale_price": null,
       "new_arrival": true,
-      "collection_name": "Jewellery",
-      "collection_slug": "jewellery",
+      "on_sale": false,
+      "collection_slugs": [
+        "new-collection",
+        "indo-western"
+      ],
+      "collection_name": "Unstitched Suits",
+      "collection_slug": "suits",
       "parent_collection_name": null,
       "parent_collection_slug": null,
-      "on_sale": false,
-      "tags": []
+      "tags": [
+        {
+          "id": 15,
+          "name": "Skirt Fabric: Chinon Skirt | Cape Fabric: Organza Cape | Set Details: 3 Piece Set (Skirt, Top & Cape) | Work: Hand Embroidery",
+          "slug": "skirt-fabric-chinon-skirt-cape-fabric-organza-cape-set-details-3-piece-set-skirt-top-cape-work-hand-embroidery"
+        }
+      ]
     },
     {
-      "id": "59",
-      "name": "Bespoke Ring 6",
-      "slug": "bespoke-rings-6",
-      "description": "Hand-crafted rings from the exclusive House of Ginija collections.",
-      "price": "19000.00",
-      "collection_id": "2",
+      "id": "10",
+      "name": "Aqua Drape",
+      "slug": "bespoke-suit-10",
+      "description": "A finely tailored bespoke suit, crafted from exceptional textiles with structured shoulders and a modern silhouette.",
+      "price": "12000",
+      "collection_id": 4,
       "is_out_of_stock": false,
       "images": [
-        "/local-products/029-bespoke-rings-6-1.jpg"
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282581/products/10_img0_1786282580743.jpg"
       ],
       "variants": [
         {
-          "color": "Gold",
-          "size": "One Size",
+          "size": "M",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "L",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "XXL",
+          "color": "Classic Black",
           "stock": 1
         }
       ],
       "flash_sale": false,
       "flash_sale_price": null,
       "new_arrival": true,
-      "collection_name": "Jewellery",
-      "collection_slug": "jewellery",
+      "on_sale": false,
+      "collection_slugs": [
+        "new-collection",
+        "shararas"
+      ],
+      "collection_name": "Unstitched Suits",
+      "collection_slug": "suits",
       "parent_collection_name": null,
       "parent_collection_slug": null,
-      "on_sale": false,
-      "tags": []
+      "tags": [
+        {
+          "id": 18,
+          "name": "Skirt Fabric: Chinon Drape Skirt | Blouse Fabric: Chinon Blouse | Work: Hand Embroidery on Blouse & Borders",
+          "slug": "skirt-fabric-chinon-drape-skirt-blouse-fabric-chinon-blouse-work-hand-embroidery-on-blouse-borders"
+        }
+      ]
     },
     {
-      "id": "60",
-      "name": "Bespoke Ring 7",
-      "slug": "bespoke-rings-7",
-      "description": "Hand-crafted rings from the exclusive House of Ginija collections.",
-      "price": "18000",
-      "collection_id": "2",
+      "id": "11",
+      "name": "Blush Drape",
+      "slug": "bespoke-suit-11",
+      "description": "Elegant blush pink drape set featuring intricate embroidery and a flowing shrug.",
+      "price": "15000",
+      "collection_id": 7,
       "is_out_of_stock": false,
       "images": [
-        "/local-products/030-bespoke-rings-7-1.jpg",
-        "/local-products/031-bespoke-rings-7-2.jpg"
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282582/products/11_img0_1786282581745.jpg"
       ],
       "variants": [
         {
-          "color": "Gold",
+          "size": "XS",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "S",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "M",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "L",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "XXL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "3XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "4XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "5XL",
+          "color": "Classic Black",
+          "stock": 1
+        },
+        {
+          "size": "6XL",
+          "color": "Classic Black",
+          "stock": 1
+        }
+      ],
+      "flash_sale": false,
+      "flash_sale_price": null,
+      "new_arrival": true,
+      "on_sale": false,
+      "collection_slugs": [
+        "new-collection"
+      ],
+      "collection_name": "Unstitched Suits",
+      "collection_slug": "suits",
+      "parent_collection_name": null,
+      "parent_collection_slug": null,
+      "tags": [
+        {
+          "id": 19,
+          "name": "Fabric: Crepe (Top, Skirt & Cape) | Style: 3-Piece Set (Crop Top, Draped Skirt & Long Cape) | Work: Hand Embroidery",
+          "slug": "fabric-crepe-top-skirt-cape-style-3-piece-set-crop-top-draped-skirt-long-cape-work-hand-embroidery"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Lavender Drape",
+      "slug": "bespoke-suit-12",
+      "description": "An elegant lavender draped silhouette with fine hand-worked detailing.",
+      "price": "10000",
+      "collection_id": 2,
+      "is_out_of_stock": false,
+      "images": [
+        "/local-products/069-bespoke-suit-12-1.jpg"
+      ],
+      "variants": [
+        {
+          "size": "S",
+          "color": "Default",
+          "stock": 1
+        },
+        {
+          "size": "M",
+          "color": "Default",
+          "stock": 1
+        },
+        {
+          "size": "L",
+          "color": "Default",
+          "stock": 1
+        },
+        {
+          "size": "XL",
+          "color": "Default",
+          "stock": 1
+        }
+      ],
+      "flash_sale": false,
+      "flash_sale_price": null,
+      "new_arrival": true,
+      "on_sale": false,
+      "collection_slugs": [
+        "new-collection",
+        "indo-western"
+      ],
+      "collection_name": null,
+      "collection_slug": null,
+      "parent_collection_name": null,
+      "parent_collection_slug": null,
+      "tags": [
+        {
+          "id": 20,
+          "name": "Fabric: Net & Imported Crepe | Style: 3-Piece Set (Bustier Top, Drape Skirt & Short Cape) | Work: Hand Embroidery & Tassel Detail",
+          "slug": "fabric-net-imported-crepe-style-3-piece-set-bustier-top-drape-skirt-short-cape-work-hand-embroidery-tassel-detail"
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Olive Royale",
+      "slug": "bespoke-suit-14",
+      "description": "Intricate golden embroidery and a flowing cape create a striking statement silhouette.",
+      "price": "8500",
+      "collection_id": "1",
+      "is_out_of_stock": false,
+      "images": [
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282584/products/14_img0_1786282583870.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282585/products/14_img1_1786282584769.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282586/products/14_img2_1786282585624.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282587/products/14_img3_1786282586567.jpg"
+      ],
+      "variants": [
+        {
+          "color": "Default",
           "size": "One Size",
           "stock": 1
         }
@@ -484,12 +739,324 @@
       "flash_sale": false,
       "flash_sale_price": null,
       "new_arrival": true,
-      "collection_name": "Jewellery",
-      "collection_slug": "jewellery",
+      "on_sale": false,
+      "collection_slugs": [
+        "suits",
+        "new-collection"
+      ],
+      "collection_name": "Unstitched Suits",
+      "collection_slug": "suits",
       "parent_collection_name": null,
       "parent_collection_slug": null,
+      "tags": [
+        {
+          "id": 1198921867025088500,
+          "name": "Chinnon drape skirt",
+          "slug": "chinnon-drape-skirt"
+        },
+        {
+          "id": 1198921868292391000,
+          "name": "Hand embroidery",
+          "slug": "hand-embroidery"
+        },
+        {
+          "id": 1198921867663081500,
+          "name": "Organza cape",
+          "slug": "organza-cape"
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "name": "Spring Garden",
+      "slug": "bespoke-suit-21",
+      "description": "A charming blend of botanical patterns and scenic bird prints for a sophisticated style.",
+      "price": "37000",
+      "collection_id": "1",
+      "is_out_of_stock": false,
+      "images": [
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282609/products/21_img0_1786282608934.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282611/products/21_img1_1786282610584.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282612/products/21_img2_1786282611542.jpg"
+      ],
+      "variants": [
+        {
+          "color": "Default",
+          "size": "Unstitched Fabric",
+          "stock": 1
+        }
+      ],
+      "flash_sale": false,
+      "flash_sale_price": null,
+      "new_arrival": true,
       "on_sale": false,
-      "tags": []
+      "collection_slugs": [
+        "suits",
+        "new-collection"
+      ],
+      "collection_name": "Unstitched Suits",
+      "collection_slug": "suits",
+      "parent_collection_name": null,
+      "parent_collection_slug": null,
+      "tags": [
+        {
+          "id": 1198925279260115000,
+          "name": "Linen kurta and dupatta",
+          "slug": "linen-kurta-and-dupatta"
+        }
+      ]
+    },
+    {
+      "id": "24",
+      "name": "Swan Bloom",
+      "slug": "bespoke-suit-24",
+      "description": "Graceful bird and floral prints create a fresh and elegant ethnic look.",
+      "price": "3800",
+      "collection_id": "1",
+      "is_out_of_stock": false,
+      "images": [
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282620/products/24_img0_1786282619834.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282621/products/24_img1_1786282620762.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282622/products/24_img2_1786282621788.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282623/products/24_img3_1786282622738.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282624/products/24_img4_1786282623742.jpg"
+      ],
+      "variants": [
+        {
+          "color": "Default",
+          "size": "Unstitched Fabric",
+          "stock": 1
+        }
+      ],
+      "flash_sale": false,
+      "flash_sale_price": null,
+      "new_arrival": true,
+      "on_sale": false,
+      "collection_slugs": [
+        "suits",
+        "new-collection"
+      ],
+      "collection_name": "Unstitched Suits",
+      "collection_slug": "suits",
+      "parent_collection_name": null,
+      "parent_collection_slug": null,
+      "tags": [
+        {
+          "id": 1198924501727805400,
+          "name": "Hand painted motifs",
+          "slug": "hand-painted-motifs"
+        },
+        {
+          "id": 1198924501100724200,
+          "name": "Kotta",
+          "slug": "kotta"
+        }
+      ]
+    },
+    {
+      "id": "28",
+      "name": "Gulzar Mustard",
+      "slug": "bespoke-suit-28",
+      "description": "Adorned with intricate floral embroidery and elegant printed accents for a refined ethnic appeal.",
+      "price": "5500",
+      "collection_id": "1",
+      "is_out_of_stock": false,
+      "images": [
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282637/products/28_img0_1786282637111.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282639/products/28_img1_1786282638556.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282640/products/28_img2_1786282639624.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282641/products/28_img3_1786282640500.jpg"
+      ],
+      "variants": [
+        {
+          "color": "Default",
+          "size": "Unstitched Fabric",
+          "stock": 1
+        }
+      ],
+      "flash_sale": false,
+      "flash_sale_price": null,
+      "new_arrival": true,
+      "on_sale": false,
+      "collection_slugs": [
+        "suits",
+        "new-collection"
+      ],
+      "collection_name": "Unstitched Suits",
+      "collection_slug": "suits",
+      "parent_collection_name": null,
+      "parent_collection_slug": null,
+      "tags": [
+        {
+          "id": 1198914373120950300,
+          "name": "Linen Dupatta",
+          "slug": "linen-dupatta"
+        }
+      ]
+    },
+    {
+      "id": "31",
+      "name": "Basanti Rang",
+      "slug": "bespoke-suit-31",
+      "description": "Elegant printed cotton suit with vibrant patterns for a timeless ethnic look.",
+      "price": "3800",
+      "collection_id": "1",
+      "is_out_of_stock": false,
+      "images": [
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282650/products/31_img0_1786282649824.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282651/products/31_img1_1786282650754.jpg"
+      ],
+      "variants": [
+        {
+          "color": "Classic Black",
+          "size": "S",
+          "stock": 1
+        },
+        {
+          "color": "Classic Black",
+          "size": "M",
+          "stock": 0
+        },
+        {
+          "color": "Classic Black",
+          "size": "L",
+          "stock": 0
+        }
+      ],
+      "flash_sale": false,
+      "flash_sale_price": null,
+      "new_arrival": true,
+      "on_sale": false,
+      "collection_slugs": [
+        "suits",
+        "new-collection"
+      ],
+      "collection_name": "Unstitched Suits",
+      "collection_slug": "suits",
+      "parent_collection_name": null,
+      "parent_collection_slug": null,
+      "tags": [
+        {
+          "id": 1198447998781456400,
+          "name": "Muslin kurta, Organza dupatta, Shantoon bottom",
+          "slug": "muslin-kurta-organza-dupatta-shantoon-bottom"
+        }
+      ]
+    },
+    {
+      "id": "32",
+      "name": "Ruby Bloom",
+      "slug": "bespoke-suit-32",
+      "description": "A graceful ruby-red embroidered kurta set paired with a vibrant floral dupatta for effortless festive elegance.",
+      "price": "5000",
+      "collection_id": "1",
+      "is_out_of_stock": false,
+      "images": [
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282652/products/32_img0_1786282651899.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282653/products/32_img1_1786282653090.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282654/products/32_img2_1786282654017.jpg"
+      ],
+      "variants": [
+        {
+          "color": "Classic Black",
+          "size": "S",
+          "stock": 1
+        },
+        {
+          "color": "Classic Black",
+          "size": "M",
+          "stock": 0
+        },
+        {
+          "color": "Classic Black",
+          "size": "L",
+          "stock": 0
+        }
+      ],
+      "flash_sale": false,
+      "flash_sale_price": null,
+      "new_arrival": true,
+      "on_sale": false,
+      "collection_slugs": [
+        "suits",
+        "new-collection"
+      ],
+      "collection_name": "Unstitched Suits",
+      "collection_slug": "suits",
+      "parent_collection_name": null,
+      "parent_collection_slug": null,
+      "tags": [
+        {
+          "id": 1198921158059786200,
+          "name": "Hand embroidered neck line",
+          "slug": "hand-embroidered-neck-line"
+        },
+        {
+          "id": 1198921157422481400,
+          "name": "Silk kurta and dupatta",
+          "slug": "silk-kurta-and-dupatta"
+        }
+      ]
+    },
+    {
+      "id": "33",
+      "name": "Rajsi Gulabi",
+      "slug": "rajsi-gulabi",
+      "description": "Effortlessly elegant, this pink suit blends artistic landscape prints with classic ethnic charm.",
+      "price": "5000",
+      "collection_id": "1",
+      "is_out_of_stock": false,
+      "images": [
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282655/products/33_img0_1786282655020.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282656/products/33_img1_1786282656297.jpg",
+        "https://res.cloudinary.com/cyygtyfb/image/upload/v1786282657/products/33_img2_1786282657292.jpg"
+      ],
+      "variants": [
+        {
+          "color": "Classic Black",
+          "size": "S",
+          "stock": 1
+        },
+        {
+          "color": "Classic Black",
+          "size": "M",
+          "stock": 0
+        },
+        {
+          "color": "Classic Black",
+          "size": "L",
+          "stock": 0
+        }
+      ],
+      "flash_sale": false,
+      "flash_sale_price": null,
+      "new_arrival": true,
+      "on_sale": false,
+      "collection_slugs": [
+        "suits",
+        "new-collection"
+      ],
+      "collection_name": "Unstitched Suits",
+      "collection_slug": "suits",
+      "parent_collection_name": null,
+      "parent_collection_slug": null,
+      "tags": [
+        {
+          "id": 1198447068439412700,
+          "name": "Silk dupatta",
+          "slug": "silk-dupatta"
+        },
+        {
+          "id": 1198443500965625900,
+          "name": "Silk kurta",
+          "slug": "silk-kurta"
+        },
+        {
+          "id": 1198447069064298500,
+          "name": "hand embroided neck line",
+          "slug": "hand-embroided-neck-line"
+        }
+      ]
     }
   ],
   "new_arrivals_enabled": true,
