@@ -193,7 +193,7 @@ export function AdminProductMetadataBadges({ product }) {
     <div style={metadataRowStyle}>
       {isFlashSale && (
         <span style={flashSaleBadgeStyle}>
-          ⚡ FLASH SALE {discountPct ? `(-${discountPct}%)` : (flashPrice ? `(₹${flashPrice.toLocaleString('en-IN')})` : '')}
+          ⚡ CLEARANCE SALE {discountPct ? `(-${discountPct}%)` : (flashPrice ? `(₹${flashPrice.toLocaleString('en-IN')})` : '')}
         </span>
       )}
       {tags.map((tag) => (

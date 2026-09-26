@@ -60,7 +60,7 @@ FROM (VALUES
   ('co-ords', 'Co-ords', 'Contemporary coordinated sets.', 30),
   ('suits', 'Unstitched Suits', 'Premium unstitched suits and fine archival fabrics.', 40),
   ('jewellery', 'Jewellery', 'Exquisite artisan-crafted jewellery.', 50),
-  ('flash-sale', 'Flash Sale', 'Limited-time House of Ginija offers.', 60)
+  ('flash-sale', 'Clearance Sale', 'Limited-time House of Ginija offers.', 60)
 ) AS val(slug, name, description, sort_order)
 WHERE NOT EXISTS (SELECT 1 FROM collections c WHERE c.slug = val.slug);
 
@@ -76,7 +76,7 @@ FROM (VALUES
   ('co-ords', 'Co-ords', 'Contemporary coordinated sets.', 30),
   ('suits', 'Unstitched Suits', 'Premium unstitched suits and fine archival fabrics.', 40),
   ('jewellery', 'Jewellery', 'Exquisite artisan-crafted jewellery.', 50),
-  ('flash-sale', 'Flash Sale', 'Limited-time House of Ginija offers.', 60)
+  ('flash-sale', 'Clearance Sale', 'Limited-time House of Ginija offers.', 60)
 ) AS val(slug, name, description, sort_order)
 WHERE c.slug = val.slug;
 

@@ -48,7 +48,7 @@ export default function AdminSidebar({ active }) {
           href="/admin/flash-sale" 
           style={active === "flash-sale" ? activeNavLinkStyle : navLinkStyle}
         >
-          Flash Sale
+          Clearance Sale
         </Link>
         <Link 
           href="/admin/new-arrivals" 

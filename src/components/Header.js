@@ -270,7 +270,7 @@ export default function Header() {
                         style={{ fontSize: '0.8rem', fontWeight: '700', color: '#D98E9B', textTransform: 'uppercase', letterSpacing: '0.08em', textDecoration: 'none', marginTop: '0.4rem' }}
                         onClick={() => { setDropdownOpen(false); setMenuOpen(false); }}
                       >
-                        Flash Sale
+                        Clearance Sale
                       </Link>
                     </div>
                   </div>
@@ -606,7 +606,7 @@ export default function Header() {
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D98E9B" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 2c1.5 4-1 5.5-1 8 0 1.7 1.3 3 3 3 2.2 0 4-1.8 4-4 2 2.2 3 4.6 3 7a9 9 0 0 1-18 0c0-4.1 2.4-7.4 6-10-.2 2.5.8 4 2 5" />
                 </svg>
-                <span className="mobile-nav-item-title">FLASH SALE</span>
+                <span className="mobile-nav-item-title">CLEARANCE SALE</span>
               </div>
               <div className="mobile-nav-item-chevron">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

@@ -91,7 +91,7 @@ function FlashSaleContent() {
             Limited Time Offers
           </span>
           <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '2.5rem', color: '#2D2429', fontWeight: '400', margin: '0 0 0.8rem 0' }}>
-            Flash Sale Collection
+            Clearance Sale Collection
           </h1>
           <p style={{ fontSize: '0.9rem', color: 'rgba(0, 0, 0, 0.6)', maxWidth: '500px', margin: '0 auto' }}>
             Discover handcrafted silhouettes at special archival pricing. Available for a limited time.
@@ -102,7 +102,7 @@ function FlashSaleContent() {
       {/* Filter Toolbar */}
       <div className="container" style={{ maxWidth: '1200px', margin: '1.5rem auto', padding: '0 1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div style={{ fontSize: '0.85rem', color: 'rgba(0,0,0,0.6)', fontWeight: '500' }}>
-          Showing {filteredProducts.length} Flash Sale Items
+          Showing {filteredProducts.length} Clearance Sale Items
         </div>
 
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
@@ -149,7 +149,7 @@ function FlashSaleContent() {
           </div>
         ) : filteredProducts.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '4rem 1rem', color: 'rgba(0,0,0,0.5)' }}>
-            <h3>No Flash Sale items found matching your filter.</h3>
+            <h3>No Clearance Sale items found matching your filter.</h3>
             <Link href="/collections" style={{ display: 'inline-block', marginTop: '1rem', color: '#B97285', textDecoration: 'underline' }}>
               Explore All Collections &rarr;
             </Link>
@@ -243,7 +243,7 @@ function FlashSaleContent() {
 
 export default function FlashSalePage() {
   return (
-    <Suspense fallback={<div style={{ padding: '4rem', textAlign: 'center' }}>Loading Flash Sale...</div>}>
+    <Suspense fallback={<div style={{ padding: '4rem', textAlign: 'center' }}>Loading Clearance Sale...</div>}>
       <FlashSaleContent />
     </Suspense>
   );

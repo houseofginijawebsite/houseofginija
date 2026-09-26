@@ -78,7 +78,7 @@ function AdminProductsContent() {
 
   const ADMIN_CATEGORY_OPTIONS = [
     { id: 'new-collection', name: 'Fresh Collection' },
-    { id: 'flash-sale', name: 'Flash Sale' },
+    { id: 'flash-sale', name: 'Clearance Sale' },
     { id: 'suits', name: 'Unstitched Suits' },
     { id: 'indo-western', name: 'Indo-Western' },
     { id: 'shararas', name: 'Drape Sarees' },
@@ -851,7 +851,7 @@ function AdminProductsContent() {
                     }}>
                       <div style={{ marginBottom: '0.8rem' }}>
                         <label style={{ ...labelStyle, color: '#B65C73', marginBottom: '0.2rem', fontSize: '0.9rem' }}>
-                          ⚡ Flash Sale Discount Settings
+                          ⚡ Clearance Sale Discount Settings
                         </label>
                         <p style={{ fontSize: '0.75rem', color: 'rgba(0,0,0,0.55)', margin: 0 }}>
                           Type into <strong>either option</strong> below — setting percentage or sale price automatically calculates the other!
@@ -1283,7 +1283,7 @@ function AdminProductsContent() {
                       <option value="necklaces">Necklace</option>
                       <option value="rings">Rings</option>
                       <option value="bracelets">Bracelet</option>
-                      <option value="flash-sale">Flash Sale</option>
+                      <option value="flash-sale">Clearance Sale</option>
                     </select>
                   </div>
 
@@ -1412,7 +1412,7 @@ function AdminProductsContent() {
                                     boxShadow: isFlashTag ? '0 2px 5px rgba(182, 92, 115, 0.3)' : 'none',
                                   }}
                                 >
-                                  {isFlashTag ? '⚡ Flash Sale' : (catObj ? catObj.name : slug)}
+                                  {isFlashTag ? '⚡ Clearance Sale' : (catObj ? catObj.name : slug)}
                                 </span>
                               );
                             });

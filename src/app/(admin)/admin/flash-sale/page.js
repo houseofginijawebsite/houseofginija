@@ -151,7 +151,7 @@ export default function AdminFlashSalePage() {
       });
       if (res.ok) {
         setFlashSaleEnabled(newValue);
-        setSuccess(`Flash Sale section is now ${newValue ? 'ENABLED' : 'DISABLED'} on your store homepage.`);
+        setSuccess(`Clearance Sale section is now ${newValue ? 'ENABLED' : 'DISABLED'} on your store homepage.`);
       } else {
         const data = await res.json();
         setError(data.error || 'Failed to save global setting.');
@@ -205,9 +205,9 @@ export default function AdminFlashSalePage() {
           } catch {}
         }
         if (enableSale) {
-          setSuccess(`"${product.name}" is now ON FLASH SALE for ₹${salePriceNum.toLocaleString('en-IN')}!`);
+          setSuccess(`"${product.name}" is now ON CLEARANCE SALE for ₹${salePriceNum.toLocaleString('en-IN')}!`);
         } else {
-          setSuccess(`"${product.name}" removed from Flash Sale.`);
+          setSuccess(`"${product.name}" removed from Clearance Sale.`);
         }
       } else {
         setError(data.error || 'Failed to update product.');
@@ -226,7 +226,7 @@ export default function AdminFlashSalePage() {
     const newPrice = parseFloat(priceInputs[product.id]);
 
     if (isNaN(newPrice) || newPrice <= 0 || newPrice >= origPrice) {
-      setError(`Flash sale price for "${product.name}" must be between ₹1 and ₹${(origPrice - 1).toLocaleString('en-IN')}.`);
+      setError(`Clearance sale price for "${product.name}" must be between ₹1 and ₹${(origPrice - 1).toLocaleString('en-IN')}.`);
       return;
     }
 
@@ -273,7 +273,7 @@ export default function AdminFlashSalePage() {
             channel.close();
           } catch {}
         }
-        setSuccess(`"${product.name}" added to Flash Sale at ₹${computedPrice.toLocaleString('en-IN')} (-${pct}%)!`);
+        setSuccess(`"${product.name}" added to Clearance Sale at ₹${computedPrice.toLocaleString('en-IN')} (-${pct}%)!`);
         setIsAddModalOpen(false);
       } else {
         setAddError(data.error || 'Failed to add product.');
@@ -314,8 +314,8 @@ export default function AdminFlashSalePage() {
         {/* Header bar */}
         <header style={headerBarStyle}>
           <div>
-            <h1 style={pageTitleStyle}>Flash Sale Manager</h1>
-            <p style={pageSubStyle}>Easily put any product on Flash Sale with custom discount prices</p>
+            <h1 style={pageTitleStyle}>Clearance Sale Manager</h1>
+            <p style={pageSubStyle}>Easily put any product on Clearance Sale with custom discount prices</p>
           </div>
           <button onClick={logout} style={logoutBtnStyle}>
             Sign Out
@@ -331,7 +331,7 @@ export default function AdminFlashSalePage() {
           <div style={globalRowStyle}>
             <div>
               <h2 style={sectionTitleStyle}>Store Homepage Banner Status</h2>
-              <p style={sectionSubStyle}>Turn the entire Flash Sale section ON or OFF on your website homepage.</p>
+              <p style={sectionSubStyle}>Turn the entire Clearance Sale section ON or OFF on your website homepage.</p>
             </div>
             <div>
               <button 
@@ -343,7 +343,7 @@ export default function AdminFlashSalePage() {
                   color: '#FFFFFF'
                 }}
               >
-                {savingSettings ? 'Saving...' : (flashSaleEnabled ? 'FLASH SALE SECTION: ACTIVE' : 'FLASH SALE SECTION: HIDDEN')}
+                {savingSettings ? 'Saving...' : (flashSaleEnabled ? 'CLEARANCE SALE SECTION: ACTIVE' : 'CLEARANCE SALE SECTION: HIDDEN')}
               </button>
             </div>
           </div>
@@ -354,7 +354,7 @@ export default function AdminFlashSalePage() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.2rem' }}>
             <div>
               <h2 suppressHydrationWarning style={sectionTitleStyle}>
-                Active Flash Sale Items ({mounted ? activeFlashProducts.length : activeFlashProducts.length})
+                Active Clearance Sale Items ({mounted ? activeFlashProducts.length : activeFlashProducts.length})
               </h2>
               <p style={{ ...sectionSubStyle, marginBottom: 0 }}>These items currently feature discounted prices on your store.</p>
             </div>
@@ -372,14 +372,14 @@ export default function AdminFlashSalePage() {
                 boxShadow: '0 4px 12px rgba(217, 142, 155, 0.3)'
               }}
             >
-              + ADD PRODUCT TO FLASH SALE
+              + ADD PRODUCT TO CLEARANCE SALE
             </button>
           </div>
 
           {activeFlashProducts.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '2.5rem 1rem', backgroundColor: '#FAF5F6', borderRadius: '12px', border: '1px dashed rgba(139, 119, 137, 0.2)' }}>
-              <p style={{ fontSize: '0.95rem', fontWeight: '600', color: '#000', marginBottom: '0.4rem' }}>No products are currently on Flash Sale.</p>
-              <p style={{ fontSize: '0.85rem', color: 'rgba(0,0,0,0.5)', marginBottom: '1rem' }}>Turn ON the Flash Sale switch for any product in the catalog table below!</p>
+              <p style={{ fontSize: '0.95rem', fontWeight: '600', color: '#000', marginBottom: '0.4rem' }}>No products are currently on Clearance Sale.</p>
+              <p style={{ fontSize: '0.85rem', color: 'rgba(0,0,0,0.5)', marginBottom: '1rem' }}>Turn ON the Clearance Sale switch for any product in the catalog table below!</p>
             </div>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem' }}>
@@ -426,7 +426,7 @@ export default function AdminFlashSalePage() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
             <div>
               <h2 style={sectionTitleStyle}>All Catalog Products</h2>
-              <p style={{ ...sectionSubStyle, marginBottom: 0 }}>Flip the Flash Sale switch ON for any product and enter its discounted price.</p>
+              <p style={{ ...sectionSubStyle, marginBottom: 0 }}>Flip the Clearance Sale switch ON for any product and enter its discounted price.</p>
             </div>
 
             <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -458,7 +458,7 @@ export default function AdminFlashSalePage() {
                 }}
               >
                 <option value="ALL">All Categories</option>
-                <option value="FLASH_ONLY">On Flash Sale Only</option>
+                <option value="FLASH_ONLY">On Clearance Sale Only</option>
                 {collections.map(c => (
                   <option key={c.id} value={c.slug || c.name}>{c.name}</option>
                 ))}
@@ -473,7 +473,7 @@ export default function AdminFlashSalePage() {
                   <th style={thStyle}>Product</th>
                   <th style={thStyle} className="hide-on-mobile">Category</th>
                   <th style={thStyle} className="hide-on-mobile">Original Price</th>
-                  <th style={{ ...thStyle, textAlign: 'center' }}>Flash Sale Status</th>
+                  <th style={{ ...thStyle, textAlign: 'center' }}>Clearance Sale Status</th>
                   <th style={thStyle}>Sale Price (₹)</th>
                   <th style={thStyle} className="hide-on-mobile">Discount Badge</th>
                   <th style={{ ...thStyle, textAlign: 'center' }}>Save</th>
@@ -588,7 +588,7 @@ export default function AdminFlashSalePage() {
             <div style={modalContentStyle} onClick={(e) => e.stopPropagation()}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                 <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', fontWeight: '600', color: '#000' }}>
-                  Put Product on Flash Sale
+                  Put Product on Clearance Sale
                 </h3>
                 <button 
                   onClick={() => setIsAddModalOpen(false)}
@@ -610,7 +610,7 @@ export default function AdminFlashSalePage() {
                     required
                   >
                     {nonFlashProducts.length === 0 ? (
-                      <option value="">All products are already on flash sale!</option>
+                      <option value="">All products are already on clearance sale!</option>
                     ) : (
                       nonFlashProducts.map(p => (
                         <option key={p.id} value={p.id}>

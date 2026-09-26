@@ -154,7 +154,7 @@ export function getCategoryTitle(collections, selectedCategory) {
   if (selectedCategory === 'bracelets' || selectedCategory === 'bracelet') return 'Bracelets';
   if (selectedCategory === 'earrings' || selectedCategory === 'earring') return 'Earrings';
   if (selectedCategory === 'new-collection') return 'Fresh Collection';
-  if (selectedCategory === 'flash-sale') return 'Flash Sale';
+  if (selectedCategory === 'flash-sale') return 'Clearance Sale';
   if (selectedCategory === 'shararas' || selectedCategory === 'sharara') return 'Drape Sarees';
   if (selectedCategory === 'gowns' || selectedCategory === 'heavy-gown') return 'Heavy Gowns';
   if (selectedCategory === 'indo-western') return 'Indo-Western';
