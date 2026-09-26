@@ -11,6 +11,7 @@ import ProductImageGallery from '@/components/ProductImageGallery';
 import { AddToBagLabel, ProductFeatureStrip, ProductShareButton, ProductTagBadges } from '@/components/ProductQuickViewExtras';
 import FounderReelsRow from '@/components/FounderReelsRow';
 import ShopByCategories from '@/components/ShopByCategories';
+import { compareCatalogProducts } from '@/lib/catalogClient';
 
 const CLOUDINARY_REEL_URLS = [
   'https://res.cloudinary.com/cyygtyfb/video/upload/v1786258826/houseofginija/videos/hero_reels/reel_1.mp4',
@@ -148,7 +149,12 @@ export default function Home() {
           setNewArrivalProducts(data.newArrivalProducts || []);
           setNewArrivalsEnabled(!!data.new_arrivals_enabled);
           setFounderReels(data.founderReels || []);
-          setHeavyDresses(data.heavyDresses || { indoWestern: [], heavyGown: [], shararas: [] });
+          const hd = data.heavyDresses || { indoWestern: [], heavyGown: [], shararas: [] };
+          setHeavyDresses({
+            indoWestern: [...(hd.indoWestern || [])].sort((a, b) => compareCatalogProducts(a, b)),
+            heavyGown: [...(hd.heavyGown || [])].sort((a, b) => compareCatalogProducts(a, b)),
+            shararas: [...(hd.shararas || [])].sort((a, b) => compareCatalogProducts(a, b)),
+          });
         }
       } catch (err) {
         console.error(err);

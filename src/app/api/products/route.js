@@ -11,7 +11,7 @@ import {
   getLocalProductsFallback,
   getLocalProductsResponseFallback,
 } from '@/lib/localCatalogFallback';
-import { isJewelleryProduct, productMatchesCategory } from '@/lib/catalogClient';
+import { isJewelleryProduct, productMatchesCategory, compareCatalogProducts } from '@/lib/catalogClient';
 import { fetchCloudSettingsHttps, getSetting } from '@/lib/settingsStore';
 
 export const dynamic = 'force-dynamic';
@@ -57,15 +57,7 @@ export async function GET(request) {
       products = products.filter((product) => product.name.toLowerCase().includes(term));
     }
 
-    products.sort((a, b) => {
-      const saleDelta = Number(Boolean(b.on_sale)) - Number(Boolean(a.on_sale));
-      if (saleDelta) return saleDelta;
-      const flashDelta = Number(Boolean(b.flash_sale)) - Number(Boolean(a.flash_sale));
-      if (flashDelta) return flashDelta;
-      if (sort === 'price_asc') return Number(a.price) - Number(b.price);
-      if (sort === 'price_desc') return Number(b.price) - Number(a.price);
-      return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' });
-    });
+    products.sort((a, b) => compareCatalogProducts(a, b, sort));
 
     return NextResponse.json(
       { ...response, products, jewellery_enabled: jewelleryEnabled },
@@ -154,12 +146,20 @@ export async function GET(request) {
       COALESCE(NULLIF(SUBSTRING(p.name FROM '[0-9]+'), ''), '0')::integer ASC,
       p.name ASC`;
 
+    const priorityRankSql = `
+      CASE
+        WHEN (p.new_arrival = TRUE OR (p.collection_slugs IS NOT NULL AND p.collection_slugs @> '["new-collection"]'::jsonb)) THEN 1
+        WHEN (p.on_sale = TRUE OR p.flash_sale = TRUE OR (p.collection_slugs IS NOT NULL AND p.collection_slugs @> '["flash-sale"]'::jsonb)) THEN 3
+        ELSE 2
+      END ASC
+    `;
+
     if (sort === 'price_asc') {
-      queryText += ' ORDER BY p.on_sale DESC, p.price ASC, p.flash_sale DESC, p.id ASC';
+      queryText += ` ORDER BY ${priorityRankSql}, p.price ASC, p.id ASC`;
     } else if (sort === 'price_desc') {
-      queryText += ' ORDER BY p.on_sale DESC, p.price DESC, p.flash_sale DESC, p.id ASC';
+      queryText += ` ORDER BY ${priorityRankSql}, p.price DESC, p.id ASC`;
     } else {
-      queryText += ` ORDER BY p.on_sale DESC, p.flash_sale DESC, ${naturalNameSort}`;
+      queryText += ` ORDER BY ${priorityRankSql}, ${naturalNameSort}`;
     }
 
     const result = await pool.query(queryText, queryParams);
@@ -209,6 +209,7 @@ export async function GET(request) {
     if (jewelleryEnabled === false) {
       finalProducts = finalProducts.filter((product) => !isJewelleryProduct(product));
     }
+    finalProducts.sort((a, b) => compareCatalogProducts(a, b, sort));
 
     return NextResponse.json(
       {

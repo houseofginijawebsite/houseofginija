@@ -11,7 +11,7 @@ import {
   getLocalHomepageFallback,
 } from '@/lib/localCatalogFallback';
 import { getStore } from '@/lib/globalProductStore';
-import { isJewelleryProduct, isJewelleryCollection, productMatchesCategory } from '@/lib/catalogClient';
+import { isJewelleryProduct, isJewelleryCollection, productMatchesCategory, compareCatalogProducts } from '@/lib/catalogClient';
 
 import { fetchCloudSettingsHttps } from '@/lib/settingsStore';
 
@@ -209,7 +209,7 @@ export async function GET() {
         }
       });
 
-      return Array.from(uniqueMap.values());
+      return Array.from(uniqueMap.values()).sort((a, b) => compareCatalogProducts(a, b, 'name_asc'));
     };
 
     const heavyDresses = {

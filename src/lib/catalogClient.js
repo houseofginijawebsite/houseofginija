@@ -130,15 +130,52 @@ export function productMatchesCategory(product, selectedCategory) {
   );
 }
 
+export function getProductCategoryPriorityRank(product = {}) {
+  const slugs = Array.isArray(product.collection_slugs)
+    ? product.collection_slugs.map((s) => String(s).toLowerCase())
+    : [];
+
+  // 1. First Priority: Products in New Collection
+  const isNew = Boolean(
+    product.new_arrival ||
+    product.newArrival ||
+    slugs.includes('new-collection')
+  );
+  if (isNew) return 1;
+
+  // 3. Third Priority: Products in Clearance Sale
+  const isClearance = Boolean(
+    product.flash_sale ||
+    product.flashSale ||
+    product.on_sale ||
+    product.onSale ||
+    slugs.includes('flash-sale')
+  );
+  if (isClearance) return 3;
+
+  // 2. Second Priority: Remaining products
+  return 2;
+}
+
 export function compareCatalogProducts(a, b, selectedSort = 'name_asc') {
-  const flashDelta = Number(Boolean(b.flash_sale || b.on_sale)) - Number(Boolean(a.flash_sale || a.on_sale));
-  if (flashDelta) return flashDelta;
+  // Category Display Priority:
+  // 1. First Priority: Products that are listed in both the category and New Collection
+  // 2. Second Priority: Remaining products that belong to the category
+  // 3. Third Priority: Products that belong to both the category and Clearance Sale
+  const rankDelta = getProductCategoryPriorityRank(a) - getProductCategoryPriorityRank(b);
+  if (rankDelta !== 0) return rankDelta;
 
   if (selectedSort === 'price_asc') {
     return Number.parseFloat(a.price) - Number.parseFloat(b.price);
   }
   if (selectedSort === 'price_desc') {
     return Number.parseFloat(b.price) - Number.parseFloat(a.price);
+  }
+  if (selectedSort === 'newest') {
+    const idA = String(a.id || '');
+    const idB = String(b.id || '');
+    if (idA.length !== idB.length) return idB.length - idA.length;
+    return idB.localeCompare(idA);
   }
 
   return a.name.localeCompare(b.name, undefined, {
