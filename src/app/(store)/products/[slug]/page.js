@@ -207,7 +207,27 @@ export default function ProductPage({ params }) {
         <div style={detailsColumnStyle}>
           <span style={collectionNameStyle}>{product.collection_name}</span>
           <h1 style={productNameStyle}>{product.name}</h1>
-          <p style={priceStyle}>₹{parseFloat(product.price).toLocaleString('en-IN')}</p>
+          {product.flash_sale && product.flash_sale_price ? (
+            <p style={priceStyle}>
+              <span style={{ color: '#000000', fontWeight: '700', marginRight: '0.8rem' }}>
+                ₹{parseFloat(product.flash_sale_price).toLocaleString('en-IN')}
+              </span>
+              <span style={{ color: 'rgba(0, 0, 0, 0.4)', textDecoration: 'line-through', fontSize: '1.1rem', fontWeight: '400' }}>
+                ₹{parseFloat(product.price).toLocaleString('en-IN')}
+              </span>
+            </p>
+          ) : product.on_sale && product.sale_price ? (
+            <p style={priceStyle}>
+              <span style={{ color: '#000000', fontWeight: '700', marginRight: '0.8rem' }}>
+                ₹{parseFloat(product.sale_price).toLocaleString('en-IN')}
+              </span>
+              <span style={{ color: 'rgba(0, 0, 0, 0.4)', textDecoration: 'line-through', fontSize: '1.1rem', fontWeight: '400' }}>
+                ₹{parseFloat(product.price).toLocaleString('en-IN')}
+              </span>
+            </p>
+          ) : (
+            <p style={priceStyle}>₹{parseFloat(product.price).toLocaleString('en-IN')}</p>
+          )}
 
           {/* Custom Tag Badges below Price and above Description */}
           {(() => {

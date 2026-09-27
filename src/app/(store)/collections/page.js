@@ -160,9 +160,29 @@ function MobileSearchBar({ allProducts, initialQuery, onSearch, handleProductCli
                 />
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   <span style={{ fontSize: '0.85rem', fontWeight: '500', color: '#000000' }}>{p.name}</span>
-                  <span style={{ fontSize: '0.75rem', color: '#D98E9B', fontWeight: '600', marginTop: '0.1rem' }}>
-                    ₹{parseFloat(p.price).toLocaleString('en-IN')}
-                  </span>
+                  {p.flash_sale && p.flash_sale_price ? (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.1rem' }}>
+                      <span style={{ fontSize: '0.75rem', color: '#D98E9B', fontWeight: '700' }}>
+                        ₹{parseFloat(p.flash_sale_price).toLocaleString('en-IN')}
+                      </span>
+                      <span style={{ fontSize: '0.7rem', color: 'rgba(0, 0, 0, 0.4)', textDecoration: 'line-through' }}>
+                        ₹{parseFloat(p.price).toLocaleString('en-IN')}
+                      </span>
+                    </div>
+                  ) : p.on_sale && p.sale_price ? (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.1rem' }}>
+                      <span style={{ fontSize: '0.75rem', color: '#D98E9B', fontWeight: '700' }}>
+                        ₹{parseFloat(p.sale_price).toLocaleString('en-IN')}
+                      </span>
+                      <span style={{ fontSize: '0.7rem', color: 'rgba(0, 0, 0, 0.4)', textDecoration: 'line-through' }}>
+                        ₹{parseFloat(p.price).toLocaleString('en-IN')}
+                      </span>
+                    </div>
+                  ) : (
+                    <span style={{ fontSize: '0.75rem', color: '#D98E9B', fontWeight: '600', marginTop: '0.1rem' }}>
+                      ₹{parseFloat(p.price).toLocaleString('en-IN')}
+                    </span>
+                  )}
                 </div>
               </a>
             ))}

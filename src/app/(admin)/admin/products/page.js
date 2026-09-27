@@ -1419,7 +1419,21 @@ function AdminProductsContent() {
                           })()}
                         </div>
                       </td>
-                      <td style={tdStyle}>₹{parseFloat(p.price).toLocaleString('en-IN')}</td>
+                      <td style={tdStyle}>
+                        {p.flash_sale && p.flash_sale_price ? (
+                          <div>
+                            <span style={{ fontWeight: '700', color: '#D98E9B' }}>₹{parseFloat(p.flash_sale_price).toLocaleString('en-IN')}</span>
+                            <span style={{ fontSize: '0.75rem', color: '#888888', textDecoration: 'line-through', marginLeft: '0.35rem' }}>₹{parseFloat(p.price).toLocaleString('en-IN')}</span>
+                          </div>
+                        ) : p.on_sale && p.sale_price ? (
+                          <div>
+                            <span style={{ fontWeight: '700', color: '#D98E9B' }}>₹{parseFloat(p.sale_price).toLocaleString('en-IN')}</span>
+                            <span style={{ fontSize: '0.75rem', color: '#888888', textDecoration: 'line-through', marginLeft: '0.35rem' }}>₹{parseFloat(p.price).toLocaleString('en-IN')}</span>
+                          </div>
+                        ) : (
+                          <>₹{parseFloat(p.price).toLocaleString('en-IN')}</>
+                        )}
+                      </td>
                       <td style={tdStyle} className="hide-on-mobile">
                         <span style={totalStock <= 5 ? lowStockHighlightStyle : null}>
                           {totalStock} units
